@@ -6,10 +6,20 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{kt, kts}]
+[*.{kt,kts}]
 indent_style = space
 indent_size = 4
 max_line_length = 100
+ktlint_standard_no-trailing-commas=false
+ktlint_code_style = android_studio
+ktlint_experimental = disabled
+ktlint_standard_filename = disabled
+ktlint_standard_function-naming = disabled
+ktlint_standard_function-return-type-spacing = disabled
+ktlint_standard_function-signature = disabled
+ktlint_standard_import-ordering = disabled
+ktlint_standard_package-name = disabled
+ktlint_standard_property-naming = disabled
 
 [**/test/**/*.kt]
 max_line_length = 120
