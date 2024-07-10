@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MiguelAngelCastellanos2</string>
+    //LOGIN AND SIGNUP
+    <string name="description_google_image">Social login google</string>
+    <string name="login_google_text">Continuar como Miguel</string>
+    <string name="login_button_text">Acceder</string>
+    <string name="signUp_button_text">Registrarse</string>
+    <string name="forgot_password_text">¿Has olvidado tu contraseña?</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_confirm_password">Confirmar contraseña</string>
+    <string name="hint_username">Nombre de usuario</string>
+    <string name="description_visibility_icon">show password</string>
+    <string name="description_logo_app">Logo app</string>
+    <string name="signUp_question">¿No tienes una cuenta?</string>
+    <string name="clickable_signUp_text">Regístrate.</string>
+    <string name="description_close_app_icon">Close app</string>
+    <string name="login_question">¿Ya tienes una cuenta?</string>
+    <string name="clickable_login_text">Acceder.</string>
+    <string name="login_divider_text">O</string>
+</resources>

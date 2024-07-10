@@ -1,4 +1,4 @@
-package com.migueldev.wodwiseapp.ui.theme
+package com.migueldev.wodwiseapp.presentation.screen.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
