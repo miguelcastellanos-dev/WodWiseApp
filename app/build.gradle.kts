@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.gradle.ktlint)
     alias(libs.plugins.detekt)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.ksp)
     id("jacoco")
 }
 
@@ -53,6 +55,7 @@ android {
 }
 
 ktlint {
+    version = "0.47.1"
     android = true
     ignoreFailures = false
     reporters {
@@ -87,6 +90,9 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.google.dagger.hilt.android)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.androidx.compose.bom))
 
     testImplementation(libs.junit)
@@ -101,4 +107,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
+    ksp(libs.google.dagger.hilt.compiler)
 }

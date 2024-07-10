@@ -1,4 +1,4 @@
-package com.migueldev.wodwiseapp.ui.theme
+package com.migueldev.wodwiseapp.presentation.screen.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,15 +11,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = DeepOrange,
+    secondary = MediumOrange,
+    primaryContainer = LightOrange,
+    onSecondaryContainer = LightPeach
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Orange40,
+    secondary = OrangeGrey40,
+    primaryContainer = Yellow80,
+    onSecondaryContainer = Orange80
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -35,7 +37,7 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun WodWiseAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
