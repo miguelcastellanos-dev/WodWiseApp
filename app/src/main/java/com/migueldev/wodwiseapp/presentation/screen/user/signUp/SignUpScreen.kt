@@ -8,11 +8,18 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 
 @Composable
-fun SignUpScreen(signUpViewModel: SignUpViewModel, navController: NavHostController) {
+fun SignUpScreen(
+    signUpViewModel: SignUpViewModel,
+    navController: NavHostController,
+    toastWrapper: ToastWrapper,
+) {
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -20,7 +27,16 @@ fun SignUpScreen(signUpViewModel: SignUpViewModel, navController: NavHostControl
             .padding(Dimension.d16)
     ) {
         Header(Modifier.align(Alignment.TopEnd))
-        Body(Modifier.align(Alignment.TopCenter), signUpViewModel)
-        Footer(Modifier.align(Alignment.BottomCenter), navController)
+        Body(
+            modifier = Modifier.align(Alignment.TopCenter),
+            signUpViewModel = signUpViewModel,
+            navController = navController,
+            context = context,
+            toastWrapper = toastWrapper
+        )
+        Footer(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            navController = navController
+        )
     }
 }

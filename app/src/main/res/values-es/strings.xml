@@ -18,4 +18,6 @@
     <string name="login_question">¿Ya tienes una cuenta?</string>
     <string name="clickable_login_text">Acceder.</string>
     <string name="login_divider_text">O</string>
+    <string name="toast_msg_registered_user">Ahora puedes acceder</string>
+    <string name="error_email_or_password">Error en email o contraseña</string>
 </resources>
