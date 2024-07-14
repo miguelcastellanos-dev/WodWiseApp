@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
     id("jacoco")
 }
 
@@ -90,10 +91,14 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.google.dagger.hilt.android)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.arrow.core)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.google.dagger.hilt.android)
+
     implementation(platform(libs.androidx.compose.bom))
+    implementation(platform(libs.firebase.bom))
 
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)

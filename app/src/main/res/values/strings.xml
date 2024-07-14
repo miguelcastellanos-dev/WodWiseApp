@@ -18,4 +18,11 @@
     <string name="login_question">Already have an account?</string>
     <string name="clickable_login_text">Log In.</string>
     <string name="login_divider_text">Or</string>
+    <string name="log_msg_login_error" translatable="false">signInWithEmailAndPassword: %1$s</string>
+    <string name="unknown_error" translatable="false">Unknown error</string>
+    <string name="log_msg_successful_login" translatable="false">Successful login for user: %1$s</string>
+    <string name="log_msg_register_exception" translatable="false">registerWithEmailAndPassword: %1$s</string>
+    <string name="log_msg_successful_register" translatable="false">Successful register for user: %1$s</string>
+    <string name="toast_msg_registered_user">Now you can log in</string>
+    <string name="error_email_or_password">Error in email or password</string>
 </resources>
