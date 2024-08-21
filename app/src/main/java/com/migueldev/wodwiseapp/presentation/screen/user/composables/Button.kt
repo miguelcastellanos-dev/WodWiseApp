@@ -8,43 +8,38 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import com.migueldev.wodwiseapp.R
-import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
+import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
+import com.migueldev.wodwiseapp.presentation.screen.user.data.UserButtonParams
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
-import com.migueldev.wodwiseapp.presentation.screen.user.signUp.SignUpViewModel
+import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
 
 @Composable
 fun LoginButton(
-    email: String,
-    password: String,
-    loginEnable: Boolean,
+    loginState: LoginState,
+    params: UserButtonParams,
     loginViewModel: LoginViewModel,
     context: Context,
-    toastWrapper: ToastWrapper,
 ) {
     Button(
         onClick = {
             loginViewModel.signInWithEmailAndPassword(
-                email = email,
-                password = password,
-                context = context,
-                toastWrapper = toastWrapper
+                email = params.email,
+                password = params.password,
+                context = context
             )
         },
-        enabled = loginEnable,
+        enabled = params.isEnabled,
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
-            disabledContainerColor = MaterialTheme.colorScheme.secondary,
-            contentColor = Color.White,
-            disabledContentColor = Color.White
+            disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+            disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     ) {
         Text(
-            text = stringResource(id = R.string.login_button_text),
+            text = loginState.loginButtonText,
             style = MaterialTheme.typography.titleLarge
         )
     }
@@ -52,35 +47,32 @@ fun LoginButton(
 
 @Composable
 fun SignUpButton(
-    email: String,
-    password: String,
-    loginEnable: Boolean,
+    loginState: LoginState,
+    params: UserButtonParams,
     signUpViewModel: SignUpViewModel,
     navController: NavHostController,
     context: Context,
-    toastWrapper: ToastWrapper,
 ) {
     Button(
         onClick = {
             signUpViewModel.registerWithEmailAndPassword(
-                email = email,
-                password = password,
+                email = params.email,
+                password = params.password,
                 navController = navController,
-                context = context,
-                toastWrapper = toastWrapper
+                context = context
             )
         },
-        enabled = loginEnable,
+        enabled = params.isEnabled,
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
-            disabledContainerColor = MaterialTheme.colorScheme.secondary,
-            contentColor = Color.White,
-            disabledContentColor = Color.White
+            disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+            disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     ) {
         Text(
-            text = stringResource(id = R.string.signUp_button_text),
+            text = loginState.signupButtonText,
             style = MaterialTheme.typography.titleLarge
         )
     }

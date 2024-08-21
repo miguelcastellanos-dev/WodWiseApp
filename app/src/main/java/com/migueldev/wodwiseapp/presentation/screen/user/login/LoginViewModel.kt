@@ -1,17 +1,15 @@
 package com.migueldev.wodwiseapp.presentation.screen.user.login
 
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.di.IO
-import com.migueldev.wodwiseapp.di.Main
 import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.LoginRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableLoginButtonUseCase
-import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
-import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginStateData
+import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
+import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -25,12 +23,63 @@ import kotlinx.coroutines.withContext
 class LoginViewModel @Inject constructor(
     private val enableLoginButtonUseCase: EnableLoginButtonUseCase,
     private val loginRepository: LoginRepository,
-    @IO private val ioDispatcher: CoroutineDispatcher,
-    @Main private val mainDispatcher: CoroutineDispatcher,
     private val logger: Logger,
+    private val resourceProvider: ResourceProvider,
+    @IO private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
-    private val _loginState = MutableStateFlow(LoginStateData())
-    val loginState: StateFlow<LoginStateData> = _loginState
+
+    private val _loginState = MutableStateFlow(LoginState())
+    val loginState: StateFlow<LoginState> = _loginState
+
+    init {
+        initializeTextResources()
+    }
+
+    private fun initializeTextResources() {
+        _loginState.update { currentState ->
+            currentState.copy(
+                loginButtonText = resourceProvider.getString(
+                    R.string.login_button_text
+                ),
+                signupButtonText = resourceProvider.getString(
+                    R.string.signUp_button_text
+                ),
+                descriptionGoogleImage = resourceProvider.getString(
+                    R.string.description_google_image
+                ),
+                loginGoogleText = resourceProvider.getString(
+                    R.string.login_google_text
+                ),
+                forgotPasswordText = resourceProvider.getString(
+                    R.string.forgot_password_text
+                ),
+                signupQuestionText = resourceProvider.getString(
+                    R.string.signUp_question
+                ),
+                clickableSignupText = resourceProvider.getString(
+                    R.string.clickable_signUp_text
+                ),
+                loginDividerText = resourceProvider.getString(
+                    R.string.login_divider_text
+                ),
+                descriptionLogoApp = resourceProvider.getString(
+                    R.string.description_logo_app
+                ),
+                hintEmail = resourceProvider.getString(
+                    R.string.hint_email
+                ),
+                hintPassword = resourceProvider.getString(
+                    R.string.hint_password
+                ),
+                descriptionVisibilityIcon = resourceProvider.getString(
+                    R.string.description_visibility_icon
+                ),
+                descriptionCloseAppIcon = resourceProvider.getString(
+                    R.string.description_close_app_icon
+                )
+            )
+        }
+    }
 
     fun onLoginChanged(email: String, password: String) {
         _loginState.update { currentState ->
@@ -46,7 +95,6 @@ class LoginViewModel @Inject constructor(
         email: String,
         password: String,
         context: Context,
-        toastWrapper: ToastWrapper,
     ) {
         viewModelScope.launch {
             val result = withContext(ioDispatcher) {
@@ -62,7 +110,6 @@ class LoginViewModel @Inject constructor(
                             throwable.message ?: R.string.unknown_error
                         )
                     )
-                    toastWrapper.show(R.string.error_email_or_password)
                 },
                 ifRight = { firebaseUser ->
                     logger.d(
@@ -72,10 +119,7 @@ class LoginViewModel @Inject constructor(
                             firebaseUser.email
                         )
                     )
-                    withContext(mainDispatcher) {
-                        Toast.makeText(context, "GO TO HOME SCREEN", Toast.LENGTH_LONG).show()
-                        // Navigate to home screen
-                    }
+//                    GO TO MAIN SCREEN
                 }
             )
         }

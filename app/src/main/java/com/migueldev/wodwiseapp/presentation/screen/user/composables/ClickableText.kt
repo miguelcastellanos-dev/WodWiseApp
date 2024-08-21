@@ -13,15 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
+import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
+import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 
 @Composable
-fun SocialLogin() {
+fun SocialLogin(
+    loginState: LoginState,
+) {
     Row(
         Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -29,11 +32,11 @@ fun SocialLogin() {
     ) {
         Image(
             painter = painterResource(id = R.drawable.google),
-            contentDescription = stringResource(id = R.string.description_google_image),
+            contentDescription = loginState.descriptionGoogleImage,
             modifier = Modifier.size(Dimension.d16)
         )
         Text(
-            text = stringResource(id = R.string.login_google_text),
+            text = loginState.loginGoogleText,
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(horizontal = Dimension.d8),
@@ -43,9 +46,9 @@ fun SocialLogin() {
 }
 
 @Composable
-fun ForgotPassword(modifier: Modifier) {
+fun ForgotPassword(loginState: LoginState, modifier: Modifier) {
     Text(
-        text = stringResource(id = R.string.forgot_password_text),
+        text = loginState.forgotPasswordText,
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.primary,
         modifier = modifier
@@ -53,19 +56,23 @@ fun ForgotPassword(modifier: Modifier) {
 }
 
 @Composable
-fun GoToSignUp(navController: NavHostController) {
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+fun GoToSignUp(loginState: LoginState, navController: NavHostController) {
+    Row(
+        Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(
-            text = stringResource(id = R.string.signUp_question),
+            text = loginState.signupQuestionText,
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.secondary
+            color = MaterialTheme.colorScheme.onBackground
         )
         Text(
-            text = stringResource(id = R.string.clickable_signUp_text),
+            text = loginState.clickableSignupText,
             Modifier
                 .padding(horizontal = Dimension.d8)
                 .clickable { navController.navigate(Routes.SignUpScreen.route) },
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary
         )
@@ -73,19 +80,23 @@ fun GoToSignUp(navController: NavHostController) {
 }
 
 @Composable
-fun GoToLogin(navController: NavHostController) {
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+fun GoToLogin(signUpState: SignUpState, navController: NavHostController) {
+    Row(
+        Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(
-            text = stringResource(id = R.string.login_question),
+            text = signUpState.loginQuestion,
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.secondary
+            color = MaterialTheme.colorScheme.onBackground
         )
         Text(
-            text = stringResource(id = R.string.clickable_login_text),
+            text = signUpState.clickableLoginText,
             Modifier
                 .padding(horizontal = Dimension.d8)
                 .clickable { navController.navigate(Routes.LoginScreen.route) },
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary
         )

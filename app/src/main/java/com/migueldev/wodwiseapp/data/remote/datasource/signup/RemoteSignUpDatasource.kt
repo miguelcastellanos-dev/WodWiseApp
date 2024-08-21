@@ -15,7 +15,7 @@ class RemoteSignUpDatasource @Inject constructor(
     ): Either<Throwable, FirebaseUser> {
         return Either.catch {
             val user = authService.register(email, password)
-            user ?: throw RegistrationFailedException("Registration failed")
+            user ?: throw RegistrationFailedException()
         }
     }
 }

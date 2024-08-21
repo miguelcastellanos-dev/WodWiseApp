@@ -1,6 +1,7 @@
 package com.migueldev.wodwiseapp.di
 
 import android.content.Context
+import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
 import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import dagger.Module
 import dagger.Provides
@@ -17,4 +18,9 @@ object ProvideModule {
     fun provideToastWrapper(@ApplicationContext context: Context): ToastWrapper {
         return ToastWrapper(context)
     }
+
+    @Provides
+    @Singleton
+    fun provideResourceProvider(@ApplicationContext context: Context): ResourceProvider =
+        ResourceProvider(context)
 }

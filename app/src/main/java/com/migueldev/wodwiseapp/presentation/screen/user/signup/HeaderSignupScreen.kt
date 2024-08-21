@@ -1,4 +1,4 @@
-package com.migueldev.wodwiseapp.presentation.screen.user.signUp
+package com.migueldev.wodwiseapp.presentation.screen.user.signup
 
 import android.app.Activity
 import androidx.compose.foundation.clickable

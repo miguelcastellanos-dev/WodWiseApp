@@ -10,29 +10,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
+import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 
 @Composable
-fun LoginDivider() {
+fun LoginDivider(loginState: LoginState) {
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         HorizontalDivider(
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier
                 .height(Dimension.d1)
                 .weight(1f)
         )
         Text(
-            text = stringResource(id = R.string.login_divider_text),
+            text = loginState.loginDividerText,
             modifier = Modifier.padding(horizontal = Dimension.d16),
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.onBackground
         )
         HorizontalDivider(
-            color = MaterialTheme.colorScheme.primary,
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier
                 .height(Dimension.d1)
                 .weight(1f)

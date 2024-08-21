@@ -1,4 +1,4 @@
-package com.migueldev.wodwiseapp.presentation.screen.user.signUp
+package com.migueldev.wodwiseapp.presentation.screen.user.signup
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,9 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.GoToLogin
+import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 
 @Composable
-fun Footer(modifier: Modifier, navController: NavHostController) {
+fun Footer(
+    signUpState: SignUpState,
+    modifier: Modifier,
+    navController: NavHostController,
+) {
     Column(modifier = modifier.fillMaxWidth()) {
         HorizontalDivider(
             color = MaterialTheme.colorScheme.primary,
@@ -25,7 +30,7 @@ fun Footer(modifier: Modifier, navController: NavHostController) {
                 .fillMaxWidth()
         )
         Spacer(modifier = Modifier.size(Dimension.d24))
-        GoToLogin(navController)
+        GoToLogin(signUpState, navController)
         Spacer(modifier = Modifier.size(Dimension.d24))
     }
 }

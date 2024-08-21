@@ -15,7 +15,7 @@ class RemoteLoginDatasource @Inject constructor(
     ): Either<Throwable, FirebaseUser> {
         return Either.catch {
             val user = authService.login(email, password)
-            user ?: throw LoginFailedException("Login failed")
+            user ?: throw LoginFailedException()
         }
     }
 }
