@@ -1,3 +1,4 @@
 package com.migueldev.wodwiseapp.domain.exception
 
-class LoginFailedException(message: String) : Exception(message)
+class LoginFailedException(cause: Throwable? = null) :
+    Exception("Login failed", cause)

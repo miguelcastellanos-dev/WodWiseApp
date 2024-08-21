@@ -17,76 +17,59 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import com.migueldev.wodwiseapp.R
+import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 
 @Composable
-fun Email(email: String, onTextChanged: (String) -> Unit) {
+fun Email(
+    loginState: LoginState,
+    email: String,
+    onTextChanged: (String) -> Unit,
+) {
     TextField(
         value = email,
         onValueChange = { onTextChanged(it) },
         modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = stringResource(id = R.string.hint_email)) },
+        placeholder = { Text(text = loginState.hintEmail) },
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.primary,
-            unfocusedContainerColor = MaterialTheme.colorScheme.secondary,
-            unfocusedTextColor = Color.White,
-            focusedTextColor = Color.White,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            unfocusedPlaceholderColor = Color.White,
-            focusedPlaceholderColor = Color.White
+            focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            unfocusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+            unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            unfocusedPlaceholderColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            focusedPlaceholderColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     )
 }
 
 @Composable
-fun UserName(username: String, onTextChanged: (String) -> Unit) {
-    TextField(
-        value = username,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = stringResource(id = R.string.hint_username)) },
-        maxLines = 1,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.primary,
-            unfocusedContainerColor = MaterialTheme.colorScheme.secondary,
-            unfocusedTextColor = Color.White,
-            focusedTextColor = Color.White,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            unfocusedPlaceholderColor = Color.White,
-            focusedPlaceholderColor = Color.White
-        )
-    )
-}
-
-@Composable
-fun PasswordTextField(password: String, onTextChanged: (String) -> Unit) {
+fun PasswordTextField(
+    loginState: LoginState,
+    password: String,
+    onTextChanged: (String) -> Unit,
+) {
     var passwordVisibility by remember { mutableStateOf(false) }
     TextField(
         value = password,
         onValueChange = { onTextChanged(it) },
         modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(stringResource(id = R.string.hint_password)) },
+        placeholder = { Text(loginState.hintPassword) },
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.primary,
-            unfocusedContainerColor = MaterialTheme.colorScheme.secondary,
-            unfocusedTextColor = Color.White,
-            focusedTextColor = Color.White,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            unfocusedPlaceholderColor = Color.White,
-            focusedPlaceholderColor = Color.White
+            focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            unfocusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+            unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            unfocusedPlaceholderColor = MaterialTheme.colorScheme.onPrimaryContainer,
+            focusedPlaceholderColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
         singleLine = true,
         maxLines = 1,
@@ -100,8 +83,8 @@ fun PasswordTextField(password: String, onTextChanged: (String) -> Unit) {
             IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                 Icon(
                     imageVector = imagen,
-                    contentDescription = stringResource(id = R.string.description_visibility_icon),
-                    tint = Color.White
+                    contentDescription = loginState.descriptionVisibilityIcon,
+                    tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
         },
@@ -114,11 +97,19 @@ fun PasswordTextField(password: String, onTextChanged: (String) -> Unit) {
 }
 
 @Composable
-fun Password(password: String, onTextChanged: (String) -> Unit) {
-    PasswordTextField(password, onTextChanged)
+fun Password(
+    loginState: LoginState,
+    password: String,
+    onTextChanged: (String) -> Unit,
+) {
+    PasswordTextField(loginState, password, onTextChanged)
 }
 
 @Composable
-fun ConfirmPassword(password: String, onTextChanged: (String) -> Unit) {
-    PasswordTextField(password, onTextChanged)
+fun ConfirmPassword(
+    loginState: LoginState,
+    password: String,
+    onTextChanged: (String) -> Unit,
+) {
+    PasswordTextField(loginState, password, onTextChanged)
 }

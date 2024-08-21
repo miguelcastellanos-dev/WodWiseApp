@@ -1,4 +1,4 @@
-package com.migueldev.wodwiseapp.presentation.screen.user.signUp
+package com.migueldev.wodwiseapp.presentation.screen.user.signup
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
@@ -6,13 +6,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.di.IO
-import com.migueldev.wodwiseapp.di.Main
 import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.SignUpRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableSignUpButtonUseCase
 import com.migueldev.wodwiseapp.model.Routes
+import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
 import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
-import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpStateData
+import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,29 +26,47 @@ import kotlinx.coroutines.withContext
 class SignUpViewModel @Inject constructor(
     private val enableSignUpButtonUseCase: EnableSignUpButtonUseCase,
     private val signUpRepository: SignUpRepository,
-    @IO private val ioDispatcher: CoroutineDispatcher,
-    @Main private val mainDispatcher: CoroutineDispatcher,
     private val logger: Logger,
+    private val toastWrapper: ToastWrapper,
+    private val resourceProvider: ResourceProvider,
+    @IO private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
-    private val _signUpState = MutableStateFlow(SignUpStateData())
-    val signUpState: StateFlow<SignUpStateData> = _signUpState
+    private val _signUpState = MutableStateFlow(SignUpState())
+    val signUpState: StateFlow<SignUpState> = _signUpState
+
+    init {
+        initializeTextResources()
+    }
+
+    private fun initializeTextResources() {
+        _signUpState.update { currentState ->
+            currentState.copy(
+                signupButtonText = resourceProvider.getString(
+                    R.string.signUp_button_text
+                ),
+                loginQuestion = resourceProvider.getString(
+                    R.string.login_question
+                ),
+                clickableLoginText = resourceProvider.getString(
+                    R.string.clickable_login_text
+                )
+            )
+        }
+    }
 
     fun onSignUpChanged(
         email: String,
-        username: String,
         password: String,
         confirmPassword: String,
     ) {
         _signUpState.update { currentState ->
             currentState.copy(
                 email = email,
-                username = username,
                 password = password,
                 confirmPassword = confirmPassword,
                 isSignUpEnabled = enableSignUpButtonUseCase(
                     email,
-                    username,
                     password,
                     confirmPassword
                 )
@@ -61,10 +79,13 @@ class SignUpViewModel @Inject constructor(
         password: String,
         navController: NavHostController,
         context: Context,
-        toastWrapper: ToastWrapper,
     ) {
-        viewModelScope.launch(ioDispatcher) {
-            signUpRepository.register(email, password).fold(
+        viewModelScope.launch {
+            val result = withContext(ioDispatcher) {
+                signUpRepository.register(email, password)
+            }
+
+            result.fold(
                 ifLeft = { throwable ->
                     logger.e(
                         TAG,
@@ -82,10 +103,8 @@ class SignUpViewModel @Inject constructor(
                             firebaseUser.email
                         )
                     )
-                    withContext(mainDispatcher) {
-                        navController.navigate(Routes.LoginScreen.route)
-                        toastWrapper.show(R.string.toast_msg_registered_user)
-                    }
+                    navController.navigate(Routes.LoginScreen.route)
+                    toastWrapper.show(R.string.toast_msg_registered_user)
                 }
             )
         }

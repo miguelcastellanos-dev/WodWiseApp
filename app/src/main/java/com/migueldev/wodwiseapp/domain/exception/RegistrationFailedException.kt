@@ -1,3 +1,4 @@
 package com.migueldev.wodwiseapp.domain.exception
 
-class RegistrationFailedException(message: String) : Exception(message)
+class RegistrationFailedException(cause: Throwable? = null) :
+    Exception("Registration failed", cause)
