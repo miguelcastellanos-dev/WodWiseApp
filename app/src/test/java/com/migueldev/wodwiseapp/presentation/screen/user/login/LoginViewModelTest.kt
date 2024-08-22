@@ -2,9 +2,12 @@ package com.migueldev.wodwiseapp.presentation.screen.user.login
 
 import android.content.Context
 import android.widget.Toast
+import androidx.navigation.NavHostController
 import arrow.core.Either
 import com.google.firebase.auth.FirebaseUser
 import com.migueldev.wodwiseapp.R
+import com.migueldev.wodwiseapp.core.coVerifyOnce
+import com.migueldev.wodwiseapp.data.session.UserPreferences
 import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.LoginRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableLoginButtonUseCase
@@ -15,11 +18,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
-import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
@@ -37,6 +38,8 @@ class LoginViewModelTest {
     private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
     private val logger: Logger = mockk(relaxed = true)
     private val context: Context = mockk(relaxed = true)
+    private val userPreferences: UserPreferences = mockk(relaxed = true)
+    private val navController: NavHostController = mockk(relaxed = true)
     private val resourceProvider: ResourceProvider = mockk(relaxed = true)
 
     private lateinit var viewModel: LoginViewModel
@@ -46,6 +49,7 @@ class LoginViewModelTest {
         Dispatchers.setMain(testDispatcher)
 
         viewModel = LoginViewModel(
+            userPreferences = userPreferences,
             enableLoginButtonUseCase = enableLoginButtonUseCase,
             loginRepository = loginRepository,
             ioDispatcher = testDispatcher,
@@ -56,7 +60,7 @@ class LoginViewModelTest {
 
     @Test
     fun `GIVEN valid credentials WHEN onLoginChanged THEN state is updated correctly`(): Unit =
-        runBlocking {
+        runTest {
             val email = "example@test.com"
             val password = "password1234"
             every { enableLoginButtonUseCase(email, password) } returns true
@@ -85,7 +89,7 @@ class LoginViewModelTest {
                 )
             } returns mockk(relaxed = true)
 
-            viewModel.signInWithEmailAndPassword(email, password, context)
+            viewModel.signInWithEmailAndPassword(navController, email, password, context)
 
             coVerify {
                 logger.d(
@@ -96,7 +100,7 @@ class LoginViewModelTest {
                     )
                 )
             }
-            coVerify { loginRepository.login(email, password) }
+            coVerifyOnce { loginRepository.login(email, password) }
             unmockkStatic(Toast::class)
         }
 
@@ -108,10 +112,10 @@ class LoginViewModelTest {
             val throwable = Throwable("Error")
             coEvery { loginRepository.login(email, password) } returns Either.Left(throwable)
 
-            viewModel.signInWithEmailAndPassword(email, password, context)
+            viewModel.signInWithEmailAndPassword(navController, email, password, context)
 
-            coVerify { loginRepository.login(email, password) }
-            verify {
+            coVerifyOnce { loginRepository.login(email, password) }
+            coVerifyOnce {
                 logger.e(
                     "LoginViewModel",
                     context.getString(

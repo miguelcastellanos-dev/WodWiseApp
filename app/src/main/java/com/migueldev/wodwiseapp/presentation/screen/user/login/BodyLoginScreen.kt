@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.Email
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.ForgotPassword
@@ -23,6 +24,7 @@ import com.migueldev.wodwiseapp.presentation.screen.user.data.UserButtonParams
 
 @Composable
 fun BodyLoginScreen(
+    navController: NavHostController,
     loginState: LoginState,
     modifier: Modifier,
     loginViewModel: LoginViewModel,
@@ -62,6 +64,7 @@ fun BodyLoginScreen(
         ForgotPassword(loginState = loginState, Modifier.align(Alignment.End))
         Spacer(modifier = Modifier.size(Dimension.d16))
         LoginButton(
+            navController = navController,
             loginState = loginState,
             UserButtonParams(
                 email = email,
