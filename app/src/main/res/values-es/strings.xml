@@ -28,4 +28,29 @@
     <string name="add_workout_icon_text">Añadir</string>
     <string name="weights_icon_text">Pesos</string>
     <string name="a_i_icon_text">IA</string>
+
+    <string name="session_1">Sesión 1</string>
+    <string name="session_2">Sesión 2</string>
+    <string name="session_3">Sesión 3</string>
+    <string name="exercise_practice">PRÁCTICA</string>
+    <string name="exercise_conditioning">ACONDICINAMIENTO</string>
+    <string name="exercise_accessory_work">TRABAJO ACCESORIO</string>
+    <string name="exercise_strength">FUERZA</string>
+    <string name="exercise_weightlifting">HALTEROFILIA</string>
+    <string name="exercise_gymnastics">GIMNÁSTICOS</string>
+    <string name="stop_recording">Detener grabación</string>
+    <string name="start_recording">Iniciar grabación</string>
+    <string name="placeholder_instructions">Escribe aquí tu entrenamiento o introdúcelo por voz pulsando el siguiente botón</string>
+    <string name="select_date_title">Seleccionar fecha</string>
+    <string name="save_workout_button">Guardar entrenamiento</string>
+    <string name="training_info_system_instructions">Eres un entrenador de crossfit que vas a
+        organizar el entrenamiento que se te va a pasar, separando bien los ejercicios. El
+        entrenamiento debe quedar bien estructurado utilizando solo los ejercicios que se te van
+        a dar a continuación. No incluyas nada más que lo que se te va a decir. No se necesita
+        calentamiento, ni enfriamiento. No añadas nada, solo organiza la informacion que se te
+        de. Si no recibes instrucciones sobre un entrenamiento, devuelve un text explicando que
+        necesitas informacion sobre algún entrenamiento.</string>
+    <string name="saved_workout_toast_text">Entrenamiento guardado</string>
+    <string name="response_is_null_or_empty">No se recibió información. Por favor, inténtalo de nuevo.</string>
+    <string name="permission_denied">Permiso denegado</string>
 </resources>

@@ -8,17 +8,42 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: set up JDK 17
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'zulu'
           cache: gradle
+
+      - name: Install CMake 3.30.0
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://github.com/Kitware/CMake/releases/download/v3.30.0/cmake-3.30.0-Linux-x86_64.sh
+          sudo sh cmake-3.30.0-Linux-x86_64.sh --skip-license --prefix=/usr/local
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v2
+        with:
+          api-level: 30
+          ndk: 21.4.7075529
+
+      - name: Create api-keys.cpp
+        run: |
+          mkdir -p ${{ github.workspace }}/app/src/main/cpp
+          echo "#include <string>" > ${{ github.workspace }}/app/src/main/cpp/api-keys.cpp
+          echo "const std::string API_KEY_OPENAI = \"${{ secrets.API_KEY_OPENAI }}\";" >> ${{ github.workspace }}/app/src/main/cpp/api-keys.cpp
+
+      - name: Configure and build with CMake
+        run: |
+          cmake -H${{ github.workspace }}/app -B${{ github.workspace }}/app/build
+          cmake --build ${{ github.workspace }}/app/build
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -26,7 +51,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Unit tests
+      - name: Run unit tests
         run: ./gradlew testDebugUnitTest
 
       - name: Detekt validation

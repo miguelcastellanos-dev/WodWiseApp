@@ -5,22 +5,42 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.migueldev.wodwiseapp.di.IO
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
 val Context.dataStore by preferencesDataStore(name = "user_prefs_wod_wise")
 
-class UserPreferences @Inject constructor(private val context: Context) {
+class UserPreferences @Inject constructor(
+    @IO private val ioDispatcher: CoroutineDispatcher,
+    private val context: Context,
+) {
+    val isDarkMode: Flow<Boolean> = context.dataStore.data
+        .map { preferences ->
+            preferences[IS_DARK_MODE_KEY] ?: false
+        }
 
     private val userEmail: Flow<String?> = context.dataStore.data
         .map { preferences ->
             preferences[EMAIL_KEY]
         }
 
+    suspend fun setDarkMode(isDarkMode: Boolean) {
+        withContext(ioDispatcher) {
+            context.dataStore.edit { preferences ->
+                preferences[IS_DARK_MODE_KEY] = isDarkMode
+            }
+        }
+    }
+
     suspend fun saveUserEmail(email: String) {
-        context.dataStore.edit { preferences ->
-            preferences[EMAIL_KEY] = email
+        withContext(ioDispatcher) {
+            context.dataStore.edit { preferences ->
+                preferences[EMAIL_KEY] = email
+            }
         }
     }
 
@@ -29,19 +49,10 @@ class UserPreferences @Inject constructor(private val context: Context) {
     }
 
     suspend fun clearUserEmail() {
-        context.dataStore.edit { preferences ->
-            preferences.remove(EMAIL_KEY)
-        }
-    }
-
-    val isDarkMode: Flow<Boolean> = context.dataStore.data
-        .map { preferences ->
-            preferences[IS_DARK_MODE_KEY] ?: false
-        }
-
-    suspend fun setDarkMode(isDarkMode: Boolean) {
-        context.dataStore.edit { preferences ->
-            preferences[IS_DARK_MODE_KEY] = isDarkMode
+        withContext(ioDispatcher) {
+            context.dataStore.edit { preferences ->
+                preferences.remove(EMAIL_KEY)
+            }
         }
     }
 }

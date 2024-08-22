@@ -10,47 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.migueldev.wodwiseapp.R
-import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.BottomNavigationItemData
-import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 
 @Composable
-fun BottomNavigation(
-    scaffoldState: ScaffoldState,
-    navController: NavHostController,
-) {
-    val items = listOf(
-        BottomNavigationItemData(
-            route = Routes.CalendarScreen,
-            iconPainter = painterResource(id = R.drawable.calendar_screen_icon),
-            text = scaffoldState.calendarIconText
-        ),
-        BottomNavigationItemData(
-            route = Routes.SaveScreen,
-            iconPainter = painterResource(id = R.drawable.save_screen_icon),
-            text = scaffoldState.addWorkoutIconText
-        ),
-        BottomNavigationItemData(
-            route = Routes.WeightsScreen,
-            iconPainter = painterResource(id = R.drawable.weights_screen_icon),
-            text = scaffoldState.weightsIconText
-        ),
-        BottomNavigationItemData(
-            route = Routes.IntelligenceScreen,
-            iconPainter = painterResource(id = R.drawable.intelligence_screen_icon),
-            text = scaffoldState.aIIconText
-        )
-    )
-    NavigationBar(navController, items)
-}
-
-@Composable
-fun NavigationBar(
+fun ScaffoldNavigationBar(
     navController: NavHostController,
     items: List<BottomNavigationItemData>,
 ) {

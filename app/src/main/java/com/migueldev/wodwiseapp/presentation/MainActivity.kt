@@ -6,12 +6,16 @@ import android.os.Bundle
 import android.view.Window
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,6 +31,7 @@ import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
+import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,11 +40,14 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var appStateManager: AppStateManager
+    lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     private val loginViewModel: LoginViewModel by viewModels()
     private val signUpViewModel: SignUpViewModel by viewModels()
     private val scaffoldViewModel: ScaffoldViewModel by viewModels()
+    private val workoutViewModel: WorkoutViewModel by viewModels()
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +55,25 @@ class MainActivity : ComponentActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+        requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            appStateManager.handlePermissionResult(
+                workoutViewModel = workoutViewModel,
+                context = this,
+                isGranted = isGranted
+            )
+        }
+
         setContent {
             val loginState by loginViewModel.loginState.collectAsState()
             val signUpState by signUpViewModel.signUpState.collectAsState()
             val scaffoldState by scaffoldViewModel.state.collectAsState()
+            val addWorkoutState by workoutViewModel.state.collectAsState()
             val navController = rememberNavController()
             val isEmailLoading = remember { mutableStateOf(true) }
             val userEmail = remember { mutableStateOf<String?>(null) }
+            val datePickerState = rememberDatePickerState()
 
             appStateManager.ObserveUserEmail(isEmailLoading, userEmail)
 
@@ -69,13 +89,15 @@ class MainActivity : ComponentActivity() {
                     val viewModelGroup = ViewModelGroup(
                         loginViewModel = loginViewModel,
                         signUpViewModel = signUpViewModel,
-                        scaffoldViewModel = scaffoldViewModel
+                        scaffoldViewModel = scaffoldViewModel,
+                        workoutViewModel = workoutViewModel
                     )
                     val stateGroup = StateGroup(
                         loginState = loginState,
                         signUpState = signUpState,
-                        scaffoldState = scaffoldState
-
+                        scaffoldState = scaffoldState,
+                        workoutState = addWorkoutState,
+                        datePickerState = datePickerState
                     )
                     val appState = appStateManager.initializeAppState(
                         viewModelGroup = viewModelGroup,

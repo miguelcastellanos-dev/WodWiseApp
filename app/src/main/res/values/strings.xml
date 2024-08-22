@@ -34,4 +34,36 @@
     <string name="add_workout_icon_text">Add workout</string>
     <string name="weights_icon_text">Weights</string>
     <string name="a_i_icon_text">AI</string>
+
+    <string name="session_1">Session 1</string>
+    <string name="session_2">Session 2</string>
+    <string name="session_3">Session 3</string>
+    <string name="position_a" translatable="false">A</string>
+    <string name="position_b" translatable="false">B</string>
+    <string name="position_c" translatable="false">C</string>
+    <string name="position_d" translatable="false">D</string>
+    <string name="position_e" translatable="false">E</string>
+    <string name="position_f" translatable="false">F</string>
+    <string name="exercise_wod" translatable="false">WOD</string>
+    <string name="exercise_practice">PRACTICE</string>
+    <string name="exercise_conditioning">CONDITIONING</string>
+    <string name="exercise_accessory_work">ACCESSORY WORK</string>
+    <string name="exercise_strength">STRENGTH</string>
+    <string name="exercise_weightlifting">WEIGHTLIFTING</string>
+    <string name="exercise_gymnastics">GYMNASTICS</string>
+    <string name="stop_recording">Stop recording</string>
+    <string name="start_recording">Start recording</string>
+    <string name="placeholder_instructions">Write your training here or enter it by voice by pressing the following button</string>
+    <string name="select_date_title">Select date</string>
+    <string name="save_workout_button">Save workout</string>
+    <string name="training_info_system_instructions">You are a CrossFit trainer who is going to
+        organize the training that you are going to give, separating the exercises well. The
+        training must be well structured using only the exercises that are going to be given to you
+        next. Do not include anything more than what is going to be told to you. No warm-up or
+        cool-down is necessary. Don\'t add anything, just organize the information you are given. If
+        you don\'t receive instructions on a workout, send back a text explaining that you need
+        information on a workout.</string>
+    <string name="saved_workout_toast_text">Saved workout</string>
+    <string name="response_is_null_or_empty">No information was received. Please try again.</string>
+    <string name="permission_denied">Permission denied</string>
 </resources>

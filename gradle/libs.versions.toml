@@ -2,7 +2,7 @@
 activityCompose = "1.9.1"
 agp = "8.4.2"
 arrowCore = "1.1.3"
-composeBom = "2024.06.00"
+composeBom = "2024.08.00"
 coreKtx = "1.13.1"
 coroutines-test = "1.8.1"
 dagger = "2.48"
@@ -17,11 +17,13 @@ junitVersion = "1.2.1"
 kluent = "1.73"
 kotlin = "1.9.0"
 ktlint = "12.1.1"
+ktorClientOkhttp = "2.3.12"
 ksp = "1.9.0-1.0.11"
 lifecycleRuntimeKtx = "2.8.4"
 materialIconsExtended = "1.6.8"
 mockk = "1.13.11"
 navigationCompose = "2.7.7"
+openaiClient = "3.8.1"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -44,6 +46,7 @@ arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrowCore" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
 firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
 google-dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
 google-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -51,7 +54,9 @@ junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.r
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiter" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiter" }
 kluent = { group = "org.amshove.kluent", name = "kluent", version.ref = "kluent" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorClientOkhttp" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+openai-client = { module = "com.aallam.openai:openai-client", version.ref = "openaiClient" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
