@@ -3,11 +3,14 @@ package com.migueldev.wodwiseapp.presentation.screen.user.login
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.R
+import com.migueldev.wodwiseapp.data.session.UserPreferences
 import com.migueldev.wodwiseapp.di.IO
 import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.LoginRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableLoginButtonUseCase
+import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,6 +28,7 @@ class LoginViewModel @Inject constructor(
     private val loginRepository: LoginRepository,
     private val logger: Logger,
     private val resourceProvider: ResourceProvider,
+    private val userPreferences: UserPreferences,
     @IO private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
@@ -92,6 +96,7 @@ class LoginViewModel @Inject constructor(
     }
 
     fun signInWithEmailAndPassword(
+        navController: NavHostController,
         email: String,
         password: String,
         context: Context,
@@ -119,10 +124,11 @@ class LoginViewModel @Inject constructor(
                             firebaseUser.email
                         )
                     )
-//                    GO TO MAIN SCREEN
+                    userPreferences.saveUserEmail(firebaseUser.email ?: "")
                 }
             )
         }
+        navController.navigate(Routes.ScaffoldScreen.route)
     }
 }
 

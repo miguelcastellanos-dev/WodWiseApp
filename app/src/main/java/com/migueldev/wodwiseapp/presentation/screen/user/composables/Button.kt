@@ -16,6 +16,7 @@ import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
 
 @Composable
 fun LoginButton(
+    navController: NavHostController,
     loginState: LoginState,
     params: UserButtonParams,
     loginViewModel: LoginViewModel,
@@ -26,7 +27,8 @@ fun LoginButton(
             loginViewModel.signInWithEmailAndPassword(
                 email = params.email,
                 password = params.password,
-                context = context
+                context = context,
+                navController = navController
             )
         },
         enabled = params.isEnabled,

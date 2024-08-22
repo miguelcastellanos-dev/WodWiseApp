@@ -2,7 +2,6 @@ package com.migueldev.wodwiseapp.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
-import com.migueldev.wodwiseapp.model.Routes
 
 @Composable
 fun AppNavigation(
@@ -11,7 +10,7 @@ fun AppNavigation(
     with(appState) {
         NavHost(
             navController = navController,
-            startDestination = Routes.LoginScreen.route
+            startDestination = startDestination
         ) {
             loginScreen(
                 loginState = loginState,
@@ -23,6 +22,9 @@ fun AppNavigation(
                 signUpState = signUpState,
                 signUpViewModel = signUpViewModel,
                 navController = navController
+            )
+            scaffoldScreen(
+                appState = appState
             )
         }
     }

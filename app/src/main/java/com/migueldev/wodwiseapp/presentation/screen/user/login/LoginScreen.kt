@@ -36,6 +36,7 @@ fun LoginScreen(
             modifier = Modifier.align(Alignment.TopEnd)
         )
         BodyLoginScreen(
+            navController = navController,
             loginState = loginState,
             modifier = Modifier.align(Alignment.TopCenter),
             loginViewModel = loginViewModel,

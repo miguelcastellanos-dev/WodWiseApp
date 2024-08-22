@@ -20,4 +20,12 @@
     <string name="login_divider_text">O</string>
     <string name="toast_msg_registered_user">Ahora puedes acceder</string>
     <string name="error_email_or_password">Error en email o contraseña</string>
+
+    <string name="profile_item">Perfil</string>
+    <string name="settings_item">Ajustes</string>
+    <string name="sign_off_item">Cerrar sesión</string>
+    <string name="calendar_icon_text">Calendario</string>
+    <string name="add_workout_icon_text">Añadir</string>
+    <string name="weights_icon_text">Pesos</string>
+    <string name="a_i_icon_text">IA</string>
 </resources>
