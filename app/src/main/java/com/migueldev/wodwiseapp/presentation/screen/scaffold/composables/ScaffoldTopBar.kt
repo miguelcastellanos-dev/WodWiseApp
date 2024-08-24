@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
-import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldParamsData
+import com.migueldev.wodwiseapp.presentation.navigation.AppButtonsState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
@@ -22,14 +22,12 @@ import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 @Composable
 fun ScaffoldTopBar(
     scaffoldState: ScaffoldState,
-    scaffoldParamsData: ScaffoldParamsData,
-    onLogout: () -> Unit,
+    appButtonsState: AppButtonsState,
 ) {
     ScaffoldTopAppBar(
         scaffoldState = scaffoldState,
         mode = scaffoldState.mode,
-        onTopBarIconClicked = scaffoldParamsData.onTopBarIconClicked,
-        onLogout = onLogout
+        appButtonsState = appButtonsState
     )
 }
 
@@ -38,8 +36,7 @@ fun ScaffoldTopBar(
 fun ScaffoldTopAppBar(
     scaffoldState: ScaffoldState,
     mode: ThemeSwitcher,
-    onTopBarIconClicked: () -> Unit,
-    onLogout: () -> Unit,
+    appButtonsState: AppButtonsState,
 ) {
     WodWiseAppTheme(
         darkTheme = mode.themeMode == ThemeSwitcher.DARK,
@@ -59,10 +56,13 @@ fun ScaffoldTopAppBar(
                     )
                 },
                 navigationIcon = {
-                    ScaffoldDropDownMenu(scaffoldState, onLogout)
+                    ScaffoldDropdownMenu(
+                        scaffoldState = scaffoldState,
+                        appButtonsState = appButtonsState
+                    )
                 },
                 actions = {
-                    IconButton(onClick = { onTopBarIconClicked() }) {
+                    IconButton(onClick = { appButtonsState.onToggleThemeClicked() }) {
                         Icon(
                             imageVector = Icons.Filled.Brightness6,
                             contentDescription = "switch theme light or dark",

@@ -2,5 +2,6 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>TooManyFunctions:WorkoutViewModel.kt$WorkoutViewModel : ViewModel</ID>
   </CurrentIssues>
 </SmellBaseline>

@@ -35,6 +35,12 @@ android {
             )
         }
     }
+    externalNativeBuild {
+        cmake {
+            path = file("CMakeLists.txt")
+            version = ("3.30.0")
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -95,11 +101,15 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.arrow.core)
-    implementation(libs.google.dagger.hilt.android)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore)
+    implementation(libs.google.dagger.hilt.android)
+    implementation(libs.openai.client)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.firebase.bom))
+
+    runtimeOnly(libs.ktor.client.okhttp)
 
     testImplementation(libs.coroutines.test)
     testImplementation(libs.junit)

@@ -1,11 +1,17 @@
 package com.migueldev.wodwiseapp.presentation
 
+import android.content.Context
+import androidx.compose.material3.DatePickerState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.navigation.NavHostController
+import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.data.session.UserPreferences
 import com.migueldev.wodwiseapp.model.Routes
+import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.navigation.AppState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
@@ -13,14 +19,19 @@ import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
+import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
+import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class AppStateManager @Inject constructor(
     private val userPreferences: UserPreferences,
+    private val resourceProvider: ResourceProvider,
+    private val toastWrapper: ToastWrapper,
 ) {
 
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun initializeAppState(
         viewModelGroup: ViewModelGroup,
@@ -32,12 +43,15 @@ class AppStateManager @Inject constructor(
             loginViewModel = viewModelGroup.loginViewModel,
             signUpViewModel = viewModelGroup.signUpViewModel,
             scaffoldViewModel = viewModelGroup.scaffoldViewModel,
+            workoutViewModel = viewModelGroup.workoutViewModel,
             scaffoldState = stateGroup.scaffoldState,
             loginState = stateGroup.loginState,
             signUpState = stateGroup.signUpState,
+            workoutState = stateGroup.workoutState,
             navController = navController,
             userPreferences = userPreferences,
-            startDestination = determineStartDestination(startDestination)
+            startDestination = determineStartDestination(startDestination),
+            datePickerState = stateGroup.datePickerState
         )
     }
 
@@ -57,16 +71,32 @@ class AppStateManager @Inject constructor(
             }
         }
     }
+
+    fun handlePermissionResult(
+        workoutViewModel: WorkoutViewModel,
+        context: Context,
+        isGranted: Boolean,
+    ) {
+        if (isGranted) {
+            workoutViewModel.recordAudio(context)
+        } else {
+            toastWrapper.show(resourceProvider.getString(R.string.permission_denied))
+        }
+    }
 }
 
 data class ViewModelGroup(
     val loginViewModel: LoginViewModel,
     val signUpViewModel: SignUpViewModel,
     val scaffoldViewModel: ScaffoldViewModel,
+    val workoutViewModel: WorkoutViewModel,
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 data class StateGroup(
     val loginState: LoginState,
     val signUpState: SignUpState,
     val scaffoldState: ScaffoldState,
+    val workoutState: WorkoutState,
+    val datePickerState: DatePickerState,
 )
