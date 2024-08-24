@@ -95,6 +95,7 @@ class WorkoutViewModelTest {
             val position = "A"
             val exerciseType = "Wod"
             val dateMillis: Long? = null
+            val notesInitialText = ""
             val workoutDto = WorkoutDto(
                 workoutId = "123",
                 date = Timestamp.now(),
@@ -113,7 +114,8 @@ class WorkoutViewModelTest {
                     session = session,
                     position = position,
                     exerciseType = exerciseType,
-                    dateMillis = dateMillis
+                    dateMillis = dateMillis,
+                    notesInitialText = notesInitialText
                 )
             } returns expectedResult
             val result = viewModel.saveWorkout(instructions, session, position, exerciseType, dateMillis)
@@ -129,7 +131,8 @@ class WorkoutViewModelTest {
                     session = session,
                     position = position,
                     exerciseType = exerciseType,
-                    dateMillis = dateMillis
+                    dateMillis = dateMillis,
+                    notesInitialText = notesInitialText
                 )
             }
         }

@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
-import com.migueldev.wodwiseapp.presentation.navigation.AppButtonsState
+import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
@@ -22,12 +22,12 @@ import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 @Composable
 fun ScaffoldTopBar(
     scaffoldState: ScaffoldState,
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
 ) {
     ScaffoldTopAppBar(
         scaffoldState = scaffoldState,
         mode = scaffoldState.mode,
-        appButtonsState = appButtonsState
+        appActionState = appActionState
     )
 }
 
@@ -36,7 +36,7 @@ fun ScaffoldTopBar(
 fun ScaffoldTopAppBar(
     scaffoldState: ScaffoldState,
     mode: ThemeSwitcher,
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
 ) {
     WodWiseAppTheme(
         darkTheme = mode.themeMode == ThemeSwitcher.DARK,
@@ -58,11 +58,11 @@ fun ScaffoldTopAppBar(
                 navigationIcon = {
                     ScaffoldDropdownMenu(
                         scaffoldState = scaffoldState,
-                        appButtonsState = appButtonsState
+                        appActionState = appActionState
                     )
                 },
                 actions = {
-                    IconButton(onClick = { appButtonsState.onToggleThemeClicked() }) {
+                    IconButton(onClick = { appActionState.onToggleThemeClicked() }) {
                         Icon(
                             imageVector = Icons.Filled.Brightness6,
                             contentDescription = "switch theme light or dark",

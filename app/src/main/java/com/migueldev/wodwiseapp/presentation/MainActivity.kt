@@ -27,6 +27,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.rememberNavController
 import com.migueldev.wodwiseapp.presentation.navigation.AppNavigation
+import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
@@ -46,6 +47,7 @@ class MainActivity : ComponentActivity() {
     private val signUpViewModel: SignUpViewModel by viewModels()
     private val scaffoldViewModel: ScaffoldViewModel by viewModels()
     private val workoutViewModel: WorkoutViewModel by viewModels()
+    private val calendarViewModel: CalendarViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     @RequiresApi(Build.VERSION_CODES.P)
@@ -69,7 +71,8 @@ class MainActivity : ComponentActivity() {
             val loginState by loginViewModel.loginState.collectAsState()
             val signUpState by signUpViewModel.signUpState.collectAsState()
             val scaffoldState by scaffoldViewModel.state.collectAsState()
-            val addWorkoutState by workoutViewModel.state.collectAsState()
+            val workoutState by workoutViewModel.state.collectAsState()
+            val calendarState by calendarViewModel.state.collectAsState()
             val navController = rememberNavController()
             val isEmailLoading = remember { mutableStateOf(true) }
             val userEmail = remember { mutableStateOf<String?>(null) }
@@ -90,13 +93,15 @@ class MainActivity : ComponentActivity() {
                         loginViewModel = loginViewModel,
                         signUpViewModel = signUpViewModel,
                         scaffoldViewModel = scaffoldViewModel,
-                        workoutViewModel = workoutViewModel
+                        workoutViewModel = workoutViewModel,
+                        calendarViewModel = calendarViewModel
                     )
                     val stateGroup = StateGroup(
                         loginState = loginState,
                         signUpState = signUpState,
                         scaffoldState = scaffoldState,
-                        workoutState = addWorkoutState,
+                        workoutState = workoutState,
+                        calendarState = calendarState,
                         datePickerState = datePickerState
                     )
                     val appState = appStateManager.initializeAppState(

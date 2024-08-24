@@ -22,7 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.migueldev.wodwiseapp.presentation.navigation.AppButtonsState
+import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 import com.migueldev.wodwiseapp.presentation.screen.theme.transparentRed
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
@@ -31,7 +31,7 @@ import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 fun WorkoutRecorderButton(
     workoutState: WorkoutState,
     context: Context,
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "RecorderButtonTransition")
     val animatedColor by infiniteTransition.animateColor(
@@ -44,7 +44,7 @@ fun WorkoutRecorderButton(
         label = "AnimatedButtonColor"
     )
     Button(
-        onClick = { appButtonsState.onRequestPermissionAndRecordClicked(context) },
+        onClick = { appActionState.onRequestPermissionAndRecordClicked(context) },
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
             containerColor = if (workoutState.isRecording) {

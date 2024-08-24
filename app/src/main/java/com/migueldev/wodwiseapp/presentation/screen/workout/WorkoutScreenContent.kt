@@ -20,7 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
-import com.migueldev.wodwiseapp.presentation.navigation.AppButtonsState
+import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 import com.migueldev.wodwiseapp.presentation.screen.workout.composables.WorkoutDatePicker
 import com.migueldev.wodwiseapp.presentation.screen.workout.composables.WorkoutDropdownMenuGroup
@@ -35,7 +35,7 @@ fun WorkoutScreenContent(
     workoutViewModel: WorkoutViewModel,
     workoutState: WorkoutState,
     datePickerState: DatePickerState,
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
 ) {
     LaunchedEffect(Unit) {
         workoutViewModel.resetCreateWorkoutState()
@@ -70,7 +70,7 @@ fun WorkoutScreenContent(
             Spacer(modifier = Modifier.height(Dimension.d8))
             WorkoutRecorderButton(
                 workoutState = workoutState,
-                appButtonsState = appButtonsState,
+                appActionState = appActionState,
                 context = context
             )
             Spacer(modifier = Modifier.height(Dimension.d8))
@@ -89,7 +89,7 @@ fun WorkoutScreenContent(
         WorkoutSaveButton(
             modifier = Modifier.align(Alignment.BottomCenter),
             workoutState = workoutState,
-            appButtonsState = appButtonsState
+            appActionState = appActionState
         )
     }
 }

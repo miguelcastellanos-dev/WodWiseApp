@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun createAppButtonsState(
+fun createAppActionState(
     appState: AppState,
-): AppButtonsState {
+): AppActionState {
     val coroutineScope = rememberCoroutineScope()
     with(appState) {
-        return AppButtonsState(
+        return AppActionState(
             onRequestPermissionAndRecordClicked = { context ->
                 val activity = context as? MainActivity
                 activity?.requestPermissionLauncher?.launch(Manifest.permission.RECORD_AUDIO)
@@ -39,6 +39,15 @@ fun createAppButtonsState(
                 appState.navController.navigate(Routes.LoginScreen.route) {
                     popUpTo(Routes.LoginScreen.route) { inclusive = true }
                 }
+            },
+            onDeleteIconClicked = { workoutId ->
+                calendarViewModel.deleteWorkoutItem(workoutId)
+            },
+            onCheckboxClicked = { workoutId, newState ->
+                calendarViewModel.updateCheckboxState(
+                    workoutId = workoutId,
+                    newState = newState
+                )
             }
         )
     }

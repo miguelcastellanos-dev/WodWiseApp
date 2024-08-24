@@ -1,11 +1,14 @@
 package com.migueldev.wodwiseapp.presentation.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.migueldev.wodwiseapp.model.Routes
+import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
@@ -47,17 +50,15 @@ fun NavGraphBuilder.signUpScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@RequiresApi(Build.VERSION_CODES.O)
 fun NavGraphBuilder.scaffoldScreen(
     appState: AppState,
-    appButtonsState: AppButtonsState,
-    datePickerState: DatePickerState,
+    appActionState: AppActionState,
 ) {
     composable(Routes.ScaffoldScreen.route) {
         ScaffoldScreenContent(
             appState = appState,
-            appButtonsState = appButtonsState,
-            datePickerState = datePickerState
+            appActionState = appActionState
         )
     }
 }
@@ -67,14 +68,27 @@ fun NavGraphBuilder.addWorkoutScreen(
     workoutViewModel: WorkoutViewModel,
     workoutState: WorkoutState,
     datePickerState: DatePickerState,
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
 ) {
-    composable(Routes.AddWorkoutScreen.route) {
+    composable(Routes.WorkoutScreen.route) {
         WorkoutScreenContent(
             workoutViewModel = workoutViewModel,
             workoutState = workoutState,
             datePickerState = datePickerState,
-            appButtonsState = appButtonsState
+            appActionState = appActionState
+        )
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun NavGraphBuilder.calendarScreen(
+    appState: AppState,
+    appActionState: AppActionState,
+) {
+    composable(Routes.CalendarScreen.route) {
+        CalendarScreenContent(
+            appState = appState,
+            appActionState = appActionState
         )
     }
 }

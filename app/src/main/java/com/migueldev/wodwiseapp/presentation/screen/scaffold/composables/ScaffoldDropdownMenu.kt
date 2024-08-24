@@ -19,13 +19,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.migueldev.wodwiseapp.presentation.navigation.AppButtonsState
+import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 
 @Composable
 fun ScaffoldDropdownMenu(
     scaffoldState: ScaffoldState,
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -54,7 +54,7 @@ fun ScaffoldDropdownMenu(
         HorizontalDivider()
         DropdownMenuItem(
             text = { Text(scaffoldState.signOffItemText) },
-            onClick = { appButtonsState.onLogoutClicked() },
+            onClick = { appActionState.onLogoutClicked() },
             leadingIcon = { Icon(Icons.Outlined.Close, contentDescription = "Icon sign off") }
         )
     }

@@ -19,6 +19,7 @@ data class WorkoutState(
     val exerciseTypeItems: List<ExerciseTypeItem> = emptyList(),
     val isRecorderButtonEnabled: Boolean = true,
     val isDatePickerVisible: Boolean = false,
+    val notesInitialText: String = "",
 )
 
 data class SessionItem(val displayName: String)

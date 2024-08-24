@@ -53,4 +53,9 @@
     <string name="saved_workout_toast_text">Entrenamiento guardado</string>
     <string name="response_is_null_or_empty">No se recibió información. Por favor, inténtalo de nuevo.</string>
     <string name="permission_denied">Permiso denegado</string>
+    <string name="notes_initial_text">No hay notas</string>
+
+    <string name="instruction_text_title_in_card_view">Instrucciones:</string>
+    <string name="prefix_title_week">Semana: </string>
+    <string name="notes_text_title_in_card_view">Notas:</string>
 </resources>

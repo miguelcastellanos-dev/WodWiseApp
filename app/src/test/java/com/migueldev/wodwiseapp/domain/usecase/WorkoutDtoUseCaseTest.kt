@@ -18,6 +18,7 @@ class WorkoutDtoUseCaseTest {
 
     @Test
     fun `GIVEN CreateWorkoutParams WHEN createWorkoutDtoUseCase is called THEN returns WorkoutDto`() {
+        val notesInitialText = ""
         val workoutData = WorkoutData(
             workoutId = "12345L",
             timeStamp = Timestamp(seconds = 1721772240, nanoseconds = 615000000),
@@ -36,7 +37,7 @@ class WorkoutDtoUseCaseTest {
             checkboxState = false,
             notes = ""
         )
-        val result = useCase(workoutData)
+        val result = useCase(notesInitialText, workoutData)
 
         result shouldBeEqualTo workoutDto
     }

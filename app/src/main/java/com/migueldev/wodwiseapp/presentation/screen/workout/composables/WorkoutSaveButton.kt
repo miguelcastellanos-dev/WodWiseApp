@@ -9,14 +9,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.migueldev.wodwiseapp.presentation.navigation.AppButtonsState
+import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 
 @Composable
 fun WorkoutSaveButton(
     modifier: Modifier,
     workoutState: WorkoutState,
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
 ) {
     Box(
         modifier = modifier
@@ -24,7 +24,7 @@ fun WorkoutSaveButton(
             .background(MaterialTheme.colorScheme.background)
     ) {
         Button(
-            onClick = { appButtonsState.onSaveWorkoutClicked() },
+            onClick = { appActionState.onSaveWorkoutClicked() },
             enabled = workoutState.instructionsStateText.isNotBlank(),
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
