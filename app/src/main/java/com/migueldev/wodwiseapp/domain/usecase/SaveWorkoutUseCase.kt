@@ -27,12 +27,14 @@ class SaveWorkoutUseCase @Inject constructor(
         position: String,
         exerciseType: String,
         dateMillis: Long?,
+        notesInitialText: String,
     ): Either<Exception, WorkoutDto> {
         val timeStamp = prepareTimestampUseCase(dateMillis)
         val workoutId = generateWorkoutIdUseCase()
         val validInstructions = validateInstructionsUseCase(instructions)
         val workoutDto = workoutDtoUseCase(
-            WorkoutData(
+            notesInitialText = notesInitialText,
+            workoutData = WorkoutData(
                 workoutId = workoutId,
                 timeStamp = timeStamp,
                 session = session,
@@ -58,6 +60,7 @@ class SaveWorkoutUseCase @Inject constructor(
                         FirestoreAddDocumentException(e)
                     }
                 }
+
                 else -> FirestoreUnknownErrorException(e)
             }
         }

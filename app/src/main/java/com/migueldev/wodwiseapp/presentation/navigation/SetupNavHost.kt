@@ -1,13 +1,14 @@
 package com.migueldev.wodwiseapp.presentation.navigation
 
-import androidx.compose.material3.ExperimentalMaterial3Api
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 
-@OptIn(ExperimentalMaterial3Api::class)
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SetupNavHost(
-    appButtonsState: AppButtonsState,
+    appActionState: AppActionState,
     appState: AppState,
 ) {
     with(appState) {
@@ -28,8 +29,7 @@ fun SetupNavHost(
             )
             scaffoldScreen(
                 appState = appState,
-                appButtonsState = appButtonsState,
-                datePickerState = datePickerState
+                appActionState = appActionState
             )
         }
     }

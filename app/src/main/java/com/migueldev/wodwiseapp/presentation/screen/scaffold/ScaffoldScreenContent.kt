@@ -1,11 +1,11 @@
 package com.migueldev.wodwiseapp.presentation.screen.scaffold
 
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.DatePickerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,7 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
-import com.migueldev.wodwiseapp.presentation.navigation.AppButtonsState
+import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.navigation.AppState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.composables.ScaffoldBottomNavigationBar
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.composables.ScaffoldTopBar
@@ -21,12 +21,11 @@ import com.migueldev.wodwiseapp.presentation.screen.scaffold.composables.SetupSc
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun ScaffoldScreenContent(
     appState: AppState,
-    appButtonsState: AppButtonsState,
-    datePickerState: DatePickerState,
+    appActionState: AppActionState,
 ) {
     appState.scaffoldViewModel.logger("ScaffoldScreenContent", "Recomposition")
 
@@ -45,7 +44,7 @@ fun ScaffoldScreenContent(
                 topBar = {
                     ScaffoldTopBar(
                         scaffoldState = scaffoldState,
-                        appButtonsState = appButtonsState
+                        appActionState = appActionState
                     )
                 },
                 bottomBar = {
@@ -59,8 +58,7 @@ fun ScaffoldScreenContent(
                         SetupScaffoldNavHost(
                             navController = navController,
                             appState = appState,
-                            appButtonsState = appButtonsState,
-                            datePickerState = datePickerState
+                            appActionState = appActionState
                         )
                     }
                 }

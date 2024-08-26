@@ -20,7 +20,7 @@ fun ScaffoldBottomNavigationBar(
             text = scaffoldState.calendarIconText
         ),
         BottomNavigationItemData(
-            route = Routes.AddWorkoutScreen,
+            route = Routes.WorkoutScreen,
             iconPainter = painterResource(id = R.drawable.save_screen_icon),
             text = scaffoldState.addWorkoutIconText
         ),

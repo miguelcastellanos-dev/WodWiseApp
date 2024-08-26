@@ -5,7 +5,10 @@ import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutData
 import javax.inject.Inject
 
 class WorkoutDtoUseCase @Inject constructor() {
-    operator fun invoke(workoutData: WorkoutData): WorkoutDto {
+    operator fun invoke(
+        notesInitialText: String,
+        workoutData: WorkoutData,
+    ): WorkoutDto {
         return WorkoutDto(
             workoutId = workoutData.workoutId,
             date = workoutData.timeStamp,
@@ -14,7 +17,7 @@ class WorkoutDtoUseCase @Inject constructor() {
             exerciseType = workoutData.exerciseType,
             instructions = workoutData.instructions,
             checkboxState = false,
-            notes = ""
+            notes = notesInitialText
         )
     }
 }

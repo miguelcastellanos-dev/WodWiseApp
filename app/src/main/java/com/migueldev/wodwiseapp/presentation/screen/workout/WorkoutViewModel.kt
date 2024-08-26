@@ -142,7 +142,8 @@ class WorkoutViewModel @Inject constructor(
                 session = session,
                 position = position,
                 exerciseType = exerciseType,
-                dateMillis = dateMillis
+                dateMillis = dateMillis,
+                notesInitialText = _workoutState.value.notesInitialText
             )
         }
     }

@@ -66,4 +66,9 @@
     <string name="saved_workout_toast_text">Saved workout</string>
     <string name="response_is_null_or_empty">No information was received. Please try again.</string>
     <string name="permission_denied">Permission denied</string>
+    <string name="notes_initial_text">No notes</string>
+
+    <string name="instruction_text_title_in_card_view">Instructions:</string>
+    <string name="prefix_title_week">Week: </string>
+    <string name="notes_text_title_in_card_view">Notes:</string>
 </resources>

@@ -4,6 +4,8 @@ import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.data.session.UserPreferences
+import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarViewModel
+import com.migueldev.wodwiseapp.presentation.screen.calendar.data.CalendarState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
@@ -19,10 +21,12 @@ data class AppState(
     val signUpViewModel: SignUpViewModel,
     val scaffoldViewModel: ScaffoldViewModel,
     val workoutViewModel: WorkoutViewModel,
+    val calendarViewModel: CalendarViewModel,
     val loginState: LoginState,
     val signUpState: SignUpState,
     val scaffoldState: ScaffoldState,
     val workoutState: WorkoutState,
+    val calendarState: CalendarState,
     val navController: NavHostController,
     val userPreferences: UserPreferences,
     val startDestination: String,

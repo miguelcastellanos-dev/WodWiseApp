@@ -51,6 +51,9 @@ class TextResourceProvider @Inject constructor(
             ),
             savedWorkoutToastText = resourceProvider.getString(
                 R.string.saved_workout_toast_text
+            ),
+            notesInitialText = resourceProvider.getString(
+                R.string.notes_initial_text
             )
         )
     }
