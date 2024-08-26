@@ -9,6 +9,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarScreenContent
+import com.migueldev.wodwiseapp.presentation.screen.coach.CoachScreenContent
+import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
+import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachActionState
+import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
@@ -54,11 +58,13 @@ fun NavGraphBuilder.signUpScreen(
 fun NavGraphBuilder.scaffoldScreen(
     appState: AppState,
     appActionState: AppActionState,
+    coachActionState: CoachActionState,
 ) {
     composable(Routes.ScaffoldScreen.route) {
         ScaffoldScreenContent(
             appState = appState,
-            appActionState = appActionState
+            appActionState = appActionState,
+            coachActionState = coachActionState
         )
     }
 }
@@ -89,6 +95,20 @@ fun NavGraphBuilder.calendarScreen(
         CalendarScreenContent(
             appState = appState,
             appActionState = appActionState
+        )
+    }
+}
+
+fun NavGraphBuilder.coachScreen(
+    coachState: CoachState,
+    intelligenceViewModel: CoachViewModel,
+    coachActionState: CoachActionState,
+) {
+    composable(Routes.CoachScreen.route) {
+        CoachScreenContent(
+            coachState = coachState,
+            coachViewModel = intelligenceViewModel,
+            coachActionState = coachActionState
         )
     }
 }

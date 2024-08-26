@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.navigation.AppState
+import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachActionState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.composables.ScaffoldBottomNavigationBar
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.composables.ScaffoldTopBar
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.composables.SetupScaffoldNavHost
@@ -26,6 +27,7 @@ import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 fun ScaffoldScreenContent(
     appState: AppState,
     appActionState: AppActionState,
+    coachActionState: CoachActionState,
 ) {
     appState.scaffoldViewModel.logger("ScaffoldScreenContent", "Recomposition")
 
@@ -58,7 +60,8 @@ fun ScaffoldScreenContent(
                         SetupScaffoldNavHost(
                             navController = navController,
                             appState = appState,
-                            appActionState = appActionState
+                            appActionState = appActionState,
+                            coachActionState = coachActionState
                         )
                     }
                 }

@@ -28,6 +28,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.rememberNavController
 import com.migueldev.wodwiseapp.presentation.navigation.AppNavigation
 import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarViewModel
+import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
@@ -48,6 +49,7 @@ class MainActivity : ComponentActivity() {
     private val scaffoldViewModel: ScaffoldViewModel by viewModels()
     private val workoutViewModel: WorkoutViewModel by viewModels()
     private val calendarViewModel: CalendarViewModel by viewModels()
+    private val coachViewModel: CoachViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     @RequiresApi(Build.VERSION_CODES.P)
@@ -73,6 +75,7 @@ class MainActivity : ComponentActivity() {
             val scaffoldState by scaffoldViewModel.state.collectAsState()
             val workoutState by workoutViewModel.state.collectAsState()
             val calendarState by calendarViewModel.state.collectAsState()
+            val intelligenceState by coachViewModel.state.collectAsState()
             val navController = rememberNavController()
             val isEmailLoading = remember { mutableStateOf(true) }
             val userEmail = remember { mutableStateOf<String?>(null) }
@@ -94,7 +97,8 @@ class MainActivity : ComponentActivity() {
                         signUpViewModel = signUpViewModel,
                         scaffoldViewModel = scaffoldViewModel,
                         workoutViewModel = workoutViewModel,
-                        calendarViewModel = calendarViewModel
+                        calendarViewModel = calendarViewModel,
+                        coachViewModel = coachViewModel
                     )
                     val stateGroup = StateGroup(
                         loginState = loginState,
@@ -102,7 +106,8 @@ class MainActivity : ComponentActivity() {
                         scaffoldState = scaffoldState,
                         workoutState = workoutState,
                         calendarState = calendarState,
-                        datePickerState = datePickerState
+                        datePickerState = datePickerState,
+                        coachState = intelligenceState
                     )
                     val appState = appStateManager.initializeAppState(
                         viewModelGroup = viewModelGroup,

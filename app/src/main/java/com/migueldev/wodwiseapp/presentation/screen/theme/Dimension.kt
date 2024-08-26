@@ -17,6 +17,7 @@ object Dimension {
     val d128 = 128.dp
     val d144 = 144.dp
     val d192 = 192.dp
+    val d480 = 480.dp
 
     @Deprecated("This is an odd spacing and probably should be replaced by a proper one")
     val oddDimensions6 = 6.dp

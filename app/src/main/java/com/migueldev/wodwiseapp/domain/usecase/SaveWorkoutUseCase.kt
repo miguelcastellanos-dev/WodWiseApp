@@ -9,7 +9,6 @@ import com.migueldev.wodwiseapp.domain.exception.FirestoreUnknownErrorException
 import com.migueldev.wodwiseapp.domain.repository.workout.WorkoutRepository
 import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutData
-import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 import javax.inject.Inject
 
 class SaveWorkoutUseCase @Inject constructor(
@@ -21,7 +20,7 @@ class SaveWorkoutUseCase @Inject constructor(
     private val toastWrapper: ToastWrapper,
 ) {
     suspend operator fun invoke(
-        workoutState: WorkoutState,
+        toast: String,
         instructions: String,
         session: String,
         position: String,
@@ -45,9 +44,7 @@ class SaveWorkoutUseCase @Inject constructor(
         )
         return Either.catch {
             workoutRepository.addWorkoutToFirestore(workoutDto)
-            toastWrapper.show(
-                workoutState.savedWorkoutToastText
-            )
+            toastWrapper.show(toast)
             workoutDto
         }.mapLeft { e ->
             when (e) {

@@ -2,6 +2,10 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>LongMethod:CoachTextResourceProvider.kt$CoachTextResourceProvider$fun coachInitializeTextResources(): CoachState</ID>
+    <ID>LongMethod:CreateBodyweightExerciseData.kt$fun createBodyWeightExerciseData(resourceProvider: ResourceProvider): List&lt;CoachExerciseData&gt;</ID>
+    <ID>LongMethod:CreateMetabolicExerciseData.kt$fun createMetabolicExerciseData(resourceProvider: ResourceProvider): List&lt;CoachExerciseData&gt;</ID>
+    <ID>LongMethod:MainActivity.kt$MainActivity$@OptIn(ExperimentalMaterial3Api::class) @RequiresApi(Build.VERSION_CODES.P) override fun onCreate(savedInstanceState: Bundle?)</ID>
     <ID>TooManyFunctions:WorkoutViewModel.kt$WorkoutViewModel : ViewModel</ID>
   </CurrentIssues>
 </SmellBaseline>

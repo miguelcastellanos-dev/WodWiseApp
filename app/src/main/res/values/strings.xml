@@ -71,4 +71,157 @@
     <string name="instruction_text_title_in_card_view">Instructions:</string>
     <string name="prefix_title_week">Week: </string>
     <string name="notes_text_title_in_card_view">Notes:</string>
+
+    <string name="format_title">Format</string>
+    <string name="time_title">Time</string>
+    <string name="generate_training_button_text">Generate training</string>
+    <string name="response_dialog_title">Training generated</string>
+    <string name="response_dialog_button_exit">Exit</string>
+    <string name="response_dialog_button_save">Save</string>
+    <string name="intelligence_session">Session created by AI</string>
+    <string name="format_for_time" translatable="false">For time</string>
+    <string name="format_emom" translatable="false">EMOM</string>
+    <string name="format_amrap" translatable="false">AMRAP</string>
+    <string name="suffix_minutes" translatable="false">min</string>
+    <string name="add_minutes" translatable="false">+</string>
+    <string name="subtract_minutes" translatable="false">-</string>
+    <string name="next_format_arrow" translatable="false">&gt;</string>
+    <string name="previous_format_arrow" translatable="false">&lt;</string>
+
+    <string name="barbell_header_text">Barbell movements</string>
+    <string name="barbell_squat_clean_exercise" translatable="false">Squat clean</string>
+    <string name="barbell_power_clean_exercise" translatable="false">Power clean</string>
+    <string name="barbell_hang_power_clean_exercise" translatable="false">Hang power clean</string>
+    <string name="barbell_squat_snatch_exercise" translatable="false">Squat snatch</string>
+    <string name="barbell_power_snatch_exercise" translatable="false">Power snatch</string>
+    <string name="barbell_hang_snatch_exercise" translatable="false">Hang snatch</string>
+    <string name="barbell_push_jerk_exercise" translatable="false">Push jerk</string>
+    <string name="barbell_split_jerk_exercise" translatable="false">Split jerk</string>
+    <string name="barbell_push_press_exercise" translatable="false">Push press</string>
+    <string name="barbell_thruster_exercise" translatable="false">Thruster</string>
+    <string name="barbell_lunges_exercise" translatable="false">Barbell lunges</string>
+
+    <string name="body_weight_header_text">Body weight movements</string>
+    <string name="body_weight_air_squat_exercise" translatable="false">Air squat</string>
+    <string name="body_weight_jumping_squat_exercise" translatable="false">Jumping squat</string>
+    <string name="body_weight_walking_lunges_exercise" translatable="false">Walking lunges</string>
+    <string name="body_weight_sit_ups_exercise" translatable="false">Sit-ups</string>
+    <string name="body_weight_mountain_climbers_exercise" translatable="false">Mountain climbers</string>
+    <string name="body_weight_bear_crawl_exercise" translatable="false">Bear crawl</string>
+    <string name="body_weight_broad_jump_exercise" translatable="false">Broad jump</string>
+    <string name="body_weight_ghd_sit_up_exercise" translatable="false">GHD sit-up</string>
+    <string name="body_weight_plank_hold_exercise" translatable="false">Plank hold</string>
+    <string name="body_weight_hollow_body_hold_exercise" translatable="false">Hollow body hold</string>
+    <string name="body_weight_hollow_rock_exercise" translatable="false">Hollow rock</string>
+    <string name="body_weight_russian_twist_exercise" translatable="false">Russian twist</string>
+    <string name="body_weight_superman_hold_exercise" translatable="false">Superman hold</string>
+    <string name="body_weight_v_ups_exercise" translatable="false">V-ups</string>
+    <string name="body_weight_side_plank_exercise" translatable="false">Side plank</string>
+
+    <string name="metabolic_header_text">Metabolic conditioning</string>
+    <string name="metabolic_shuttle_run_exercise" translatable="false">Shuttle run</string>
+    <string name="metabolic_calories_bikeErg_exercise" translatable="false">Calories bikeErg</string>
+    <string name="metabolic_calories_row_exercise" translatable="false">Calories row</string>
+    <string name="metabolic_calories_echo_bike_exercise" translatable="false">Calories echo bike</string>
+    <string name="metabolic_calories_ski_exercise" translatable="false">Calories ski</string>
+    <string name="metabolic_burpees_exercise" translatable="false">Burpees</string>
+    <string name="metabolic_burpee_to_target_exercise" translatable="false">Burpee to target</string>
+    <string name="metabolic_burpee_box_jump_over_exercise" translatable="false">Burpee box jump over</string>
+    <string name="metabolic_burpee_over_the_bar_exercise" translatable="false">Burpee over the bar</string>
+    <string name="metabolic_box_jumps_exercise" translatable="false">Box jumps</string>
+    <string name="metabolic_box_jump_over_exercise" translatable="false">Box jump over</string>
+    <string name="metabolic_single_under_jump_rope_exercise" translatable="false">Single under jump rope</string>
+    <string name="metabolic_double_under_jump_rope_exercise" translatable="false">Double under jump rope</string>
+    <string name="metabolic_crossover_jump_rope_exercise" translatable="false">Crossover jump rope</string>
+
+    <string name="dumbbell_header_text">Dumbbell movements</string>
+    <string name="dumbbell_snatch_dumbbell_exercise" translatable="false">Dumbbell snatch</string>
+    <string name="dumbbell_clean_and_jerk_dumbbell_exercise" translatable="false">Dumbbell clean and jerk</string>
+    <string name="dumbbell_thruster_dumbbell_exercise" translatable="false">Dumbbell thruster</string>
+    <string name="dumbbell_bench_press_dumbbell_exercise" translatable="false">Dumbbell bench press</string>
+    <string name="dumbbell_deadlift_dumbbell_exercise" translatable="false">Dumbbell deadlift</string>
+    <string name="dumbbell_farmer_carry_dumbbell_exercise" translatable="false">Dumbbell farmer carry</string>
+    <string name="dumbbell_push_press_dumbbell_exercise" translatable="false">Dumbbell push press</string>
+    <string name="dumbbell_lunges_dumbbell_exercise" translatable="false">Dumbbell lunges</string>
+
+    <string name="functional_weighted_header_text">Functional weighted movements</string>
+    <string name="functional_weighted_sandbag_clean_exercise" translatable="false">Sandbag clean</string>
+    <string name="functional_weighted_sandbag_bear_hug_carry_exercise" translatable="false">Sandbag bear hug carry</string>
+    <string name="functional_weighted_yoke_carry_exercise" translatable="false">Yoke carry</string>
+    <string name="functional_weighted_sled_pull_exercise" translatable="false">Sled pull</string>
+    <string name="functional_weighted_sled_push_exercise" translatable="false">Sled push</string>
+    <string name="functional_weighted_wall_ball_exercise" translatable="false">Wall ball</string>
+    <string name="functional_weighted_man_maker_exercise" translatable="false">Man maker</string>
+
+    <string name="gymnastics_header_text">Gymnastics movements</string>
+    <string name="gymnastic_pull_up_exercise" translatable="false">Pull up</string>
+    <string name="gymnastic_chest_to_bar_exercise" translatable="false">Chest to bar</string>
+    <string name="gymnastic_handstand_push_up_exercise" translatable="false">Handstand push up</string>
+    <string name="gymnastic_bar_muscle_up_exercise" translatable="false">Bar muscle up</string>
+    <string name="gymnastic_ring_muscle_up_exercise" translatable="false">Ring muscle up</string>
+    <string name="gymnastic_toes_to_bar_exercise" translatable="false">Toes to bar</string>
+    <string name="gymnastic_dip_exercise" translatable="false">Ring dip/Bar dip</string>
+    <string name="gymnastic_rope_climb_exercise" translatable="false">Rope climb</string>
+    <string name="gymnastic_hand_stand_walk_exercise" translatable="false">Hand stand walk</string>
+    <string name="gymnastic_pistol_squat_exercise" translatable="false">Pistol squat</string>
+
+    <string name="kettlebell_header_text">Kettlebell movements</string>
+    <string name="kettlebell_swing_exercise" translatable="false">Kettlebell swing</string>
+    <string name="kettlebell_snatch_exercise" translatable="false">Kettlebell snatch</string>
+    <string name="kettlebell_overhead_carry_exercise" translatable="false">Kettlebell overhead carry</string>
+    <string name="kettlebell_farmer_carry_exercise" translatable="false">Kettlebell farmer carry</string>
+    <string name="kettlebell_clean_and_press_exercise" translatable="false">Kettlebell clean and press</string>
+    <string name="kettlebell_push_press_exercise" translatable="false">Kettlebell push press</string>
+    <string name="kettlebell_lunges_exercise" translatable="false">Kettlebell lunges</string>
+    <string name="kettlebell_goblet_squat_exercise" translatable="false">Kettlebell goblet squat</string>
+
+    <string name="strength_header_text">Strength movements</string>
+    <string name="strength_dead_lift_exercise" translatable="false">Deadlift</string>
+    <string name="strength_bench_press_exercise" translatable="false">Bench press</string>
+    <string name="strength_back_squat_exercise" translatable="false">Back squat</string>
+    <string name="strength_shoulder_press_exercise" translatable="false">Shoulder press</string>
+    <string name="strength_weighted_pull_up_exercise" translatable="false">Weighted pull up</string>
+    <string name="strength_overhead_squat_exercise" translatable="false">Overhead squat</string>
+    <string name="strength_front_squat_exercise" translatable="false">Front squat</string>
+    <string name="strength_weighted_dip_exercise" translatable="false">Weighted dip</string>
+
+    <string name="training_info_system_coach">You are a professional CrossFit coach. Your job
+        is to generate concise, well-structured workout plans based strictly on the exercises
+        provided. Do not add any extra exercises. Focus on delivering the key elements of the
+        training: the sequence of exercises, repetitions, and weights (if applicable). Avoid
+        unnecessary details and make sure the instructions are clear and straightforward.
+</string>
+    <string name="training_info_user_coach">You are a CrossFit trainer, and I want you to create
+        a %1$d minute workout using the %2$s format. The exercises to include are: %3$s. Please
+        provide a clear workout plan with only the most important details, such as the sequence
+        of exercises, repetitions, and weights (if necessary). Make sure the information is well
+        outlined and summarized. Use the following examples as a template to structure the
+        training I have asked of you:
+        Example AMRAP:
+            12min AMRAP:
+            - 15 Double Dumbbell Deadlift (22.5kg/15kg)
+            - 10 Burpee to target
+            - 5/3 Strict Handstand Push-Ups
+        Example EMOM 1:
+            10min EMOM:
+            - UNO: 45seg plank
+            - DOS: 45seg pull up hang
+        Example EMOM 2:
+            EMOM 24MIN:
+            - UNO: 4 power clean
+            - DOS: 4 front squat
+            - TRES: 4 hang power clean
+            - CUATRO: 4 thruster
+        Example For time:
+            10 ROUNDS FOR TIME:
+            - 10 2KB deadlift (24/16kg)
+            - 10m 2KB OH walk
+            - 20 crossover SU.
+        Example de WEIGHTLIFTING:
+            - Each 15 seconds (10 rounds): Split Jerk (65%% del RM)
+            - 4 seconds rest
+            - Each 30 seconds (10 rounds): Split Jerk (75%% del RM)
+            - 4 seconds rest
+            - Each 45 seconds (10 rounds): Split Jerk (85%% del RM)
+    </string>
 </resources>
