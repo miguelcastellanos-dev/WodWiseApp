@@ -137,7 +137,7 @@ class WorkoutViewModel @Inject constructor(
     ): Either<Exception, WorkoutDto> {
         return withContext(ioDispatcher) {
             saveWorkoutUseCase(
-                workoutState = _workoutState.value,
+                toast = _workoutState.value.savedWorkoutToastText,
                 instructions = instructions,
                 session = session,
                 position = position,

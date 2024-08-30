@@ -43,13 +43,6 @@
     <string name="placeholder_instructions">Escribe aquí tu entrenamiento o introdúcelo por voz pulsando el siguiente botón</string>
     <string name="select_date_title">Seleccionar fecha</string>
     <string name="save_workout_button">Guardar entrenamiento</string>
-    <string name="training_info_system_instructions">Eres un entrenador de crossfit que vas a
-        organizar el entrenamiento que se te va a pasar, separando bien los ejercicios. El
-        entrenamiento debe quedar bien estructurado utilizando solo los ejercicios que se te van
-        a dar a continuación. No incluyas nada más que lo que se te va a decir. No se necesita
-        calentamiento, ni enfriamiento. No añadas nada, solo organiza la informacion que se te
-        de. Si no recibes instrucciones sobre un entrenamiento, devuelve un text explicando que
-        necesitas informacion sobre algún entrenamiento.</string>
     <string name="saved_workout_toast_text">Entrenamiento guardado</string>
     <string name="response_is_null_or_empty">No se recibió información. Por favor, inténtalo de nuevo.</string>
     <string name="permission_denied">Permiso denegado</string>
@@ -58,4 +51,61 @@
     <string name="instruction_text_title_in_card_view">Instrucciones:</string>
     <string name="prefix_title_week">Semana: </string>
     <string name="notes_text_title_in_card_view">Notas:</string>
+    <string name="format_title">Formato</string>
+    <string name="time_title">Tiempo</string>
+    <string name="generate_training_button_text">Generar entrenamiento</string>
+    <string name="response_dialog_title">Entrenamiento generado</string>
+    <string name="response_dialog_button_exit">Salir</string>
+    <string name="response_dialog_button_save">Guardar</string>
+    <string name="training_info_system_coach">Eres un entrenador de crossfit que vas a crear un
+        entrenamiento. Solo vas a dar los datos más importantes. Un mensaje corto, claro, bien
+        estructurado utilizando solo los ejercicios que se te van a dar a continuación. </string>
+    <string name="intelligence_session">Sesión creada por IA</string>
+    <string name="body_weight_header_text">Movimientos con peso corporal</string>
+    <string name="gymnastics_header_text">Movimientos gimnásticos</string>
+    <string name="kettlebell_header_text">Movimientos con pesas rusas</string>
+    <string name="functional_weighted_header_text">Movimientos con carga funcional</string>
+    <string name="strength_header_text">Movimientos de fuerza</string>
+    <string name="metabolic_header_text">Acondicionamiento metabólico</string>
+    <string name="dumbbell_header_text">Movimientos con mancuernas</string>
+    <string name="barbell_header_text">Movimientos con barra</string>
+    <string name="training_info_system_instructions">Eres un entrenador profesional de CrossFit. Tu
+        trabajo consiste en generar planes de entrenamiento concisos y bien estructurados basados
+        estrictamente en los ejercicios proporcionados. No añadas ejercicios adicionales. Concéntrate
+        en impartir los elementos clave del entrenamiento: la secuencia de ejercicios, las
+        repeticiones y los pesos (si corresponde). Evita los detalles innecesarios y asegúrate
+        de que las instrucciones sean claras y directas.</string>
+    <string name="training_info_user_coach">Eres entrenador de CrossFit y quiero que crees un
+        entrenamiento de %1$d minutos utilizando el formato %2$s. Los ejercicios que debes incluir
+        son: %3$s. Proporciona un plan de entrenamiento claro con solo los detalles más importantes,
+        como la secuencia de ejercicios, las repeticiones y los pesos (si es necesario). Haz que la
+        informacion quede bien esquematizada y resumida. Utiliza los siguientes ejemplos como
+        plantilla para estructurar el entrenamiento que te he pedido:
+        Ejemplo AMRAP:
+            12min AMRAP:
+            - 15 Double Dumbbell Deadlift (22.5kg/15kg)
+            - 10 Burpee to target
+            - 5/3 Strict Handstand Push-Ups
+        Ejemplo EMOM 1:
+            10min EMOM:
+            - UNO: 45seg plank
+            - DOS: 45seg pull up hang
+        Ejemplo EMOM 2:
+            EMOM 24MIN:
+            - UNO: 4 power clean
+            - DOS: 4 front squat
+            - TRES: 4 hang power clean
+            - CUATRO: 4 thruster
+        Ejemplo For time:
+            10 RONDAS FOR TIME:
+            - 10 2KB deadlift (24/16kg)
+            - 10m 2KB OH walk
+            - 20 crossover SU.
+        Ejemplo de WEIGHTLIFTING:
+            - Cada 15 segundos (10 rondas): Split Jerk (65%% del RM)
+            - 4 minutos de descanso
+            - Cada 30 segundos (10 rondas): Split Jerk (75%% del RM)
+            - 4 minutos de descanso
+            - Cada 45 segundos (10 rondas): Split Jerk (85%% del RM)
+        </string>
 </resources>

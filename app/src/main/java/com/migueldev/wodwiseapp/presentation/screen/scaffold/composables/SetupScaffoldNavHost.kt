@@ -11,14 +11,17 @@ import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.navigation.AppState
 import com.migueldev.wodwiseapp.presentation.navigation.addWorkoutScreen
 import com.migueldev.wodwiseapp.presentation.navigation.calendarScreen
+import com.migueldev.wodwiseapp.presentation.navigation.coachScreen
+import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachActionState
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SetupScaffoldNavHost(
-    navController: NavHostController,
     appState: AppState,
     appActionState: AppActionState,
+    coachActionState: CoachActionState,
+    navController: NavHostController,
 ) {
     with(appState) {
         NavHost(
@@ -34,6 +37,11 @@ fun SetupScaffoldNavHost(
                 workoutState = workoutState,
                 datePickerState = datePickerState,
                 appActionState = appActionState
+            )
+            coachScreen(
+                coachState = coachState,
+                intelligenceViewModel = coachViewModel,
+                coachActionState = coachActionState
             )
         }
     }

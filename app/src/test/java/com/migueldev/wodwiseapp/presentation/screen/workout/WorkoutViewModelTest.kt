@@ -109,7 +109,7 @@ class WorkoutViewModelTest {
             val expectedResult = Either.Right(workoutDto)
             coEvery {
                 saveWorkoutUseCase(
-                    workoutState = any(),
+                    toast = any(),
                     instructions = instructions,
                     session = session,
                     position = position,
@@ -126,7 +126,7 @@ class WorkoutViewModelTest {
 
             coVerifyOnce {
                 saveWorkoutUseCase(
-                    workoutState = any(),
+                    toast = any(),
                     instructions = instructions,
                     session = session,
                     position = position,

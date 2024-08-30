@@ -30,7 +30,7 @@ fun ScaffoldBottomNavigationBar(
             text = scaffoldState.weightsIconText
         ),
         BottomNavigationItemData(
-            route = Routes.IntelligenceScreen,
+            route = Routes.CoachScreen,
             iconPainter = painterResource(id = R.drawable.intelligence_screen_icon),
             text = scaffoldState.aIIconText
         )
