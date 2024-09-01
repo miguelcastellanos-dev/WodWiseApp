@@ -224,4 +224,12 @@
             - 4 seconds rest
             - Each 45 seconds (10 rounds): Split Jerk (85%% del RM)
     </string>
+
+    <string name="weight_empty_text">Empty weight</string>
+    <string name="weight_confirm_button_dialog">Add</string>
+    <string name="weight_dismiss_button_dialog">Cancel</string>
+    <string name="add_weight_dialog_title">Add new exercise</string>
+    <string name="add_exercise_name_dialog_text_field">Exercise name</string>
+    <string name="add_rm_weight_dialog_text_field">RM weight</string>
+    <string name="content_description_fab" translatable="false">Add new weight</string>
 </resources>

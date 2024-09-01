@@ -25,7 +25,7 @@ fun ScaffoldBottomNavigationBar(
             text = scaffoldState.addWorkoutIconText
         ),
         BottomNavigationItemData(
-            route = Routes.WeightsScreen,
+            route = Routes.WeightScreen,
             iconPainter = painterResource(id = R.drawable.weights_screen_icon),
             text = scaffoldState.weightsIconText
         ),

@@ -23,6 +23,8 @@ import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightsState
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 import javax.inject.Inject
@@ -50,12 +52,14 @@ class AppStateManager @Inject constructor(
             workoutViewModel = viewModelGroup.workoutViewModel,
             calendarViewModel = viewModelGroup.calendarViewModel,
             coachViewModel = viewModelGroup.coachViewModel,
+            weightViewModel = viewModelGroup.weightViewModel,
             scaffoldState = stateGroup.scaffoldState,
             loginState = stateGroup.loginState,
             signUpState = stateGroup.signUpState,
             workoutState = stateGroup.workoutState,
             calendarState = stateGroup.calendarState,
             coachState = stateGroup.coachState,
+            weightState = stateGroup.weightState,
             navController = navController,
             userPreferences = userPreferences,
             startDestination = determineStartDestination(startDestination),
@@ -100,6 +104,7 @@ data class ViewModelGroup(
     val workoutViewModel: WorkoutViewModel,
     val calendarViewModel: CalendarViewModel,
     val coachViewModel: CoachViewModel,
+    val weightViewModel: WeightViewModel,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -111,4 +116,5 @@ data class StateGroup(
     val datePickerState: DatePickerState,
     val calendarState: CalendarState,
     val coachState: CoachState,
+    val weightState: WeightsState,
 )

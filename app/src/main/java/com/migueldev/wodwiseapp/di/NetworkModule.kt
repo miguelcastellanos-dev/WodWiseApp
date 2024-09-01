@@ -6,6 +6,8 @@ import com.migueldev.wodwiseapp.data.remote.datasource.login.LoginDatasource
 import com.migueldev.wodwiseapp.data.remote.datasource.login.RemoteLoginDatasource
 import com.migueldev.wodwiseapp.data.remote.datasource.signup.RemoteSignUpDatasource
 import com.migueldev.wodwiseapp.data.remote.datasource.signup.SignUpDatasource
+import com.migueldev.wodwiseapp.data.remote.datasource.weight.RemoteWeightDatasource
+import com.migueldev.wodwiseapp.data.remote.datasource.weight.WeightsDatasource
 import com.migueldev.wodwiseapp.data.remote.datasource.workout.RemoteWorkoutDatasource
 import com.migueldev.wodwiseapp.data.remote.datasource.workout.WorkoutDatasource
 import com.migueldev.wodwiseapp.data.remote.service.AuthService
@@ -52,4 +54,18 @@ object NetworkModule {
         userPreferences,
         generateWorkoutIdUseCase
     )
+
+    @Provides
+    @Singleton
+    fun provideRemoteWeightDatasource(
+        firebaseFirestore: FirebaseFirestore,
+        userPreferences: UserPreferences,
+        generateWorkoutIdUseCase: GenerateWorkoutIdUseCase,
+    ): WeightsDatasource {
+        return RemoteWeightDatasource(
+            firebaseFirestore,
+            userPreferences,
+            generateWorkoutIdUseCase
+        )
+    }
 }

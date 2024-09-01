@@ -14,6 +14,8 @@ import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightsState
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 
@@ -25,12 +27,14 @@ data class AppState(
     val workoutViewModel: WorkoutViewModel,
     val calendarViewModel: CalendarViewModel,
     val coachViewModel: CoachViewModel,
+    val weightViewModel: WeightViewModel,
     val loginState: LoginState,
     val signUpState: SignUpState,
     val scaffoldState: ScaffoldState,
     val workoutState: WorkoutState,
     val calendarState: CalendarState,
     val coachState: CoachState,
+    val weightState: WeightsState,
     val navController: NavHostController,
     val userPreferences: UserPreferences,
     val startDestination: String,
