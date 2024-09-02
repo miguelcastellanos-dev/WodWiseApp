@@ -20,6 +20,8 @@ import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginScreen
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpScreen
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weight.WeightScreenContent
+import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
@@ -109,6 +111,16 @@ fun NavGraphBuilder.coachScreen(
             coachState = coachState,
             coachViewModel = intelligenceViewModel,
             coachActionState = coachActionState
+        )
+    }
+}
+
+fun NavGraphBuilder.weightScreen(
+    weightViewModel: WeightViewModel,
+) {
+    composable(Routes.WeightScreen.route) {
+        WeightScreenContent(
+            weightViewModel = weightViewModel
         )
     }
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
-val Context.dataStore by preferencesDataStore(name = "user_prefs_wod_wise")
+val Context.dataStore by preferencesDataStore(name = "wod_wise_user_prefs")
 
 class UserPreferences @Inject constructor(
     @IO private val ioDispatcher: CoroutineDispatcher,
@@ -57,5 +57,5 @@ class UserPreferences @Inject constructor(
     }
 }
 
-private val EMAIL_KEY = stringPreferencesKey("user_email_wod_wise")
-private val IS_DARK_MODE_KEY = booleanPreferencesKey("is_dark_mode_wod_wise")
+private val EMAIL_KEY = stringPreferencesKey("wod_wise_user_email")
+private val IS_DARK_MODE_KEY = booleanPreferencesKey("wod_wise_is_dark_mode")

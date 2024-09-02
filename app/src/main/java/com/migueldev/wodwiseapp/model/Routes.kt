@@ -6,6 +6,6 @@ sealed class Routes(val route: String) {
     data object ScaffoldScreen : Routes("scaffoldScreen")
     data object CalendarScreen : Routes("calendarScreen")
     data object WorkoutScreen : Routes("workoutScreen")
-    data object WeightsScreen : Routes("weightsScreen")
+    data object WeightScreen : Routes("weightScreen")
     data object CoachScreen : Routes("coachScreen")
 }

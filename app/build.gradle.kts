@@ -105,6 +105,7 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.google.dagger.hilt.android)
     implementation(libs.openai.client)
+    implementation(libs.swipe)
 
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.firebase.bom))

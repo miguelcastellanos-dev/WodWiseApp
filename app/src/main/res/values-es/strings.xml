@@ -107,5 +107,12 @@
             - Cada 30 segundos (10 rondas): Split Jerk (75%% del RM)
             - 4 minutos de descanso
             - Cada 45 segundos (10 rondas): Split Jerk (85%% del RM)
-        </string>
+    </string>
+
+    <string name="weight_empty_text">Peso vacio</string>
+    <string name="weight_confirm_button_dialog">Añadir</string>
+    <string name="weight_dismiss_button_dialog">Cancelar</string>
+    <string name="add_weight_dialog_title">Añade un nuevo ejercicio</string>
+    <string name="add_exercise_name_dialog_text_field">Nombre del ejercicio</string>
+    <string name="add_rm_weight_dialog_text_field">Peso RM</string>
 </resources>
