@@ -45,7 +45,8 @@ fun SetupScaffoldNavHost(
                 coachActionState = coachActionState
             )
             weightScreen(
-                weightViewModel = appState.weightViewModel
+                weightViewModel = appState.weightViewModel,
+                appActionState = appActionState
             )
         }
     }

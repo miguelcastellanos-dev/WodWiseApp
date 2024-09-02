@@ -13,11 +13,15 @@ class WeightRepository @Inject constructor(
         return weightDatasource.getWeights()
     }
 
-    suspend fun addWeightToFirestore(weightDto: WeightDto) {
-        return weightDatasource.addWeightToFirestore(weightDto)
+    suspend fun addWeightToFirestore(documentId: String, weightDto: WeightDto) {
+        return weightDatasource.addWeightToFirestore(documentId, weightDto)
     }
 
     suspend fun removeWeight(id: String) {
         return weightDatasource.removeWeight(id)
+    }
+
+    suspend fun updateWeightRm(weightId: String, newRm: Double) {
+        return weightDatasource.updateWeightRm(weightId, newRm)
     }
 }

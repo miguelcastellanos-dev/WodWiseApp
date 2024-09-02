@@ -13,8 +13,11 @@ class WorkoutRepository @Inject constructor(
         return remoteDatasource.getWorkouts()
     }
 
-    suspend fun addWorkoutToFirestore(dto: WorkoutDto) {
-        return remoteDatasource.addWorkoutToFirestore(dto)
+    suspend fun addWorkoutToFirestore(documentId: String, dto: WorkoutDto) {
+        return remoteDatasource.addWorkoutToFirestore(
+            documentId = documentId,
+            dto = dto
+        )
     }
 
     suspend fun removeWorkout(id: String) {

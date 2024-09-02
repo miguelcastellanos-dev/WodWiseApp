@@ -9,4 +9,6 @@ data class AppActionState(
     val onLogoutClicked: () -> Unit,
     val onDeleteIconClicked: (String) -> Unit,
     val onCheckboxClicked: (String, Boolean) -> Unit,
+    val onRmChangeClicked: (String, Double) -> Unit,
+    val onWeightClicked: (String) -> Unit,
 )

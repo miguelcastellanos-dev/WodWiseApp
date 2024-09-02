@@ -12,4 +12,4 @@ fun WeightDto.toMap(): Map<String, Any> {
 
 private const val WEIGHT_NAME_DATABASE_FIELD = "nameExercise"
 private const val WEIGHT_ID_DATABASE_FIELD = "weightId"
-private const val WEIGHT_REPETITION_MAXIMUM_DATABASE_FIELD = "repetitionMaximum"
+const val WEIGHT_REPETITION_MAXIMUM_DATABASE_FIELD = "repetitionMaximum"

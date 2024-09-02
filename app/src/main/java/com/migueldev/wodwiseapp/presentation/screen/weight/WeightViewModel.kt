@@ -2,6 +2,7 @@ package com.migueldev.wodwiseapp.presentation.screen.weight
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavHostController
 import arrow.core.Either
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.migueldev.wodwiseapp.data.dto.WeightDto
@@ -11,6 +12,7 @@ import com.migueldev.wodwiseapp.domain.exception.FirestoreConnectionException
 import com.migueldev.wodwiseapp.domain.exception.FirestoreUnknownErrorException
 import com.migueldev.wodwiseapp.domain.repository.weight.WeightRepository
 import com.migueldev.wodwiseapp.domain.usecase.GenerateWorkoutIdUseCase
+import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightTextResourceProvider
 import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightsState
 import com.migueldev.wodwiseapp.presentation.screen.weight.data.createWeightDto
@@ -67,7 +69,10 @@ class WeightViewModel @Inject constructor(
             rm = rm
         )
         return Either.catch {
-            weightRepository.addWeightToFirestore(weightDto)
+            weightRepository.addWeightToFirestore(
+                documentId = weightId,
+                weightDto = weightDto
+            )
             weightDto
         }.mapLeft { e ->
             when (e) {
@@ -80,7 +85,6 @@ class WeightViewModel @Inject constructor(
                         FirestoreAddDocumentException(e)
                     }
                 }
-
                 else -> FirestoreUnknownErrorException(e)
             }
         }
@@ -88,5 +92,9 @@ class WeightViewModel @Inject constructor(
 
     suspend fun removeWeight(weightId: String) {
         weightRepository.removeWeight(weightId)
+    }
+
+    fun weightToDetail(navController: NavHostController, weightId: String) {
+        navController.navigate(Routes.WeightDetailScreen.createRoute(weightId))
     }
 }

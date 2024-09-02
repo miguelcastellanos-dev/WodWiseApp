@@ -48,6 +48,12 @@ fun createAppActionState(
                     workoutId = workoutId,
                     newState = newState
                 )
+            },
+            onRmChangeClicked = { weightId, newRm ->
+                appState.weightDetailViewModel.updateRmInCoroutine(weightId, newRm)
+            },
+            onWeightClicked = { weightId ->
+                weightViewModel.weightToDetail(navController, weightId)
             }
         )
     }

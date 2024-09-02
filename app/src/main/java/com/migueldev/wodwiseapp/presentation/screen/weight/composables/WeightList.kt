@@ -20,6 +20,7 @@ import me.saket.swipe.SwipeableActionsBox
 fun WeightList(
     weights: List<WeightData>,
     onItemRemove: (String) -> Unit,
+    onWeightClicked: (String) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -42,7 +43,8 @@ fun WeightList(
             )
             SwipeableActionsBox(endActions = listOf(swipeLeft)) {
                 WeightListCard(
-                    weight = weight
+                    weight = weight,
+                    onWeightClicked = onWeightClicked
                 )
             }
         }
