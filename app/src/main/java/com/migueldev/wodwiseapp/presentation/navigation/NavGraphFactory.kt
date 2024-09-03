@@ -9,8 +9,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.migueldev.wodwiseapp.model.ConstCalendarDetail
 import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarScreenContent
+import com.migueldev.wodwiseapp.presentation.screen.calendar.data.WorkoutCardData
+import com.migueldev.wodwiseapp.presentation.screen.calendardetail.CalendarDetailScreen
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachActionState
@@ -150,6 +153,66 @@ fun NavGraphBuilder.weightDetailScreen(
             weightDetailState = weightDetailState,
             weightId = weightId,
             appActionState = appActionState
+        )
+    }
+}
+
+fun NavGraphBuilder.calendarDetailScreen(
+    appState: AppState,
+    appActionState: AppActionState,
+) {
+    composable(
+        route = Routes.CalendarDetailScreen.route,
+        arguments = listOf(
+            navArgument(ConstCalendarDetail.POSITION_SESSION) { type = NavType.StringType },
+            navArgument(ConstCalendarDetail.EXERCISE) { type = NavType.StringType },
+            navArgument(ConstCalendarDetail.INSTRUCTIONS) { type = NavType.StringType },
+            navArgument(ConstCalendarDetail.WORKOUT_ID) { type = NavType.StringType },
+            navArgument(ConstCalendarDetail.DATE) { type = NavType.StringType },
+            navArgument(ConstCalendarDetail.SESSION) { type = NavType.StringType },
+            navArgument(ConstCalendarDetail.NOTES) { type = NavType.StringType }
+        )
+    ) { backStackEntry ->
+        val positionSession =
+            backStackEntry.arguments?.getString(
+                ConstCalendarDetail.POSITION_SESSION
+            ).orEmpty()
+        val exercise = backStackEntry.arguments?.getString(
+            ConstCalendarDetail.EXERCISE
+        ).orEmpty()
+        val encodedInstructions =
+            backStackEntry.arguments?.getString(
+                ConstCalendarDetail.INSTRUCTIONS
+            ).orEmpty()
+        val workoutId = backStackEntry.arguments?.getString(
+            ConstCalendarDetail.WORKOUT_ID
+        ).orEmpty()
+        val date = backStackEntry.arguments?.getString(
+            ConstCalendarDetail.DATE
+        ).orEmpty()
+        val session = backStackEntry.arguments?.getString(
+            ConstCalendarDetail.SESSION
+        ).orEmpty()
+        val notes = backStackEntry.arguments?.getString(
+            ConstCalendarDetail.NOTES
+        ).orEmpty()
+
+        val workoutCardData = WorkoutCardData(
+            workoutId = workoutId,
+            date = date,
+            session = session,
+            positionSession = positionSession,
+            exerciseType = exercise,
+            instructions = encodedInstructions,
+            checkboxState = false,
+            notes = notes
+        )
+        CalendarDetailScreen(
+            appState = appState,
+            workoutCardData = workoutCardData,
+            onCheckboxClicked = appActionState.onCheckboxClicked,
+            onInstructionIconClicked = appActionState.onInstructionIconClicked,
+            onNotesIconClicked = appActionState.onNotesIconClicked
         )
     }
 }

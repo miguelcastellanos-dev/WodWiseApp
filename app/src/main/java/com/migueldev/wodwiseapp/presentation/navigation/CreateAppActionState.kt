@@ -34,9 +34,9 @@ fun createAppActionState(
             onToggleThemeClicked = { scaffoldViewModel.switchTheme() },
             onLogoutClicked = {
                 coroutineScope.launch {
-                    appState.userPreferences.clearUserEmail()
+                    userPreferences.clearUserEmail()
                 }
-                appState.navController.navigate(Routes.LoginScreen.route) {
+                navController.navigate(Routes.LoginScreen.route) {
                     popUpTo(Routes.LoginScreen.route) { inclusive = true }
                 }
             },
@@ -50,10 +50,17 @@ fun createAppActionState(
                 )
             },
             onRmChangeClicked = { weightId, newRm ->
-                appState.weightDetailViewModel.updateRmInCoroutine(weightId, newRm)
+                weightDetailViewModel.updateRmInCoroutine(weightId, newRm)
             },
             onWeightClicked = { weightId ->
                 weightViewModel.weightToDetail(navController, weightId)
+            },
+            onWorkoutClicked = calendarViewModel.sendWorkoutToDetail(navController),
+            onInstructionIconClicked = { workoutId, newInstructions ->
+                calendarViewModel.updateInstructionsText(workoutId, newInstructions)
+            },
+            onNotesIconClicked = { workoutId, newNotes ->
+                calendarViewModel.updateNotesText(workoutId, newNotes)
             }
         )
     }

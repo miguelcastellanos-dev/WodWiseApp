@@ -8,7 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.migueldev.wodwiseapp.presentation.screen.calendar.data.CalendarState
@@ -63,10 +63,10 @@ fun CalendarCardViewTexts(
     Text(
         modifier = Modifier
             .padding(bottom = Dimension.d8),
-        text = workoutCardData.notes,
+        text = calendarState.notesText[workoutCardData.workoutId] ?: workoutCardData.notes,
         style = TextStyle(
-            fontSize = 18.sp,
-            fontFamily = FontFamily.Cursive
+            fontSize = 16.sp,
+            fontStyle = FontStyle.Italic
         ),
         color = MaterialTheme.colorScheme.onBackground
     )

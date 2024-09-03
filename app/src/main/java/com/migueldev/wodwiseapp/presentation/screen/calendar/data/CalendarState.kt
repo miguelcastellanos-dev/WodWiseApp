@@ -9,4 +9,7 @@ data class CalendarState(
     val prefixTitleWeekText: String = "",
     val instructionTextTitleInCardView: String = "",
     val notesTextTitleInCardView: String = "",
+    val calendarChangesSavedToast: String = "",
+    val notesText: Map<String, String> = emptyMap(),
+    val instructionsText: Map<String, String> = emptyMap(),
 )

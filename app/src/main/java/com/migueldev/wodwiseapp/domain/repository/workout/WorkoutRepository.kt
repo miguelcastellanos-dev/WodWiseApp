@@ -27,4 +27,12 @@ class WorkoutRepository @Inject constructor(
     suspend fun updateCheckboxState(workoutId: String, newState: Boolean) {
         return remoteDatasource.updateCheckboxState(workoutId, newState)
     }
+
+    suspend fun updateNotesState(workoutId: String, newState: String) {
+        return remoteDatasource.updateNotesState(workoutId, newState)
+    }
+
+    suspend fun updateInstructionsState(workoutId: String, newState: String) {
+        return remoteDatasource.updateInstructionsState(workoutId, newState)
+    }
 }
