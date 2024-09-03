@@ -3,11 +3,11 @@ package com.migueldev.wodwiseapp.data.remote.datasource.weight
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.snapshots
 import com.migueldev.wodwiseapp.data.dto.WeightDto
+import com.migueldev.wodwiseapp.data.mapper.WEIGHT_REPETITION_MAXIMUM_DATABASE_FIELD
 import com.migueldev.wodwiseapp.data.mapper.toDomain
 import com.migueldev.wodwiseapp.data.mapper.toMap
 import com.migueldev.wodwiseapp.data.remote.response.WeightResponse
 import com.migueldev.wodwiseapp.data.session.UserPreferences
-import com.migueldev.wodwiseapp.domain.usecase.GenerateWorkoutIdUseCase
 import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightData
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +19,6 @@ import kotlinx.coroutines.tasks.await
 class RemoteWeightDatasource @Inject constructor(
     private val firebaseFirestore: FirebaseFirestore,
     private val userPreferences: UserPreferences,
-    private val generateWorkoutIdUseCase: GenerateWorkoutIdUseCase,
 ) : WeightsDatasource {
 
     private suspend fun getUserCollection(): String {
@@ -33,12 +32,11 @@ class RemoteWeightDatasource @Inject constructor(
         }
     }
 
-    override suspend fun addWeightToFirestore(weightDto: WeightDto) {
-        val id = generateWorkoutIdUseCase()
+    override suspend fun addWeightToFirestore(documentId: String, weightDto: WeightDto) {
         val model = weightDto.copy().toMap()
         val userCollection = getUserCollection()
         firebaseFirestore.collection(userCollection)
-            .document(id)
+            .document(documentId)
             .set(model)
             .await()
     }
@@ -68,6 +66,14 @@ class RemoteWeightDatasource @Inject constructor(
             }.collect {
                 emit(it)
             }
+    }
+
+    override suspend fun updateWeightRm(weightId: String, newRm: Double) {
+        val userCollection = getUserCollection()
+        firebaseFirestore.collection(userCollection)
+            .document(weightId)
+            .update(WEIGHT_REPETITION_MAXIMUM_DATABASE_FIELD, newRm)
+            .await()
     }
 }
 

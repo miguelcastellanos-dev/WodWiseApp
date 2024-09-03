@@ -12,7 +12,6 @@ import com.migueldev.wodwiseapp.data.remote.datasource.workout.RemoteWorkoutData
 import com.migueldev.wodwiseapp.data.remote.datasource.workout.WorkoutDatasource
 import com.migueldev.wodwiseapp.data.remote.service.AuthService
 import com.migueldev.wodwiseapp.data.session.UserPreferences
-import com.migueldev.wodwiseapp.domain.usecase.GenerateWorkoutIdUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,11 +47,9 @@ object NetworkModule {
     fun provideRemoteWorkoutDatasource(
         firebaseFirestore: FirebaseFirestore,
         userPreferences: UserPreferences,
-        generateWorkoutIdUseCase: GenerateWorkoutIdUseCase,
     ): WorkoutDatasource = RemoteWorkoutDatasource(
         firebaseFirestore,
-        userPreferences,
-        generateWorkoutIdUseCase
+        userPreferences
     )
 
     @Provides
@@ -60,12 +57,10 @@ object NetworkModule {
     fun provideRemoteWeightDatasource(
         firebaseFirestore: FirebaseFirestore,
         userPreferences: UserPreferences,
-        generateWorkoutIdUseCase: GenerateWorkoutIdUseCase,
     ): WeightsDatasource {
         return RemoteWeightDatasource(
             firebaseFirestore,
-            userPreferences,
-            generateWorkoutIdUseCase
+            userPreferences
         )
     }
 }

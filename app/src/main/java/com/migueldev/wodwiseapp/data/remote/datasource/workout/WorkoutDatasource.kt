@@ -8,6 +8,7 @@ interface WorkoutDatasource {
     fun getWorkouts(): Flow<List<WorkoutCardData>>
 
     suspend fun addWorkoutToFirestore(
+        documentId: String,
         dto: WorkoutDto,
     )
 

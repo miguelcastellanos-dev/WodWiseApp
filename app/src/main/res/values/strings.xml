@@ -232,4 +232,14 @@
     <string name="add_exercise_name_dialog_text_field">Exercise name</string>
     <string name="add_rm_weight_dialog_text_field">RM weight</string>
     <string name="content_description_fab" translatable="false">Add new weight</string>
+
+    <string name="exercise_rm_title" translatable="false">RM:</string>
+    <string name="title_percentages_view_detail">Percentages 1 RM</string>
+    <string name="percentage_sign_text" translatable="false">%: </string>
+    <string name="title_reps_detail_view">Estimated maximum repetitions</string>
+    <string name="title_update_rm_dialog">Update RM</string>
+    <string name="text_new_rm_dialog">New RM:</string>
+    <string name="confirm_button_dialog">Add</string>
+    <string name="dismiss_button_dialog">Cancel</string>
+    <string name="text_empty_weight">Empty weight</string>
 </resources>

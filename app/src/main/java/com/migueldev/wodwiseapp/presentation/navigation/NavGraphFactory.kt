@@ -6,7 +6,9 @@ import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachScreenContent
@@ -22,6 +24,8 @@ import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpScreen
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
 import com.migueldev.wodwiseapp.presentation.screen.weight.WeightScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weightdetail.WeightDetailScreen
+import com.migueldev.wodwiseapp.presentation.screen.weightdetail.data.WeightDetailState
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
@@ -117,10 +121,35 @@ fun NavGraphBuilder.coachScreen(
 
 fun NavGraphBuilder.weightScreen(
     weightViewModel: WeightViewModel,
+    appActionState: AppActionState,
 ) {
     composable(Routes.WeightScreen.route) {
         WeightScreenContent(
-            weightViewModel = weightViewModel
+            weightViewModel = weightViewModel,
+            appActionState = appActionState
+        )
+    }
+}
+
+fun NavGraphBuilder.weightDetailScreen(
+    weightViewModel: WeightViewModel,
+    weightDetailState: WeightDetailState,
+    appActionState: AppActionState,
+) {
+    composable(
+        route = Routes.WeightDetailScreen.route,
+        arguments = listOf(
+            navArgument("weightId") { type = NavType.StringType }
+        )
+    ) { backStackEntry ->
+        val weightId = backStackEntry.arguments?.getString(
+            "weightId"
+        ) ?: "default_weight_id"
+        WeightDetailScreen(
+            weightViewModel = weightViewModel,
+            weightDetailState = weightDetailState,
+            weightId = weightId,
+            appActionState = appActionState
         )
     }
 }

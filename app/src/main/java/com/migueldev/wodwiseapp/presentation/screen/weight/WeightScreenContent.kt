@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 import com.migueldev.wodwiseapp.presentation.screen.weight.composables.AddWeightDialog
 import com.migueldev.wodwiseapp.presentation.screen.weight.composables.AddWeightFAB
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun WeightScreenContent(
     weightViewModel: WeightViewModel,
+    appActionState: AppActionState,
 ) {
     val weightsState by weightViewModel.state.collectAsState()
     val coroutineScope = rememberCoroutineScope()
@@ -38,7 +40,8 @@ fun WeightScreenContent(
                     coroutineScope.launch {
                         weightViewModel.removeWeight(it)
                     }
-                }
+                },
+                onWeightClicked = appActionState.onWeightClicked
             )
             AddWeightFAB(
                 weightsState = weightsState,

@@ -34,6 +34,7 @@ import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
 import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weightdetail.WeightDetailViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -52,6 +53,7 @@ class MainActivity : ComponentActivity() {
     private val calendarViewModel: CalendarViewModel by viewModels()
     private val coachViewModel: CoachViewModel by viewModels()
     private val weightViewModel: WeightViewModel by viewModels()
+    private val weightDetailViewModel: WeightDetailViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     @RequiresApi(Build.VERSION_CODES.P)
@@ -79,6 +81,7 @@ class MainActivity : ComponentActivity() {
             val calendarState by calendarViewModel.state.collectAsState()
             val coachState by coachViewModel.state.collectAsState()
             val weightState by weightViewModel.state.collectAsState()
+            val weightDetailState by weightDetailViewModel.state.collectAsState()
             val navController = rememberNavController()
             val isEmailLoading = remember { mutableStateOf(true) }
             val userEmail = remember { mutableStateOf<String?>(null) }
@@ -102,7 +105,8 @@ class MainActivity : ComponentActivity() {
                         workoutViewModel = workoutViewModel,
                         calendarViewModel = calendarViewModel,
                         coachViewModel = coachViewModel,
-                        weightViewModel = weightViewModel
+                        weightViewModel = weightViewModel,
+                        weightDetailViewModel = weightDetailViewModel
                     )
                     val stateGroup = StateGroup(
                         loginState = loginState,
@@ -112,7 +116,8 @@ class MainActivity : ComponentActivity() {
                         calendarState = calendarState,
                         datePickerState = datePickerState,
                         coachState = coachState,
-                        weightState = weightState
+                        weightState = weightState,
+                        weightDetailState = weightDetailState
                     )
                     val appState = appStateManager.initializeAppState(
                         viewModelGroup = viewModelGroup,

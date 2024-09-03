@@ -10,7 +10,6 @@ import com.migueldev.wodwiseapp.data.mapper.toDomain
 import com.migueldev.wodwiseapp.data.mapper.toMap
 import com.migueldev.wodwiseapp.data.remote.response.WorkoutResponse
 import com.migueldev.wodwiseapp.data.session.UserPreferences
-import com.migueldev.wodwiseapp.domain.usecase.GenerateWorkoutIdUseCase
 import com.migueldev.wodwiseapp.presentation.screen.calendar.data.WorkoutCardData
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
@@ -22,7 +21,6 @@ import kotlinx.coroutines.tasks.await
 class RemoteWorkoutDatasource @Inject constructor(
     private val firebaseFirestore: FirebaseFirestore,
     private val userPreferences: UserPreferences,
-    private val generateWorkoutIdUseCase: GenerateWorkoutIdUseCase,
 ) : WorkoutDatasource {
 
     private suspend fun getUserCollection(): String {
@@ -36,13 +34,12 @@ class RemoteWorkoutDatasource @Inject constructor(
         }
     }
 
-    override suspend fun addWorkoutToFirestore(dto: WorkoutDto) {
-        val id = generateWorkoutIdUseCase()
-        val model = dto.copy(workoutId = id).toMap()
+    override suspend fun addWorkoutToFirestore(documentId: String, dto: WorkoutDto) {
+        val model = dto.copy(workoutId = documentId).toMap()
         val userCollection = getUserCollection()
         firebaseFirestore
             .collection(userCollection)
-            .document(id)
+            .document(documentId)
             .set(model)
             .await()
     }

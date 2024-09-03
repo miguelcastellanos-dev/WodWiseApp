@@ -34,6 +34,11 @@ fun SetupNavHost(
                 appActionState = appActionState,
                 coachActionState = coachActionState
             )
+            weightDetailScreen(
+                weightViewModel = weightViewModel,
+                weightDetailState = weightDetailState,
+                appActionState = appActionState
+            )
         }
     }
 }

@@ -8,8 +8,11 @@ interface WeightsDatasource {
     fun getWeights(): Flow<List<WeightData>>
 
     suspend fun addWeightToFirestore(
+        documentId: String,
         weightDto: WeightDto,
     )
 
     suspend fun removeWeight(id: String)
+
+    suspend fun updateWeightRm(weightId: String, newRm: Double)
 }

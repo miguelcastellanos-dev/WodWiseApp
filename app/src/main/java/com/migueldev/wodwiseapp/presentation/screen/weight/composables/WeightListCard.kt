@@ -1,6 +1,7 @@
 package com.migueldev.wodwiseapp.presentation.screen.weight.composables
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -19,11 +20,15 @@ import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightData
 @Composable
 fun WeightListCard(
     weight: WeightData,
+    onWeightClicked: (String) -> Unit,
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = Dimension.d8),
+            .padding(top = Dimension.d8)
+            .clickable {
+                onWeightClicked(weight.weightId)
+            },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
         ),

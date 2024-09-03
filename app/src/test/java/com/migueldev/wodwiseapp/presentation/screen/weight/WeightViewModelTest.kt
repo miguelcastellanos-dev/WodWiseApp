@@ -82,7 +82,7 @@ class WeightViewModelTest {
             val weightDto = WeightDto(weightId, nameExercise, rm)
             mockkStatic(::createWeightDto)
             coEvery { generateWorkoutIdUseCase() } returns weightId
-            coEvery { weightRepository.addWeightToFirestore(weightDto) } returns Unit
+            coEvery { weightRepository.addWeightToFirestore(weightId, weightDto) } returns Unit
             coEvery { createWeightDto(weightId, nameExercise, rm) } returns weightDto
 
             val result = viewModel.saveWeight(nameExercise, rm)
@@ -91,7 +91,7 @@ class WeightViewModelTest {
             val rightResult = result as Either.Right
             weightDto shouldBeEqualTo rightResult.value
             coVerify { generateWorkoutIdUseCase() }
-            coVerify { weightRepository.addWeightToFirestore(weightDto) }
+            coVerify { weightRepository.addWeightToFirestore(weightId, weightDto) }
         }
 
     @Test

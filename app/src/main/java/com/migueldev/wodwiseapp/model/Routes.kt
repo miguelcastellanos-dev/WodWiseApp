@@ -8,4 +8,9 @@ sealed class Routes(val route: String) {
     data object WorkoutScreen : Routes("workoutScreen")
     data object WeightScreen : Routes("weightScreen")
     data object CoachScreen : Routes("coachScreen")
+    data object WeightDetailScreen : Routes("weightDetailScreen/{weightId}") {
+        fun createRoute(weightId: String): String {
+            return "weightDetailScreen/$weightId"
+        }
+    }
 }

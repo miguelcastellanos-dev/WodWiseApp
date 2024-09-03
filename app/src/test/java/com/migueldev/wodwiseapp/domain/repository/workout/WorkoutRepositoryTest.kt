@@ -23,8 +23,9 @@ class WorkoutRepositoryTest {
     @Test
     fun `GIVEN valid WorkoutDto WHEN addWorkout is called THEN it calls remoteDatasource`(): Unit =
         runTest {
+            val workoutId = "12345L"
             val workoutDto = WorkoutDto(
-                workoutId = "12345L",
+                workoutId = workoutId,
                 date = Timestamp(seconds = 1721772240, nanoseconds = 615000000),
                 session = "Session 1",
                 positionSession = "A",
@@ -34,9 +35,9 @@ class WorkoutRepositoryTest {
                 notes = ""
             )
 
-            workoutRepository.addWorkoutToFirestore(workoutDto)
+            workoutRepository.addWorkoutToFirestore(workoutId, workoutDto)
 
-            coVerifyOnce { remoteDatasource.addWorkoutToFirestore(workoutDto) }
+            coVerifyOnce { remoteDatasource.addWorkoutToFirestore(workoutId, workoutDto) }
         }
 
     @Test

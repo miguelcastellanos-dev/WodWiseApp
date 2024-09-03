@@ -58,11 +58,11 @@ class WeightRepositoryTest {
             val nameExercise = "Deadlift"
             val rm = 180.0
             val exerciseWeightDto = WeightDto(weightId, nameExercise, rm)
-            coEvery { weightDatasource.addWeightToFirestore(exerciseWeightDto) } just Runs
+            coEvery { weightDatasource.addWeightToFirestore(weightId, exerciseWeightDto) } just Runs
 
-            weightRepository.addWeightToFirestore(exerciseWeightDto)
+            weightRepository.addWeightToFirestore(weightId, exerciseWeightDto)
 
-            coVerifyOnce { weightDatasource.addWeightToFirestore(exerciseWeightDto) }
+            coVerifyOnce { weightDatasource.addWeightToFirestore(weightId, exerciseWeightDto) }
         }
 
     @Test
@@ -74,5 +74,17 @@ class WeightRepositoryTest {
             weightRepository.removeWeight(weightId)
 
             coVerifyOnce { weightDatasource.removeWeight(weightId) }
+        }
+
+    @Test
+    fun `GIVEN weightId and new RM WHEN updateWeightRm is called THEN datasource updateWeightRm is called`() =
+        runTest {
+            val weightId = "1"
+            val newRm = 185.0
+            coEvery { weightDatasource.updateWeightRm(weightId, newRm) } just Runs
+
+            weightRepository.updateWeightRm(weightId, newRm)
+
+            coVerifyOnce { weightDatasource.updateWeightRm(weightId, newRm) }
         }
 }

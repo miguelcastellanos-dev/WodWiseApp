@@ -43,7 +43,10 @@ class SaveWorkoutUseCase @Inject constructor(
             )
         )
         return Either.catch {
-            workoutRepository.addWorkoutToFirestore(workoutDto)
+            workoutRepository.addWorkoutToFirestore(
+                documentId = workoutId,
+                dto = workoutDto
+            )
             toastWrapper.show(toast)
             workoutDto
         }.mapLeft { e ->
