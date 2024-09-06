@@ -33,7 +33,7 @@ fun CalendarCardViewContent(
             .fillMaxWidth()
             .run {
                 if (isCardClickable) {
-                    clickable { }
+                    clickable { appActionState.onWorkoutClicked(workoutCardData) }
                 } else {
                     this
                 }

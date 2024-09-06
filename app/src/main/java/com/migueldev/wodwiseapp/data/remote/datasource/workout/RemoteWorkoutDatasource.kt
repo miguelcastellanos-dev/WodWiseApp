@@ -6,6 +6,8 @@ import com.google.firebase.firestore.snapshots
 import com.migueldev.wodwiseapp.data.dto.WorkoutDto
 import com.migueldev.wodwiseapp.data.mapper.WORKOUT_CHECKBOX_STATE_FIELD
 import com.migueldev.wodwiseapp.data.mapper.WORKOUT_DATE_FIELD
+import com.migueldev.wodwiseapp.data.mapper.WORKOUT_INSTRUCTIONS_FIELD
+import com.migueldev.wodwiseapp.data.mapper.WORKOUT_NOTES_STATE_FIELD
 import com.migueldev.wodwiseapp.data.mapper.toDomain
 import com.migueldev.wodwiseapp.data.mapper.toMap
 import com.migueldev.wodwiseapp.data.remote.response.WorkoutResponse
@@ -73,6 +75,18 @@ class RemoteWorkoutDatasource @Inject constructor(
         return workoutResponses.map { workoutResponse ->
             workoutResponse.toDomain()
         }
+    }
+
+    override suspend fun updateNotesState(workoutId: String, newState: String) {
+        val model = mapOf(WORKOUT_NOTES_STATE_FIELD to newState)
+        val userCollection = getUserCollection()
+        firebaseFirestore.collection(userCollection).document(workoutId).update(model).await()
+    }
+
+    override suspend fun updateInstructionsState(workoutId: String, newState: String) {
+        val model = mapOf(WORKOUT_INSTRUCTIONS_FIELD to newState)
+        val userCollection = getUserCollection()
+        firebaseFirestore.collection(userCollection).document(workoutId).update(model).await()
     }
 }
 

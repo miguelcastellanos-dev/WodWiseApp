@@ -51,6 +51,8 @@
     <string name="instruction_text_title_in_card_view">Instrucciones:</string>
     <string name="prefix_title_week">Semana: </string>
     <string name="notes_text_title_in_card_view">Notas:</string>
+    <string name="calendar_detail_changes_saved_toast">Cambios guardados</string>
+
     <string name="format_title">Formato</string>
     <string name="time_title">Tiempo</string>
     <string name="generate_training_button_text">Generar entrenamiento</string>

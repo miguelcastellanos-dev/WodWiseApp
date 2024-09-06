@@ -39,6 +39,10 @@ fun SetupNavHost(
                 weightDetailState = weightDetailState,
                 appActionState = appActionState
             )
+            calendarDetailScreen(
+                appState = appState,
+                appActionState = appActionState
+            )
         }
     }
 }

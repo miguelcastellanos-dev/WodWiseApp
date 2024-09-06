@@ -13,4 +13,48 @@ sealed class Routes(val route: String) {
             return "weightDetailScreen/$weightId"
         }
     }
+    data object CalendarDetailScreen :
+        Routes(
+            "calendarDetailView/" +
+                "{${ConstCalendarDetail.POSITION_SESSION}}/" +
+                "{${ConstCalendarDetail.EXERCISE}}/" +
+                "{${ConstCalendarDetail.INSTRUCTIONS}}/" +
+                "{${ConstCalendarDetail.WORKOUT_ID}}/" +
+                "{${ConstCalendarDetail.DATE}}/" +
+                "{${ConstCalendarDetail.SESSION}}/" +
+                "{${ConstCalendarDetail.NOTES}}/"
+        ) {
+        fun createRoute(
+            params: CreateRouteCalendarDetailParams,
+        ): String {
+            return "calendarDetailView/" +
+                "${params.positionSession}/" +
+                "${params.exercise}/" +
+                "${params.instructions}/" +
+                "${params.workoutId}/" +
+                "${params.date}/" +
+                "${params.session}/" +
+                "${params.notes}/"
+        }
+    }
 }
+
+object ConstCalendarDetail {
+    const val POSITION_SESSION = "positionSession"
+    const val EXERCISE = "exercise"
+    const val INSTRUCTIONS = "instructions"
+    const val WORKOUT_ID = "workoutId"
+    const val DATE = "date"
+    const val SESSION = "session"
+    const val NOTES = "notes"
+}
+
+data class CreateRouteCalendarDetailParams(
+    val positionSession: String,
+    val exercise: String,
+    val instructions: String,
+    val workoutId: String,
+    val date: String,
+    val session: String,
+    val notes: String,
+)

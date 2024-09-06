@@ -71,6 +71,7 @@
     <string name="instruction_text_title_in_card_view">Instructions:</string>
     <string name="prefix_title_week">Week: </string>
     <string name="notes_text_title_in_card_view">Notes:</string>
+    <string name="calendar_detail_changes_saved_toast">Changes saved</string>
 
     <string name="format_title">Format</string>
     <string name="time_title">Time</string>

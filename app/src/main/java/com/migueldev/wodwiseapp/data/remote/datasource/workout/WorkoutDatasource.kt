@@ -15,4 +15,8 @@ interface WorkoutDatasource {
     suspend fun removeWorkout(id: String)
 
     suspend fun updateCheckboxState(workoutId: String, newState: Boolean)
+
+    suspend fun updateNotesState(workoutId: String, newState: String)
+
+    suspend fun updateInstructionsState(workoutId: String, newState: String)
 }

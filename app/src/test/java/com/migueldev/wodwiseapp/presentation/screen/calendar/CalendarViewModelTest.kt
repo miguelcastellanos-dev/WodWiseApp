@@ -4,12 +4,19 @@ import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.core.coVerifyOnce
 import com.migueldev.wodwiseapp.core.relaxedMockk
+import com.migueldev.wodwiseapp.core.verifyOnce
 import com.migueldev.wodwiseapp.domain.repository.workout.WorkoutRepository
+import com.migueldev.wodwiseapp.model.CreateRouteCalendarDetailParams
+import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.calendar.data.CalendarState
 import com.migueldev.wodwiseapp.presentation.screen.calendar.data.WorkoutCardData
 import io.mockk.every
 import io.mockk.spyk
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
+import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -29,6 +36,7 @@ class CalendarViewModelTest {
     private val testDispatcher = UnconfinedTestDispatcher()
     private val workoutRepository = relaxedMockk<WorkoutRepository>()
     private val resourceProvider = relaxedMockk<ResourceProvider>()
+    private val toastWrapper = relaxedMockk<ToastWrapper>()
     private lateinit var navController: NavHostController
 
     private lateinit var viewModel: CalendarViewModel
@@ -40,6 +48,7 @@ class CalendarViewModelTest {
             CalendarViewModel(
                 workoutRepository = workoutRepository,
                 resourceProvider = resourceProvider,
+                toastWrapper = toastWrapper,
                 ioDispatcher = testDispatcher
             )
         )
@@ -198,4 +207,66 @@ class CalendarViewModelTest {
 
             coVerifyOnce { workoutRepository.removeWorkout(workoutId) }
         }
+
+    @Test
+    fun `GIVEN workoutId and newNotes WHEN updateNotesText is called THEN notesText is updated and toast is shown`() =
+        runTest(testDispatcher) {
+            val workoutId = "123L"
+            val newNotes = "New workout notes"
+            val initialState = CalendarState(notesText = mutableMapOf(workoutId to "Old notes"))
+
+            viewModel.initializeState(initialState)
+            viewModel.updateNotesText(workoutId, newNotes)
+
+            val currentState = viewModel.state.first()
+            currentState.notesText[workoutId] shouldBeEqualTo newNotes
+            coVerifyOnce { workoutRepository.updateNotesState(workoutId, newNotes) }
+        }
+
+    @Test
+    fun `GIVEN workoutId and newInstructions WHEN updateInstructionsText is called THEN instructionsText is updated`() =
+        runTest(testDispatcher) {
+            val workoutId = "123L"
+            val newInstructions = "New workout instructions"
+            val initialState = CalendarState(instructionsText = mutableMapOf(workoutId to "Old instructions"))
+
+            viewModel.initializeState(initialState)
+            viewModel.updateInstructionsText(workoutId, newInstructions)
+
+            val currentState = viewModel.state.first()
+            currentState.instructionsText[workoutId] shouldBeEqualTo newInstructions
+            coVerifyOnce { workoutRepository.updateInstructionsState(workoutId, newInstructions) }
+        }
+
+    @Test
+    fun `GIVEN workout WHEN sendWorkoutToDetail is called THEN navigate with correct parameters`() {
+        val workout = WorkoutCardData(
+            workoutId = "2",
+            date = "monday 12 january",
+            session = "1",
+            positionSession = "C",
+            exerciseType = "Cardio",
+            instructions = "Run for 30 minutes",
+            checkboxState = true,
+            notes = "Workout notes"
+        )
+        val encodedInstructions = URLEncoder.encode(workout.instructions, StandardCharsets.UTF_8.toString())
+        val encodedNotes = URLEncoder.encode(workout.notes, StandardCharsets.UTF_8.toString())
+        val params = CreateRouteCalendarDetailParams(
+            positionSession = workout.positionSession.uppercase(Locale.ROOT),
+            exercise = workout.exerciseType.uppercase(Locale.ROOT),
+            instructions = encodedInstructions,
+            workoutId = workout.workoutId,
+            date = workout.date,
+            session = workout.session,
+            notes = encodedNotes
+        )
+
+        val sendWorkoutToDetail = viewModel.sendWorkoutToDetail(navController)
+        sendWorkoutToDetail(workout)
+
+        verifyOnce {
+            navController.navigate(Routes.CalendarDetailScreen.createRoute(params))
+        }
+    }
 }
