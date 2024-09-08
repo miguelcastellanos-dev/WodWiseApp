@@ -56,3 +56,9 @@ jobs:
 
       - name: Detekt validation
         run: ./gradlew detekt
+
+      - name: Run ktlint check
+        run: ./gradlew ktlintCheck
+
+      - name: Run ktlint format
+        run: ./gradlew ktlintFormat
