@@ -6,7 +6,10 @@ import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import com.migueldev.wodwiseapp.data.dto.WorkoutDto
 import com.migueldev.wodwiseapp.di.IO
+import com.migueldev.wodwiseapp.di.Main
+import com.migueldev.wodwiseapp.domain.exception.FirestoreAddDocumentException
 import com.migueldev.wodwiseapp.domain.usecase.SaveWorkoutUseCase
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.workout.audio.AUDIO_INSTRUCTIONS_FILE
 import com.migueldev.wodwiseapp.presentation.screen.workout.audio.AudioTranscriptionManager
 import com.migueldev.wodwiseapp.presentation.screen.workout.audio.MediaRecorderWrapper
@@ -30,8 +33,10 @@ import kotlinx.coroutines.withContext
 class WorkoutViewModel @Inject constructor(
     private val audioTranscriptionManager: AudioTranscriptionManager,
     private val textResourceProvider: TextResourceProvider,
+    private val toastWrapper: ToastWrapper,
     private val saveWorkoutUseCase: SaveWorkoutUseCase,
     @IO private val ioDispatcher: CoroutineDispatcher,
+    @Main private val mainDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private val _workoutState = MutableStateFlow(WorkoutState())
@@ -136,15 +141,25 @@ class WorkoutViewModel @Inject constructor(
         dateMillis: Long?,
     ): Either<Exception, WorkoutDto> {
         return withContext(ioDispatcher) {
-            saveWorkoutUseCase(
-                toast = _workoutState.value.savedWorkoutToastText,
-                instructions = instructions,
-                session = session,
-                position = position,
-                exerciseType = exerciseType,
-                dateMillis = dateMillis,
-                notesInitialText = _workoutState.value.notesInitialText
-            )
+            try {
+                updateIsLoading(true)
+                val result = saveWorkoutUseCase(
+                    instructions = instructions,
+                    session = session,
+                    position = position,
+                    exerciseType = exerciseType,
+                    dateMillis = dateMillis,
+                    notesInitialText = _workoutState.value.notesInitialText
+                )
+                withContext(mainDispatcher) {
+                    toastWrapper.show(_workoutState.value.savedWorkoutToastText)
+                }
+                result
+            } catch (e: FirestoreAddDocumentException) {
+                Either.Left(e)
+            } finally {
+                updateIsLoading(false)
+            }
         }
     }
 }

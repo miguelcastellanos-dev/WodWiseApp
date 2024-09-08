@@ -7,7 +7,6 @@ import com.migueldev.wodwiseapp.domain.exception.FirestoreAddDocumentException
 import com.migueldev.wodwiseapp.domain.exception.FirestoreConnectionException
 import com.migueldev.wodwiseapp.domain.exception.FirestoreUnknownErrorException
 import com.migueldev.wodwiseapp.domain.repository.workout.WorkoutRepository
-import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutData
 import javax.inject.Inject
 
@@ -17,10 +16,8 @@ class SaveWorkoutUseCase @Inject constructor(
     private val validateInstructionsUseCase: ValidateInstructionsUseCase,
     private val workoutDtoUseCase: WorkoutDtoUseCase,
     private val workoutRepository: WorkoutRepository,
-    private val toastWrapper: ToastWrapper,
 ) {
     suspend operator fun invoke(
-        toast: String,
         instructions: String,
         session: String,
         position: String,
@@ -47,7 +44,6 @@ class SaveWorkoutUseCase @Inject constructor(
                 documentId = workoutId,
                 dto = workoutDto
             )
-            toastWrapper.show(toast)
             workoutDto
         }.mapLeft { e ->
             when (e) {

@@ -7,10 +7,13 @@ import arrow.core.Either
 import com.google.firebase.Timestamp
 import com.migueldev.wodwiseapp.data.dto.WorkoutDto
 import com.migueldev.wodwiseapp.di.IO
+import com.migueldev.wodwiseapp.di.Main
+import com.migueldev.wodwiseapp.domain.exception.FirestoreAddDocumentException
 import com.migueldev.wodwiseapp.domain.usecase.CreateTrainingInfoUseCase
 import com.migueldev.wodwiseapp.domain.usecase.HandleResultIAUseCase
 import com.migueldev.wodwiseapp.domain.usecase.RequestChatCompletionIAUseCase
 import com.migueldev.wodwiseapp.domain.usecase.SaveWorkoutUseCase
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachTextResourceProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,11 +28,13 @@ import kotlinx.coroutines.withContext
 @HiltViewModel
 class CoachViewModel @Inject constructor(
     private val coachTextResourceProvider: CoachTextResourceProvider,
+    private val toastWrapper: ToastWrapper,
     private val handleResultIAUseCase: HandleResultIAUseCase,
     private val requestChatCompletionIAUseCase: RequestChatCompletionIAUseCase,
     private val saveWorkoutUseCase: SaveWorkoutUseCase,
     private val createTrainingInfoUseCase: CreateTrainingInfoUseCase,
     @IO private val ioDispatcher: CoroutineDispatcher,
+    @Main private val mainDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private val _coachState = MutableStateFlow(CoachState())
@@ -166,15 +171,22 @@ class CoachViewModel @Inject constructor(
         val position = _coachState.value.positionText
         val exerciseType = _coachState.value.exerciseTypeText
         return withContext(ioDispatcher) {
-            saveWorkoutUseCase(
-                toast = _coachState.value.savedWorkoutToastText,
-                instructions = instructions,
-                session = session,
-                position = position,
-                exerciseType = exerciseType,
-                dateMillis = dateMillis,
-                notesInitialText = _coachState.value.notesInitialText
-            )
+            try {
+                val result = saveWorkoutUseCase(
+                    instructions = instructions,
+                    session = session,
+                    position = position,
+                    exerciseType = exerciseType,
+                    dateMillis = dateMillis,
+                    notesInitialText = _coachState.value.notesInitialText
+                )
+                withContext(mainDispatcher) {
+                    toastWrapper.show(_coachState.value.savedWorkoutToastText)
+                }
+                result
+            } catch (e: FirestoreAddDocumentException) {
+                Either.Left(e)
+            }
         }
     }
 

@@ -6,6 +6,7 @@ import com.migueldev.wodwiseapp.domain.usecase.CreateTrainingInfoUseCase
 import com.migueldev.wodwiseapp.domain.usecase.HandleResultIAUseCase
 import com.migueldev.wodwiseapp.domain.usecase.RequestChatCompletionIAUseCase
 import com.migueldev.wodwiseapp.domain.usecase.SaveWorkoutUseCase
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachTextResourceProvider
 import io.mockk.every
@@ -29,6 +30,7 @@ class CoachViewModelTest {
     private val coachTextResourceProvider = relaxedMockk<CoachTextResourceProvider>()
     private val createTrainingInfoUseCase = relaxedMockk<CreateTrainingInfoUseCase>()
     private val handleResultIAUseCase = relaxedMockk<HandleResultIAUseCase>()
+    private val toastWrapper = relaxedMockk<ToastWrapper>()
     private val requestChatCompletionIAUseCase = relaxedMockk<RequestChatCompletionIAUseCase>()
     private val saveWorkoutUseCase = relaxedMockk<SaveWorkoutUseCase>()
     private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
@@ -43,11 +45,13 @@ class CoachViewModelTest {
 
         viewModel = CoachViewModel(
             createTrainingInfoUseCase = createTrainingInfoUseCase,
-            ioDispatcher = testDispatcher,
+            toastWrapper = toastWrapper,
             coachTextResourceProvider = coachTextResourceProvider,
             saveWorkoutUseCase = saveWorkoutUseCase,
             handleResultIAUseCase = handleResultIAUseCase,
-            requestChatCompletionIAUseCase = requestChatCompletionIAUseCase
+            requestChatCompletionIAUseCase = requestChatCompletionIAUseCase,
+            ioDispatcher = testDispatcher,
+            mainDispatcher = testDispatcher
         )
     }
 
