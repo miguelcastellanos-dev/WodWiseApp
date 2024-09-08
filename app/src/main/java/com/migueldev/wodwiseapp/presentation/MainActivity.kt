@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.rememberNavController
@@ -59,19 +61,11 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val splashScreen = installSplashScreen()
+        registerPermissionLauncher()
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        requestPermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            appStateManager.handlePermissionResult(
-                workoutViewModel = workoutViewModel,
-                context = this,
-                isGranted = isGranted
-            )
-        }
 
         setContent {
             val loginState by loginViewModel.loginState.collectAsState()
@@ -87,6 +81,10 @@ class MainActivity : ComponentActivity() {
             val userEmail = remember { mutableStateOf<String?>(null) }
             val datePickerState = rememberDatePickerState()
 
+            splashScreen.setKeepOnScreenCondition {
+                isEmailLoading.value
+            }
+
             appStateManager.ObserveUserEmail(isEmailLoading, userEmail)
 
             WodWiseAppTheme {
@@ -98,36 +96,55 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .systemBarsPadding()
                 ) {
-                    val viewModelGroup = ViewModelGroup(
-                        loginViewModel = loginViewModel,
-                        signUpViewModel = signUpViewModel,
-                        scaffoldViewModel = scaffoldViewModel,
-                        workoutViewModel = workoutViewModel,
-                        calendarViewModel = calendarViewModel,
-                        coachViewModel = coachViewModel,
-                        weightViewModel = weightViewModel,
-                        weightDetailViewModel = weightDetailViewModel
-                    )
-                    val stateGroup = StateGroup(
-                        loginState = loginState,
-                        signUpState = signUpState,
-                        scaffoldState = scaffoldState,
-                        workoutState = workoutState,
-                        calendarState = calendarState,
-                        datePickerState = datePickerState,
-                        coachState = coachState,
-                        weightState = weightState,
-                        weightDetailState = weightDetailState
-                    )
-                    val appState = appStateManager.initializeAppState(
-                        viewModelGroup = viewModelGroup,
-                        stateGroup = stateGroup,
-                        navController = navController,
-                        startDestination = userEmail.value != null
-                    )
-                    AppNavigation(appState = appState)
+                    if (!isEmailLoading.value) {
+                        val viewModelGroup = ViewModelGroup(
+                            loginViewModel = loginViewModel,
+                            signUpViewModel = signUpViewModel,
+                            scaffoldViewModel = scaffoldViewModel,
+                            workoutViewModel = workoutViewModel,
+                            calendarViewModel = calendarViewModel,
+                            coachViewModel = coachViewModel,
+                            weightViewModel = weightViewModel,
+                            weightDetailViewModel = weightDetailViewModel
+                        )
+                        val stateGroup = StateGroup(
+                            loginState = loginState,
+                            signUpState = signUpState,
+                            scaffoldState = scaffoldState,
+                            workoutState = workoutState,
+                            calendarState = calendarState,
+                            datePickerState = datePickerState,
+                            coachState = coachState,
+                            weightState = weightState,
+                            weightDetailState = weightDetailState
+                        )
+                        val appState = appStateManager.initializeAppState(
+                            viewModelGroup = viewModelGroup,
+                            stateGroup = stateGroup,
+                            navController = navController,
+                            startDestination = userEmail.value != null
+                        )
+                        AppNavigation(appState = appState)
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                        )
+                    }
                 }
             }
+        }
+    }
+
+    private fun registerPermissionLauncher() {
+        requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            appStateManager.handlePermissionResult(
+                workoutViewModel = workoutViewModel,
+                context = this,
+                isGranted = isGranted
+            )
         }
     }
 
