@@ -8,6 +8,7 @@ import com.migueldev.wodwiseapp.core.relaxedMockk
 import com.migueldev.wodwiseapp.data.dto.WorkoutDto
 import com.migueldev.wodwiseapp.domain.usecase.SaveWorkoutUseCase
 import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.workout.audio.AudioTranscriptionManager
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.ExerciseTypeItem
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.PositionSessionItem
@@ -29,6 +30,7 @@ import org.junit.jupiter.api.Test
 class WorkoutViewModelTest {
     private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
     private val resourceProvider = relaxedMockk<ResourceProvider>()
+    private val toastWrapper = relaxedMockk<ToastWrapper>()
     private val saveWorkoutUseCase = relaxedMockk<SaveWorkoutUseCase>()
     private val audioTranscriptionManager = relaxedMockk<AudioTranscriptionManager>()
     private val textResourceProvider = TextResourceProvider(resourceProvider)
@@ -41,9 +43,11 @@ class WorkoutViewModelTest {
 
         viewModel = WorkoutViewModel(
             ioDispatcher = testDispatcher,
+            toastWrapper = toastWrapper,
             saveWorkoutUseCase = saveWorkoutUseCase,
             textResourceProvider = textResourceProvider,
-            audioTranscriptionManager = audioTranscriptionManager
+            audioTranscriptionManager = audioTranscriptionManager,
+            mainDispatcher = testDispatcher
         )
     }
 
@@ -109,7 +113,6 @@ class WorkoutViewModelTest {
             val expectedResult = Either.Right(workoutDto)
             coEvery {
                 saveWorkoutUseCase(
-                    toast = any(),
                     instructions = instructions,
                     session = session,
                     position = position,
@@ -126,7 +129,6 @@ class WorkoutViewModelTest {
 
             coVerifyOnce {
                 saveWorkoutUseCase(
-                    toast = any(),
                     instructions = instructions,
                     session = session,
                     position = position,

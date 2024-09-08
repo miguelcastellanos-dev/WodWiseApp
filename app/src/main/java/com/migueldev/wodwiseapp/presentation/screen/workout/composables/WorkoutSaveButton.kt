@@ -9,7 +9,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
+import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
+import com.migueldev.wodwiseapp.presentation.screen.theme.RotatingImageLoading
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 
 @Composable
@@ -34,10 +37,18 @@ fun WorkoutSaveButton(
                 disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer
             )
         ) {
-            Text(
-                text = workoutState.saveWorkoutButtonText,
-                style = MaterialTheme.typography.titleLarge
-            )
+            if (workoutState.isLoading) {
+                RotatingImageLoading(
+                    imageResource = R.drawable.app_icon,
+                    modifier = Modifier,
+                    size = Dimension.d32
+                )
+            } else {
+                Text(
+                    text = workoutState.saveWorkoutButtonText,
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
         }
     }
 }
