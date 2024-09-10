@@ -61,6 +61,9 @@ fun createAppActionState(
             },
             onNotesIconClicked = { workoutId, newNotes ->
                 calendarViewModel.updateNotesText(workoutId, newNotes)
+            },
+            onSendPasswordResetEmailClicked = { email ->
+                loginViewModel.sendPasswordResetEmail(email)
             }
         )
     }

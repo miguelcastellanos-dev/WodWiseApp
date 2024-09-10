@@ -15,4 +15,5 @@ data class AppActionState(
     val onWorkoutClicked: (WorkoutCardData) -> Unit,
     val onInstructionIconClicked: (String, String) -> Unit,
     val onNotesIconClicked: (String, String) -> Unit,
+    val onSendPasswordResetEmailClicked: (String) -> Unit,
 )

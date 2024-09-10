@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
-import com.migueldev.wodwiseapp.presentation.screen.user.composables.GoToLogin
+import com.migueldev.wodwiseapp.presentation.screen.user.composables.GoToLoginClickableText
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 
 @Composable
@@ -30,7 +30,7 @@ fun Footer(
                 .fillMaxWidth()
         )
         Spacer(modifier = Modifier.size(Dimension.d24))
-        GoToLogin(signUpState, navController)
+        GoToLoginClickableText(signUpState, navController)
         Spacer(modifier = Modifier.size(Dimension.d24))
     }
 }

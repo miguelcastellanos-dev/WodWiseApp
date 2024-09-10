@@ -19,9 +19,8 @@ fun SetupNavHost(
             startDestination = startDestination
         ) {
             loginScreen(
-                loginState = loginState,
-                loginViewModel = loginViewModel,
-                navController = navController
+                appActionState = appActionState,
+                appState = appState
             )
             signUpScreen(
                 loginState = loginState,

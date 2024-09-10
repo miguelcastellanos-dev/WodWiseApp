@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">WodWise</string>
 
-    <string name="description_google_image">Social login google</string>
-    <string name="login_google_text">Continuar como Miguel</string>
     <string name="login_button_text">Acceder</string>
     <string name="signUp_button_text">Registrarse</string>
     <string name="forgot_password_text">¿Has olvidado tu contraseña?</string>
@@ -17,9 +15,14 @@
     <string name="description_close_app_icon">Close app</string>
     <string name="login_question">¿Ya tienes una cuenta?</string>
     <string name="clickable_login_text">Acceder.</string>
-    <string name="login_divider_text">O</string>
     <string name="toast_msg_registered_user">Ahora puedes acceder</string>
     <string name="error_email_or_password">Error en email o contraseña</string>
+    <string name="reset_password">Mensaje enviado a tu correo electrónico</string>
+    <string name="incorrect_password_or_email">Email o contraseña incorrecta</string>
+    <string name="incorrect_request">No se ha podido realizar la petición</string>
+    <string name="confirm_send_email_button_text">Enviar</string>
+    <string name="cancel_send_email_button_text">Cancelar</string>
+    <string name="forgot_password_title_text">Introduce tu email</string>
 
     <string name="profile_item">Perfil</string>
     <string name="settings_item">Ajustes</string>

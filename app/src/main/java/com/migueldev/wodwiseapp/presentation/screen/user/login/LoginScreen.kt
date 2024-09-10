@@ -11,15 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavHostController
+import com.migueldev.wodwiseapp.presentation.navigation.AppState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
-import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 
 @Composable
 fun LoginScreen(
-    loginState: LoginState,
-    loginViewModel: LoginViewModel,
-    navController: NavHostController,
+    appState: AppState,
+    onSendPasswordResetEmailClicked: (String) -> Unit,
 ) {
     val context = LocalContext.current
     BackHandler {
@@ -32,20 +30,19 @@ fun LoginScreen(
             .padding(Dimension.d16)
     ) {
         Header(
-            loginState = loginState,
+            loginState = appState.loginState,
             modifier = Modifier.align(Alignment.TopEnd)
         )
         BodyLoginScreen(
-            navController = navController,
-            loginState = loginState,
+            appState = appState,
             modifier = Modifier.align(Alignment.TopCenter),
-            loginViewModel = loginViewModel,
-            context = context
+            context = context,
+            onSendPasswordResetEmailClicked = onSendPasswordResetEmailClicked
         )
         Footer(
-            loginState = loginState,
+            loginState = appState.loginState,
             modifier = Modifier.align(Alignment.BottomCenter),
-            navController = navController
+            navController = appState.navController
         )
     }
 }
