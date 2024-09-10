@@ -18,4 +18,10 @@ class RemoteLoginDatasource @Inject constructor(
             user ?: throw LoginFailedException()
         }
     }
+
+    override suspend fun sendPasswordResetEmail(email: String): Either<Throwable, Unit> {
+        return Either.catch {
+            authService.sendPasswordResetEmail(email)
+        }
+    }
 }

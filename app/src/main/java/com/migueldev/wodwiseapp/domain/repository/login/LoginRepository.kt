@@ -11,4 +11,10 @@ class LoginRepository @Inject constructor(
     suspend fun login(email: String, password: String): Either<Throwable, FirebaseUser> {
         return loginDatasource.generateFirebaseUser(email, password)
     }
+
+    suspend fun sendPasswordResetEmail(email: String): Either<Throwable, Unit> {
+        return Either.catch {
+            loginDatasource.sendPasswordResetEmail(email)
+        }
+    }
 }

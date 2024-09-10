@@ -22,7 +22,6 @@ import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldScreenConte
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginScreen
-import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpScreen
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
 import com.migueldev.wodwiseapp.presentation.screen.weight.WeightScreenContent
@@ -34,15 +33,13 @@ import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
 
 fun NavGraphBuilder.loginScreen(
-    loginState: LoginState,
-    loginViewModel: LoginViewModel,
-    navController: NavHostController,
+    appState: AppState,
+    appActionState: AppActionState,
 ) {
     composable(Routes.LoginScreen.route) {
         LoginScreen(
-            loginState = loginState,
-            loginViewModel = loginViewModel,
-            navController = navController
+            appState = appState,
+            onSendPasswordResetEmailClicked = appActionState.onSendPasswordResetEmailClicked
         )
     }
 }

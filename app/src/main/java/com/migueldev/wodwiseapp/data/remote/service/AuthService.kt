@@ -30,4 +30,14 @@ class AuthService @Inject constructor(private val firebaseAuth: FirebaseAuth) {
             }
         }
     }
+
+    suspend fun sendPasswordResetEmail(email: String) {
+        return suspendCancellableCoroutine { cancellableContinuation ->
+            firebaseAuth.sendPasswordResetEmail(email).addOnSuccessListener {
+                cancellableContinuation.resume(Unit)
+            }.addOnFailureListener {
+                cancellableContinuation.resumeWithException(it)
+            }
+        }
+    }
 }

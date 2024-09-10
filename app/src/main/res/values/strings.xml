@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">WodWise</string>
 
-    <string name="description_google_image">Social login google</string>
-    <string name="login_google_text">Continue as Miguel</string>
     <string name="login_button_text">Log In</string>
     <string name="signUp_button_text">Sign up</string>
     <string name="forgot_password_text">Forgot password?</string>
@@ -17,7 +15,6 @@
     <string name="description_close_app_icon">Close app</string>
     <string name="login_question">Already have an account?</string>
     <string name="clickable_login_text">Log In.</string>
-    <string name="login_divider_text">Or</string>
     <string name="log_msg_login_error" translatable="false">signInWithEmailAndPassword: %1$s</string>
     <string name="unknown_error" translatable="false">Unknown error</string>
     <string name="log_msg_successful_login" translatable="false">Successful login for user: %1$s</string>
@@ -25,6 +22,12 @@
     <string name="log_msg_successful_register" translatable="false">Successful register for user: %1$s</string>
     <string name="toast_msg_registered_user">Now you can log in</string>
     <string name="error_email_or_password">Error in email or password</string>
+    <string name="reset_password">Message sent to your email</string>
+    <string name="incorrect_password_or_email">Incorrect password or email</string>
+    <string name="incorrect_request">The request could not be completed</string>
+    <string name="confirm_send_email_button_text">Send</string>
+    <string name="cancel_send_email_button_text">Cancel</string>
+    <string name="forgot_password_title_text">Enter your email</string>
 
     <string name="profile_item">Profile</string>
     <string name="settings_item">Settings</string>

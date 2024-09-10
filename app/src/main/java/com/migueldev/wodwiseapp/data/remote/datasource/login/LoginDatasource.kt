@@ -9,4 +9,6 @@ interface LoginDatasource {
         email: String,
         password: String,
     ): Either<Throwable, FirebaseUser>
+
+    suspend fun sendPasswordResetEmail(email: String): Either<Throwable, Unit>
 }

@@ -10,25 +10,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
+import com.migueldev.wodwiseapp.presentation.navigation.AppState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.Email
-import com.migueldev.wodwiseapp.presentation.screen.user.composables.ForgotPassword
+import com.migueldev.wodwiseapp.presentation.screen.user.composables.ForgotPasswordClickableText
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.ImageLogo
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.LoginButton
-import com.migueldev.wodwiseapp.presentation.screen.user.composables.LoginDivider
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.Password
-import com.migueldev.wodwiseapp.presentation.screen.user.composables.SocialLogin
-import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.UserButtonParams
 
 @Composable
 fun BodyLoginScreen(
-    navController: NavHostController,
-    loginState: LoginState,
+    appState: AppState,
     modifier: Modifier,
-    loginViewModel: LoginViewModel,
     context: Context,
+    onSendPasswordResetEmailClicked: (String) -> Unit,
 ) {
     val (email, setEmail) = remember { mutableStateOf("") }
     val (password, setPassword) = remember { mutableStateOf("") }
@@ -36,47 +32,47 @@ fun BodyLoginScreen(
     Column(modifier = modifier) {
         Spacer(modifier = Modifier.size(Dimension.d32))
         ImageLogo(
-            loginState = loginState,
+            loginState = appState.loginState,
             Modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
         )
         Spacer(modifier = Modifier.size(Dimension.d16))
         Email(
-            loginState = loginState,
+            loginState = appState.loginState,
             email = email
         ) {
             setEmail(it)
-            loginViewModel.onLoginChanged(
+            appState.loginViewModel.onLoginChanged(
                 email = it,
                 password = password
             )
         }
         Spacer(modifier = Modifier.size(Dimension.d8))
-        Password(loginState = loginState, password = password) {
+        Password(loginState = appState.loginState, password = password) {
             setPassword(it)
-            loginViewModel.onLoginChanged(
+            appState.loginViewModel.onLoginChanged(
                 email = email,
                 password = it
             )
         }
         Spacer(modifier = Modifier.size(Dimension.d16))
-        ForgotPassword(loginState = loginState, Modifier.align(Alignment.End))
+        ForgotPasswordClickableText(
+            loginState = appState.loginState,
+            modifier = Modifier.align(Alignment.End),
+            onSendPasswordResetEmailClicked = onSendPasswordResetEmailClicked
+        )
         Spacer(modifier = Modifier.size(Dimension.d16))
         LoginButton(
-            navController = navController,
-            loginState = loginState,
+            navController = appState.navController,
+            loginState = appState.loginState,
             UserButtonParams(
                 email = email,
                 password = password,
-                isEnabled = loginState.isLoginEnabled
+                isEnabled = appState.loginState.isLoginEnabled
             ),
-            loginViewModel = loginViewModel,
+            loginViewModel = appState.loginViewModel,
             context = context
         )
-        Spacer(modifier = Modifier.size(Dimension.d16))
-        LoginDivider(loginState = loginState)
-        Spacer(modifier = Modifier.size(Dimension.d16))
-        SocialLogin(loginState = loginState)
     }
 }

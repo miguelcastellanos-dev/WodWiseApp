@@ -12,6 +12,7 @@ import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.LoginRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableLoginButtonUseCase
 import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -37,6 +38,7 @@ class LoginViewModelTest {
     private val loginRepository: LoginRepository = mockk()
     private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
     private val logger: Logger = mockk(relaxed = true)
+    private val toastWrapper: ToastWrapper = mockk(relaxed = true)
     private val context: Context = mockk(relaxed = true)
     private val userPreferences: UserPreferences = mockk(relaxed = true)
     private val navController: NavHostController = mockk(relaxed = true)
@@ -52,9 +54,11 @@ class LoginViewModelTest {
             userPreferences = userPreferences,
             enableLoginButtonUseCase = enableLoginButtonUseCase,
             loginRepository = loginRepository,
-            ioDispatcher = testDispatcher,
             logger = logger,
-            resourceProvider = resourceProvider
+            resourceProvider = resourceProvider,
+            toastWrapper = toastWrapper,
+            ioDispatcher = testDispatcher,
+            mainDispatcher = testDispatcher
         )
     }
 

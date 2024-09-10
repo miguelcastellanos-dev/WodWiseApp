@@ -7,11 +7,14 @@ import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.data.session.UserPreferences
 import com.migueldev.wodwiseapp.di.IO
+import com.migueldev.wodwiseapp.di.Main
+import com.migueldev.wodwiseapp.domain.exception.FirestoreConnectionException
 import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.LoginRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableLoginButtonUseCase
 import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
+import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -29,7 +32,9 @@ class LoginViewModel @Inject constructor(
     private val logger: Logger,
     private val resourceProvider: ResourceProvider,
     private val userPreferences: UserPreferences,
+    private val toastWrapper: ToastWrapper,
     @IO private val ioDispatcher: CoroutineDispatcher,
+    @Main private val mainDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
 
     private val _loginState = MutableStateFlow(LoginState())
@@ -48,12 +53,6 @@ class LoginViewModel @Inject constructor(
                 signupButtonText = resourceProvider.getString(
                     R.string.signUp_button_text
                 ),
-                descriptionGoogleImage = resourceProvider.getString(
-                    R.string.description_google_image
-                ),
-                loginGoogleText = resourceProvider.getString(
-                    R.string.login_google_text
-                ),
                 forgotPasswordText = resourceProvider.getString(
                     R.string.forgot_password_text
                 ),
@@ -62,9 +61,6 @@ class LoginViewModel @Inject constructor(
                 ),
                 clickableSignupText = resourceProvider.getString(
                     R.string.clickable_signUp_text
-                ),
-                loginDividerText = resourceProvider.getString(
-                    R.string.login_divider_text
                 ),
                 descriptionLogoApp = resourceProvider.getString(
                     R.string.description_logo_app
@@ -80,6 +76,24 @@ class LoginViewModel @Inject constructor(
                 ),
                 descriptionCloseAppIcon = resourceProvider.getString(
                     R.string.description_close_app_icon
+                ),
+                resetPassword = resourceProvider.getString(
+                    R.string.reset_password
+                ),
+                incorrectPasswordOrEmail = resourceProvider.getString(
+                    R.string.incorrect_password_or_email
+                ),
+                incorrectRequest = resourceProvider.getString(
+                    R.string.incorrect_request
+                ),
+                confirmSendEmailButtonText = resourceProvider.getString(
+                    R.string.confirm_send_email_button_text
+                ),
+                cancelSendEmailButtonText = resourceProvider.getString(
+                    R.string.cancel_send_email_button_text
+                ),
+                forgotPasswordTitleText = resourceProvider.getString(
+                    R.string.forgot_password_title_text
                 )
             )
         }
@@ -101,7 +115,7 @@ class LoginViewModel @Inject constructor(
         password: String,
         context: Context,
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(ioDispatcher) {
             val result = withContext(ioDispatcher) {
                 loginRepository.login(email, password)
             }
@@ -115,6 +129,9 @@ class LoginViewModel @Inject constructor(
                             throwable.message ?: R.string.unknown_error
                         )
                     )
+                    withContext(mainDispatcher) {
+                        toastWrapper.show(_loginState.value.incorrectPasswordOrEmail)
+                    }
                 },
                 ifRight = { firebaseUser ->
                     logger.d(
@@ -125,10 +142,28 @@ class LoginViewModel @Inject constructor(
                         )
                     )
                     userPreferences.saveUserEmail(firebaseUser.email ?: "")
+                    withContext(mainDispatcher) {
+                        navController.navigate(Routes.ScaffoldScreen.route)
+                    }
                 }
             )
         }
-        navController.navigate(Routes.ScaffoldScreen.route)
+    }
+
+    fun sendPasswordResetEmail(email: String) {
+        viewModelScope.launch(ioDispatcher) {
+            try {
+                loginRepository.sendPasswordResetEmail(email)
+                withContext(mainDispatcher) {
+                    toastWrapper.show(_loginState.value.resetPassword)
+                }
+            } catch (e: FirestoreConnectionException) {
+                logger.e(TAG, e.toString())
+                withContext(mainDispatcher) {
+                    toastWrapper.show(_loginState.value.incorrectRequest)
+                }
+            }
+        }
     }
 }
 
