@@ -19,11 +19,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
+import com.migueldev.wodwiseapp.model.Routes
 import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 
 @Composable
 fun ScaffoldDropdownMenu(
+    navController: NavController,
     scaffoldState: ScaffoldState,
     appActionState: AppActionState,
 ) {
@@ -48,7 +51,10 @@ fun ScaffoldDropdownMenu(
         )
         DropdownMenuItem(
             text = { Text(scaffoldState.settingsItemText) },
-            onClick = { },
+            onClick = {
+                expanded = false
+                navController.navigate(Routes.SettingScreen.route)
+            },
             leadingIcon = { Icon(Icons.Outlined.Settings, contentDescription = "Icon settings") }
         )
         HorizontalDivider()

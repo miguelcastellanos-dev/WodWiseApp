@@ -30,7 +30,7 @@
     <string name="calendar_icon_text">Calendario</string>
     <string name="add_workout_icon_text">Añadir</string>
     <string name="weights_icon_text">Pesos</string>
-    <string name="a_i_icon_text">IA</string>
+    <string name="coach_icon_text">Entrenador</string>
 
     <string name="session_1">Sesión 1</string>
     <string name="session_2">Sesión 2</string>

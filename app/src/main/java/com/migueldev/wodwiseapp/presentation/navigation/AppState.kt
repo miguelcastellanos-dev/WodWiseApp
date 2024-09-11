@@ -10,6 +10,8 @@ import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
+import com.migueldev.wodwiseapp.presentation.screen.setting.SettingViewModel
+import com.migueldev.wodwiseapp.presentation.screen.setting.data.SettingState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
@@ -31,6 +33,7 @@ data class AppState(
     val coachViewModel: CoachViewModel,
     val weightViewModel: WeightViewModel,
     val weightDetailViewModel: WeightDetailViewModel,
+    val settingViewModel: SettingViewModel,
     val loginState: LoginState,
     val signUpState: SignUpState,
     val scaffoldState: ScaffoldState,
@@ -39,6 +42,7 @@ data class AppState(
     val coachState: CoachState,
     val weightState: WeightsState,
     val weightDetailState: WeightDetailState,
+    val settingState: SettingState,
     val navController: NavHostController,
     val userPreferences: UserPreferences,
     val startDestination: String,

@@ -37,6 +37,7 @@ sealed class Routes(val route: String) {
                 "${params.notes}/"
         }
     }
+    data object SettingScreen : Routes("settingScreen")
 }
 
 object ConstCalendarDetail {

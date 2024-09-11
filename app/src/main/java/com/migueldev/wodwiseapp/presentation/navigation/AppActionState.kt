@@ -6,7 +6,7 @@ import com.migueldev.wodwiseapp.presentation.screen.calendar.data.WorkoutCardDat
 data class AppActionState(
     val onRequestPermissionAndRecordClicked: (Context) -> Unit,
     val onSaveWorkoutClicked: () -> Unit,
-    val onToggleThemeClicked: () -> Unit,
+    val onThemeSwitched: () -> Unit,
     val onLogoutClicked: () -> Unit,
     val onDeleteIconClicked: (String) -> Unit,
     val onCheckboxClicked: (String, Boolean) -> Unit,
@@ -16,4 +16,5 @@ data class AppActionState(
     val onInstructionIconClicked: (String, String) -> Unit,
     val onNotesIconClicked: (String, String) -> Unit,
     val onSendPasswordResetEmailClicked: (String) -> Unit,
+    val onBackClicked: () -> Unit,
 )

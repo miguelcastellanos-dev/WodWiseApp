@@ -36,7 +36,7 @@
     <string name="calendar_icon_text">Calendar</string>
     <string name="add_workout_icon_text">Add workout</string>
     <string name="weights_icon_text">Weights</string>
-    <string name="a_i_icon_text">AI</string>
+    <string name="coach_icon_text">Coach</string>
 
     <string name="session_1">Session 1</string>
     <string name="session_2">Session 2</string>

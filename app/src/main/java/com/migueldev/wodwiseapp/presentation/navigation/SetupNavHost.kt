@@ -42,6 +42,10 @@ fun SetupNavHost(
                 appState = appState,
                 appActionState = appActionState
             )
+            settingScreen(
+                settingState = appState.settingState,
+                appActionState = appActionState
+            )
         }
     }
 }

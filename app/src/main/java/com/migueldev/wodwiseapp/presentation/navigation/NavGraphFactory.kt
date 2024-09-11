@@ -19,6 +19,8 @@ import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachActionState
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldScreenContent
+import com.migueldev.wodwiseapp.presentation.screen.setting.SettingScreen
+import com.migueldev.wodwiseapp.presentation.screen.setting.data.SettingState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginScreen
@@ -210,6 +212,19 @@ fun NavGraphBuilder.calendarDetailScreen(
             onCheckboxClicked = appActionState.onCheckboxClicked,
             onInstructionIconClicked = appActionState.onInstructionIconClicked,
             onNotesIconClicked = appActionState.onNotesIconClicked
+        )
+    }
+}
+
+fun NavGraphBuilder.settingScreen(
+    settingState: SettingState,
+    appActionState: AppActionState,
+) {
+    composable(Routes.SettingScreen.route) {
+        SettingScreen(
+            settingState = settingState,
+            onThemeSwitched = appActionState.onThemeSwitched,
+            onBackClicked = appActionState.onBackClicked
         )
     }
 }

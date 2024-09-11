@@ -5,7 +5,6 @@ import com.migueldev.wodwiseapp.core.relaxedMockk
 import com.migueldev.wodwiseapp.data.session.UserPreferences
 import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
-import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import io.mockk.every
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -34,48 +33,9 @@ class ScaffoldViewModelTest {
         every { userPreferences.isDarkMode } returns isDarkModeFlow
         viewModel = ScaffoldViewModel(
             resourceProvider = resourceProvider,
-            userPreferences = userPreferences,
-            logger = logger,
-            ioDispatcher = testDispatcher
+            logger = logger
         )
     }
-
-    @Test
-    fun `GIVEN initial state is light theme WHEN switchTheme is called THEN mode should be dark`() =
-        runTest(testDispatcher) {
-            viewModel.switchTheme()
-
-            val result = viewModel.state.value
-            result.mode.themeMode shouldBeEqualTo ThemeSwitcher.DARK
-        }
-
-    @Test
-    fun `GIVEN initial state is light theme WHEN switchTheme is called two times THEN returns to light`() =
-        runTest(testDispatcher) {
-            viewModel.switchTheme()
-            viewModel.switchTheme()
-
-            val result = viewModel.state.value
-            result.mode.themeMode shouldBeEqualTo ThemeSwitcher.LIGHT
-        }
-
-    @Test
-    fun `GIVEN observeThemeMode is called WHEN isDarkMode is true THEN state is updated to DARK mode`() =
-        runTest {
-            isDarkModeFlow.emit(true)
-
-            val result = viewModel.state.value
-            result.mode.themeMode shouldBeEqualTo ThemeSwitcher.DARK
-        }
-
-    @Test
-    fun `GIVEN observeThemeMode is called WHEN isDarkMode is false THEN state is updated to LIGHT mode`() =
-        runTest {
-            isDarkModeFlow.emit(false)
-
-            val result = viewModel.state.value
-            result.mode.themeMode shouldBeEqualTo ThemeSwitcher.LIGHT
-        }
 
     @Test
     fun `GIVEN initializeTextResources is called WHEN called THEN state is updated with correct texts`() =
@@ -87,8 +47,7 @@ class ScaffoldViewModelTest {
             val calendarIconText = "Calendar"
             val addWorkoutIconText = "Add workout"
             val weightsIconText = "Weights"
-            val aIIconText = "AI"
-
+            val coachIconText = "Coach"
             every { resourceProvider.getString(R.string.profile_item) } returns profileItemText
             every { resourceProvider.getString(R.string.settings_item) } returns settingsItemText
             every { resourceProvider.getString(R.string.sign_off_item) } returns signOffItemText
@@ -96,7 +55,7 @@ class ScaffoldViewModelTest {
             every { resourceProvider.getString(R.string.calendar_icon_text) } returns calendarIconText
             every { resourceProvider.getString(R.string.add_workout_icon_text) } returns addWorkoutIconText
             every { resourceProvider.getString(R.string.weights_icon_text) } returns weightsIconText
-            every { resourceProvider.getString(R.string.a_i_icon_text) } returns aIIconText
+            every { resourceProvider.getString(R.string.coach_icon_text) } returns coachIconText
 
             viewModel.initializeTextResources()
 
@@ -108,6 +67,6 @@ class ScaffoldViewModelTest {
             result.calendarIconText shouldBeEqualTo calendarIconText
             result.addWorkoutIconText shouldBeEqualTo addWorkoutIconText
             result.weightsIconText shouldBeEqualTo weightsIconText
-            result.aIIconText shouldBeEqualTo aIIconText
+            result.coachIconText shouldBeEqualTo coachIconText
         }
 }
