@@ -19,6 +19,8 @@ import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
+import com.migueldev.wodwiseapp.presentation.screen.setting.SettingViewModel
+import com.migueldev.wodwiseapp.presentation.screen.setting.data.SettingState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.SignUpState
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
@@ -56,6 +58,7 @@ class AppStateManager @Inject constructor(
             coachViewModel = viewModelGroup.coachViewModel,
             weightViewModel = viewModelGroup.weightViewModel,
             weightDetailViewModel = viewModelGroup.weightDetailViewModel,
+            settingViewModel = viewModelGroup.settingViewModel,
             scaffoldState = stateGroup.scaffoldState,
             loginState = stateGroup.loginState,
             signUpState = stateGroup.signUpState,
@@ -64,6 +67,7 @@ class AppStateManager @Inject constructor(
             coachState = stateGroup.coachState,
             weightState = stateGroup.weightState,
             weightDetailState = stateGroup.weightDetailState,
+            settingState = stateGroup.settingState,
             navController = navController,
             userPreferences = userPreferences,
             startDestination = determineStartDestination(startDestination),
@@ -110,6 +114,7 @@ data class ViewModelGroup(
     val coachViewModel: CoachViewModel,
     val weightViewModel: WeightViewModel,
     val weightDetailViewModel: WeightDetailViewModel,
+    val settingViewModel: SettingViewModel,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -123,4 +128,5 @@ data class StateGroup(
     val coachState: CoachState,
     val weightState: WeightsState,
     val weightDetailState: WeightDetailState,
+    val settingState: SettingState,
 )

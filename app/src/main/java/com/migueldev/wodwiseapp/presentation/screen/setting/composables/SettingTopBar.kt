@@ -1,9 +1,13 @@
-package com.migueldev.wodwiseapp.presentation.screen.scaffold.composables
+package com.migueldev.wodwiseapp.presentation.screen.setting.composables
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -12,20 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.navigation.NavController
-import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
-import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.setting.data.SettingState
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScaffoldTopBar(
-    navController: NavController,
-    scaffoldState: ScaffoldState,
+fun SettingTopBar(
     settingState: SettingState,
-    appActionState: AppActionState,
+    onBackClicked: () -> Unit,
 ) {
     WodWiseAppTheme(
         darkTheme = settingState.mode.themeMode == ThemeSwitcher.DARK,
@@ -40,22 +39,22 @@ fun ScaffoldTopBar(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(WEIGHT_TITLE_TEXT),
-                            text = scaffoldState.scaffoldTitleText,
+                            text = "Ajustes",
                             textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.onBackground
+                            color = MaterialTheme.colorScheme.onBackground,
+                            modifier = Modifier.weight(WEIGHT_TITLE_TEXT)
                         )
                         Spacer(modifier = Modifier.weight(WEIGHT_SPACER))
                     }
                 },
                 navigationIcon = {
-                    ScaffoldDropdownMenu(
-                        navController = navController,
-                        scaffoldState = scaffoldState,
-                        appActionState = appActionState
-                    )
+                    IconButton(onClick = { onBackClicked() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBackIosNew,
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onBackground
+                        )
+                    }
                 }
             )
         }

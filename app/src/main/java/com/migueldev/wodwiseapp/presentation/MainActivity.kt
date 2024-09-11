@@ -32,6 +32,8 @@ import com.migueldev.wodwiseapp.presentation.navigation.AppNavigation
 import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
+import com.migueldev.wodwiseapp.presentation.screen.setting.SettingViewModel
+import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 import com.migueldev.wodwiseapp.presentation.screen.user.login.LoginViewModel
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
@@ -56,6 +58,7 @@ class MainActivity : ComponentActivity() {
     private val coachViewModel: CoachViewModel by viewModels()
     private val weightViewModel: WeightViewModel by viewModels()
     private val weightDetailViewModel: WeightDetailViewModel by viewModels()
+    private val settingViewModel: SettingViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     @RequiresApi(Build.VERSION_CODES.P)
@@ -63,6 +66,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val splashScreen = installSplashScreen()
         registerPermissionLauncher()
+
+        settingViewModel.observeThemeMode()
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -76,10 +81,12 @@ class MainActivity : ComponentActivity() {
             val coachState by coachViewModel.state.collectAsState()
             val weightState by weightViewModel.state.collectAsState()
             val weightDetailState by weightDetailViewModel.state.collectAsState()
+            val settingState by settingViewModel.state.collectAsState()
             val navController = rememberNavController()
             val isEmailLoading = remember { mutableStateOf(true) }
             val userEmail = remember { mutableStateOf<String?>(null) }
             val datePickerState = rememberDatePickerState()
+            val isDarkTheme = settingState.mode.themeMode == ThemeSwitcher.DARK
 
             splashScreen.setKeepOnScreenCondition {
                 isEmailLoading.value
@@ -87,7 +94,7 @@ class MainActivity : ComponentActivity() {
 
             appStateManager.ObserveUserEmail(isEmailLoading, userEmail)
 
-            WodWiseAppTheme {
+            WodWiseAppTheme(darkTheme = isDarkTheme) {
                 val backgroundColor = MaterialTheme.colorScheme.background
                 setSystemBarsColor(window, backgroundColor)
 
@@ -105,7 +112,8 @@ class MainActivity : ComponentActivity() {
                             calendarViewModel = calendarViewModel,
                             coachViewModel = coachViewModel,
                             weightViewModel = weightViewModel,
-                            weightDetailViewModel = weightDetailViewModel
+                            weightDetailViewModel = weightDetailViewModel,
+                            settingViewModel = settingViewModel
                         )
                         val stateGroup = StateGroup(
                             loginState = loginState,
@@ -116,7 +124,8 @@ class MainActivity : ComponentActivity() {
                             datePickerState = datePickerState,
                             coachState = coachState,
                             weightState = weightState,
-                            weightDetailState = weightDetailState
+                            weightDetailState = weightDetailState,
+                            settingState = settingState
                         )
                         val appState = appStateManager.initializeAppState(
                             viewModelGroup = viewModelGroup,

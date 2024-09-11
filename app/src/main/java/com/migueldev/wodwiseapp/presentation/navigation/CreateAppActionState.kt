@@ -31,7 +31,7 @@ fun createAppActionState(
                     )
                 }
             },
-            onToggleThemeClicked = { scaffoldViewModel.switchTheme() },
+            onThemeSwitched = { settingViewModel.switchTheme() },
             onLogoutClicked = {
                 coroutineScope.launch {
                     userPreferences.clearUserEmail()
@@ -64,7 +64,8 @@ fun createAppActionState(
             },
             onSendPasswordResetEmailClicked = { email ->
                 loginViewModel.sendPasswordResetEmail(email)
-            }
+            },
+            onBackClicked = { appState.navController.popBackStack() }
         )
     }
 }

@@ -40,12 +40,14 @@ fun ScaffoldScreenContent(
     }
 
     WodWiseAppTheme(
-        darkTheme = scaffoldState.mode.themeMode == ThemeSwitcher.DARK,
+        darkTheme = appState.settingState.mode.themeMode == ThemeSwitcher.DARK,
         content = {
             Scaffold(
                 topBar = {
                     ScaffoldTopBar(
+                        navController = appState.navController,
                         scaffoldState = scaffoldState,
+                        settingState = appState.settingState,
                         appActionState = appActionState
                     )
                 },
