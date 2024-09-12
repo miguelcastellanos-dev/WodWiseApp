@@ -1,4 +1,4 @@
-package com.migueldev.wodwiseapp.presentation.screen.setting.composables
+package com.migueldev.wodwiseapp.presentation.screen.profile.composables
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,14 +16,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import com.migueldev.wodwiseapp.presentation.screen.profile.data.ProfileState
 import com.migueldev.wodwiseapp.presentation.screen.setting.data.SettingState
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import com.migueldev.wodwiseapp.presentation.screen.theme.WodWiseAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingTopBar(
+fun ProfileTopBar(
     settingState: SettingState,
+    profileState: ProfileState,
     onBackClicked: () -> Unit,
 ) {
     WodWiseAppTheme(
@@ -39,7 +41,7 @@ fun SettingTopBar(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = settingState.settingTitleText,
+                            text = profileState.profileTitleText,
                             textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onBackground,
                             modifier = Modifier.weight(WEIGHT_TITLE_TEXT)

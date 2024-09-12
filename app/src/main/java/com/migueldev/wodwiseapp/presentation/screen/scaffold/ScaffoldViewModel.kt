@@ -28,10 +28,10 @@ class ScaffoldViewModel @Inject constructor(
         _scaffoldState.update { currentState ->
             currentState.copy(
                 profileItemText = resourceProvider.getString(
-                    R.string.profile_item
+                    R.string.profileTitleText
                 ),
                 settingsItemText = resourceProvider.getString(
-                    R.string.settings_item
+                    R.string.setting_title_text
                 ),
                 signOffItemText = resourceProvider.getString(
                     R.string.sign_off_item

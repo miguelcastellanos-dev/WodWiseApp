@@ -47,8 +47,7 @@ fun ScaffoldScreenContent(
                     ScaffoldTopBar(
                         navController = appState.navController,
                         scaffoldState = scaffoldState,
-                        settingState = appState.settingState,
-                        appActionState = appActionState
+                        settingState = appState.settingState
                     )
                 },
                 bottomBar = {

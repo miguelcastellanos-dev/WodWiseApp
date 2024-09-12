@@ -17,4 +17,7 @@ data class AppActionState(
     val onNotesIconClicked: (String, String) -> Unit,
     val onSendPasswordResetEmailClicked: (String) -> Unit,
     val onBackClicked: () -> Unit,
+    val onDeleteUserClicked: () -> Unit,
+    val onDeleteAllWorkoutsClicked: () -> Unit,
+    val onDeleteAllWeightsClicked: () -> Unit,
 )

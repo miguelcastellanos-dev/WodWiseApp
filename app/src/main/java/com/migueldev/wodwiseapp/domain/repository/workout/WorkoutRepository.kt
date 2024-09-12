@@ -35,4 +35,8 @@ class WorkoutRepository @Inject constructor(
     suspend fun updateInstructionsState(workoutId: String, newState: String) {
         return remoteDatasource.updateInstructionsState(workoutId, newState)
     }
+
+    suspend fun deleteWorkoutCollection() {
+        return remoteDatasource.deleteWorkoutCollection()
+    }
 }

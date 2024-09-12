@@ -87,4 +87,14 @@ class WeightRepositoryTest {
 
             coVerifyOnce { weightDatasource.updateWeightRm(weightId, newRm) }
         }
+
+    @Test
+    fun `GIVEN deleteWeightsCollection WHEN deleteWeightsCollection THEN deleteWeightsCollection is called`() =
+        runTest {
+            coEvery { weightDatasource.deleteWeightsCollection() } just Runs
+
+            weightRepository.deleteWeightsCollection()
+
+            coVerifyOnce { weightDatasource.deleteWeightsCollection() }
+        }
 }

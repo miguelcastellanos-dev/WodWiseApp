@@ -45,7 +45,7 @@ fun ThemeSetting(
                 )
             }
             Text(
-                text = "Theme",
+                text = settingState.themeSettingText,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.weight(1f)
             )

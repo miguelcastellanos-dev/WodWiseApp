@@ -2,6 +2,7 @@ package com.migueldev.wodwiseapp.presentation.screen.setting
 
 import com.migueldev.wodwiseapp.core.relaxedMockk
 import com.migueldev.wodwiseapp.data.session.UserPreferences
+import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
 import io.mockk.every
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test
 class SettingViewModelTest {
 
     private val userPreferences = relaxedMockk<UserPreferences>()
+    private val resourceProvider = relaxedMockk<ResourceProvider>()
     private val testDispatcher = UnconfinedTestDispatcher()
     private val isDarkModeFlow = MutableStateFlow(false)
 
@@ -29,6 +31,7 @@ class SettingViewModelTest {
         Dispatchers.setMain(testDispatcher)
         every { userPreferences.isDarkMode } returns isDarkModeFlow
         viewModel = SettingViewModel(
+            resourceProvider = resourceProvider,
             userPreferences = userPreferences,
             ioDispatcher = testDispatcher
         )

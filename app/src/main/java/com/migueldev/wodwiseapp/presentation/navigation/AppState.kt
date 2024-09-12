@@ -8,6 +8,8 @@ import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarViewModel
 import com.migueldev.wodwiseapp.presentation.screen.calendar.data.CalendarState
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
+import com.migueldev.wodwiseapp.presentation.screen.profile.ProfileViewModel
+import com.migueldev.wodwiseapp.presentation.screen.profile.data.ProfileState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.setting.SettingViewModel
@@ -34,6 +36,7 @@ data class AppState(
     val weightViewModel: WeightViewModel,
     val weightDetailViewModel: WeightDetailViewModel,
     val settingViewModel: SettingViewModel,
+    val profileViewModel: ProfileViewModel,
     val loginState: LoginState,
     val signUpState: SignUpState,
     val scaffoldState: ScaffoldState,
@@ -43,6 +46,7 @@ data class AppState(
     val weightState: WeightsState,
     val weightDetailState: WeightDetailState,
     val settingState: SettingState,
+    val profileState: ProfileState,
     val navController: NavHostController,
     val userPreferences: UserPreferences,
     val startDestination: String,

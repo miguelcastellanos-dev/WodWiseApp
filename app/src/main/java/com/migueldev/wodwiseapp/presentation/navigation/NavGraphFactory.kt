@@ -18,6 +18,8 @@ import com.migueldev.wodwiseapp.presentation.screen.coach.CoachScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachActionState
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
+import com.migueldev.wodwiseapp.presentation.screen.profile.ProfileScreen
+import com.migueldev.wodwiseapp.presentation.screen.profile.data.ProfileState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.setting.SettingScreen
 import com.migueldev.wodwiseapp.presentation.screen.setting.data.SettingState
@@ -225,6 +227,24 @@ fun NavGraphBuilder.settingScreen(
             settingState = settingState,
             onThemeSwitched = appActionState.onThemeSwitched,
             onBackClicked = appActionState.onBackClicked
+        )
+    }
+}
+
+fun NavGraphBuilder.profileScreen(
+    settingState: SettingState,
+    profileState: ProfileState,
+    appActionState: AppActionState,
+) {
+    composable(Routes.ProfileScreen.route) {
+        ProfileScreen(
+            settingState = settingState,
+            profileState = profileState,
+            onBackClicked = appActionState.onBackClicked,
+            onLogoutClicked = appActionState.onLogoutClicked,
+            onDeleteUserClicked = appActionState.onDeleteUserClicked,
+            onDeleteAllWorkoutsClicked = appActionState.onDeleteAllWorkoutsClicked,
+            onDeleteAllWeightsClicked = appActionState.onDeleteAllWeightsClicked
         )
     }
 }

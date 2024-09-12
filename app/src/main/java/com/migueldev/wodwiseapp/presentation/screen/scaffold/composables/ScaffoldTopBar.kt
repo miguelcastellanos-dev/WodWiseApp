@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavController
-import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.setting.data.SettingState
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
@@ -25,7 +24,6 @@ fun ScaffoldTopBar(
     navController: NavController,
     scaffoldState: ScaffoldState,
     settingState: SettingState,
-    appActionState: AppActionState,
 ) {
     WodWiseAppTheme(
         darkTheme = settingState.mode.themeMode == ThemeSwitcher.DARK,
@@ -53,8 +51,7 @@ fun ScaffoldTopBar(
                 navigationIcon = {
                     ScaffoldDropdownMenu(
                         navController = navController,
-                        scaffoldState = scaffoldState,
-                        appActionState = appActionState
+                        scaffoldState = scaffoldState
                     )
                 }
             )

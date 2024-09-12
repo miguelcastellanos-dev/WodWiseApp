@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.migueldev.wodwiseapp.presentation.navigation.AppNavigation
 import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
+import com.migueldev.wodwiseapp.presentation.screen.profile.ProfileViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.setting.SettingViewModel
 import com.migueldev.wodwiseapp.presentation.screen.theme.ThemeSwitcher
@@ -59,6 +60,7 @@ class MainActivity : ComponentActivity() {
     private val weightViewModel: WeightViewModel by viewModels()
     private val weightDetailViewModel: WeightDetailViewModel by viewModels()
     private val settingViewModel: SettingViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     @RequiresApi(Build.VERSION_CODES.P)
@@ -82,6 +84,7 @@ class MainActivity : ComponentActivity() {
             val weightState by weightViewModel.state.collectAsState()
             val weightDetailState by weightDetailViewModel.state.collectAsState()
             val settingState by settingViewModel.state.collectAsState()
+            val profileState by profileViewModel.state.collectAsState()
             val navController = rememberNavController()
             val isEmailLoading = remember { mutableStateOf(true) }
             val userEmail = remember { mutableStateOf<String?>(null) }
@@ -113,7 +116,8 @@ class MainActivity : ComponentActivity() {
                             coachViewModel = coachViewModel,
                             weightViewModel = weightViewModel,
                             weightDetailViewModel = weightDetailViewModel,
-                            settingViewModel = settingViewModel
+                            settingViewModel = settingViewModel,
+                            profileViewModel = profileViewModel
                         )
                         val stateGroup = StateGroup(
                             loginState = loginState,
@@ -125,7 +129,8 @@ class MainActivity : ComponentActivity() {
                             coachState = coachState,
                             weightState = weightState,
                             weightDetailState = weightDetailState,
-                            settingState = settingState
+                            settingState = settingState,
+                            profileState = profileState
                         )
                         val appState = appStateManager.initializeAppState(
                             viewModelGroup = viewModelGroup,

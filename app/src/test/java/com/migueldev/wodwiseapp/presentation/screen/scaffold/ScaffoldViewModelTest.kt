@@ -48,8 +48,8 @@ class ScaffoldViewModelTest {
             val addWorkoutIconText = "Add workout"
             val weightsIconText = "Weights"
             val coachIconText = "Coach"
-            every { resourceProvider.getString(R.string.profile_item) } returns profileItemText
-            every { resourceProvider.getString(R.string.settings_item) } returns settingsItemText
+            every { resourceProvider.getString(R.string.profileTitleText) } returns profileItemText
+            every { resourceProvider.getString(R.string.setting_title_text) } returns settingsItemText
             every { resourceProvider.getString(R.string.sign_off_item) } returns signOffItemText
             every { resourceProvider.getString(R.string.scaffold_title) } returns scaffoldTitleText
             every { resourceProvider.getString(R.string.calendar_icon_text) } returns calendarIconText
