@@ -17,4 +17,8 @@ class LoginRepository @Inject constructor(
             loginDatasource.sendPasswordResetEmail(email)
         }
     }
+
+    suspend fun deleteUser(): Either<Throwable, Unit> {
+        return loginDatasource.deleteUser()
+    }
 }

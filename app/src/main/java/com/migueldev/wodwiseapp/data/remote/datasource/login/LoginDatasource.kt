@@ -11,4 +11,6 @@ interface LoginDatasource {
     ): Either<Throwable, FirebaseUser>
 
     suspend fun sendPasswordResetEmail(email: String): Either<Throwable, Unit>
+
+    suspend fun deleteUser(): Either<Throwable, Unit>
 }

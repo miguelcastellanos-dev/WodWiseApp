@@ -88,6 +88,16 @@ class RemoteWorkoutDatasource @Inject constructor(
         val userCollection = getUserCollection()
         firebaseFirestore.collection(userCollection).document(workoutId).update(model).await()
     }
+
+    override suspend fun deleteWorkoutCollection() {
+        val userCollection = getUserCollection()
+        val collectionRef = firebaseFirestore.collection(userCollection)
+        val documents = collectionRef.get().await()
+
+        for (document in documents) {
+            document.reference.delete().await()
+        }
+    }
 }
 
 private const val WORKOUTS_COLLECTION_SUFFIX = "_workouts"

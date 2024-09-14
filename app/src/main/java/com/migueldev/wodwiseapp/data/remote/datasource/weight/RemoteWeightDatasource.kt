@@ -75,6 +75,16 @@ class RemoteWeightDatasource @Inject constructor(
             .update(WEIGHT_REPETITION_MAXIMUM_DATABASE_FIELD, newRm)
             .await()
     }
+
+    override suspend fun deleteWeightsCollection() {
+        val userCollection = getUserCollection()
+        val collectionRef = firebaseFirestore.collection(userCollection)
+        val documents = collectionRef.get().await()
+
+        for (document in documents) {
+            document.reference.delete().await()
+        }
+    }
 }
 
 private const val WEIGHTS_COLLECTION_SUFFIX = "_weights"

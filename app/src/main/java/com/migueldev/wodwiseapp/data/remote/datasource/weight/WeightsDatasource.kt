@@ -15,4 +15,6 @@ interface WeightsDatasource {
     suspend fun removeWeight(id: String)
 
     suspend fun updateWeightRm(weightId: String, newRm: Double)
+
+    suspend fun deleteWeightsCollection()
 }

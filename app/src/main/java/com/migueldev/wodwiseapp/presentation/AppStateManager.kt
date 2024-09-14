@@ -17,6 +17,8 @@ import com.migueldev.wodwiseapp.presentation.screen.calendar.CalendarViewModel
 import com.migueldev.wodwiseapp.presentation.screen.calendar.data.CalendarState
 import com.migueldev.wodwiseapp.presentation.screen.coach.CoachViewModel
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
+import com.migueldev.wodwiseapp.presentation.screen.profile.ProfileViewModel
+import com.migueldev.wodwiseapp.presentation.screen.profile.data.ProfileState
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.ScaffoldViewModel
 import com.migueldev.wodwiseapp.presentation.screen.scaffold.data.ScaffoldState
 import com.migueldev.wodwiseapp.presentation.screen.setting.SettingViewModel
@@ -59,6 +61,7 @@ class AppStateManager @Inject constructor(
             weightViewModel = viewModelGroup.weightViewModel,
             weightDetailViewModel = viewModelGroup.weightDetailViewModel,
             settingViewModel = viewModelGroup.settingViewModel,
+            profileViewModel = viewModelGroup.profileViewModel,
             scaffoldState = stateGroup.scaffoldState,
             loginState = stateGroup.loginState,
             signUpState = stateGroup.signUpState,
@@ -68,6 +71,7 @@ class AppStateManager @Inject constructor(
             weightState = stateGroup.weightState,
             weightDetailState = stateGroup.weightDetailState,
             settingState = stateGroup.settingState,
+            profileState = stateGroup.profileState,
             navController = navController,
             userPreferences = userPreferences,
             startDestination = determineStartDestination(startDestination),
@@ -115,6 +119,7 @@ data class ViewModelGroup(
     val weightViewModel: WeightViewModel,
     val weightDetailViewModel: WeightDetailViewModel,
     val settingViewModel: SettingViewModel,
+    val profileViewModel: ProfileViewModel,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -129,4 +134,5 @@ data class StateGroup(
     val weightState: WeightsState,
     val weightDetailState: WeightDetailState,
     val settingState: SettingState,
+    val profileState: ProfileState,
 )

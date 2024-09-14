@@ -3,12 +3,15 @@
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
     <ID>LongMethod:CoachTextResourceProvider.kt$CoachTextResourceProvider$fun coachInitializeTextResources(): CoachState</ID>
+    <ID>LongMethod:CreateAppActionState.kt$@OptIn(ExperimentalMaterial3Api::class) @Composable fun createAppActionState( appState: AppState, ): AppActionState</ID>
     <ID>LongMethod:CreateBodyweightExerciseData.kt$fun createBodyWeightExerciseData(resourceProvider: ResourceProvider): List&lt;CoachExerciseData&gt;</ID>
     <ID>LongMethod:CreateMetabolicExerciseData.kt$fun createMetabolicExerciseData(resourceProvider: ResourceProvider): List&lt;CoachExerciseData&gt;</ID>
     <ID>LongMethod:MainActivity.kt$MainActivity$@OptIn(ExperimentalMaterial3Api::class) @RequiresApi(Build.VERSION_CODES.P) override fun onCreate(savedInstanceState: Bundle?)</ID>
+    <ID>LongMethod:ProfileTextResourceProvider.kt$ProfileTextResourceProvider$fun profileInitializeTextResources(): ProfileState</ID>
     <ID>LongParameterList:CoachViewModel.kt$CoachViewModel$( private val coachTextResourceProvider: CoachTextResourceProvider, private val toastWrapper: ToastWrapper, private val handleResultIAUseCase: HandleResultIAUseCase, private val requestChatCompletionIAUseCase: RequestChatCompletionIAUseCase, private val saveWorkoutUseCase: SaveWorkoutUseCase, private val createTrainingInfoUseCase: CreateTrainingInfoUseCase, @IO private val ioDispatcher: CoroutineDispatcher, @Main private val mainDispatcher: CoroutineDispatcher, )</ID>
     <ID>LongParameterList:LoginViewModel.kt$LoginViewModel$( private val enableLoginButtonUseCase: EnableLoginButtonUseCase, private val loginRepository: LoginRepository, private val logger: Logger, private val resourceProvider: ResourceProvider, private val userPreferences: UserPreferences, private val toastWrapper: ToastWrapper, @IO private val ioDispatcher: CoroutineDispatcher, @Main private val mainDispatcher: CoroutineDispatcher, )</ID>
     <ID>TooManyFunctions:CalendarViewModel.kt$CalendarViewModel : ViewModel</ID>
+    <ID>TooManyFunctions:NavGraphFactory.kt$com.migueldev.wodwiseapp.presentation.navigation.NavGraphFactory.kt</ID>
     <ID>TooManyFunctions:WorkoutViewModel.kt$WorkoutViewModel : ViewModel</ID>
   </CurrentIssues>
 </SmellBaseline>

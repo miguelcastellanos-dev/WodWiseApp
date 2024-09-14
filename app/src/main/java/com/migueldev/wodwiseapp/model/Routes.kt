@@ -38,6 +38,7 @@ sealed class Routes(val route: String) {
         }
     }
     data object SettingScreen : Routes("settingScreen")
+    data object ProfileScreen : Routes("profileScreen")
 }
 
 object ConstCalendarDetail {

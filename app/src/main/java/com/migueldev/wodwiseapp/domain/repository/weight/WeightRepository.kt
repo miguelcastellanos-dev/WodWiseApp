@@ -24,4 +24,8 @@ class WeightRepository @Inject constructor(
     suspend fun updateWeightRm(weightId: String, newRm: Double) {
         return weightDatasource.updateWeightRm(weightId, newRm)
     }
+
+    suspend fun deleteWeightsCollection() {
+        return weightDatasource.deleteWeightsCollection()
+    }
 }

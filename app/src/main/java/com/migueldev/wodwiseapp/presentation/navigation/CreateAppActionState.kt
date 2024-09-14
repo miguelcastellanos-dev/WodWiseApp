@@ -65,7 +65,22 @@ fun createAppActionState(
             onSendPasswordResetEmailClicked = { email ->
                 loginViewModel.sendPasswordResetEmail(email)
             },
-            onBackClicked = { appState.navController.popBackStack() }
+            onBackClicked = { appState.navController.popBackStack() },
+            onDeleteUserClicked = {
+                appState.profileViewModel.deleteUser()
+                appState.profileViewModel.deleteAllWorkouts()
+                appState.profileViewModel.deleteAllWeights()
+                coroutineScope.launch {
+                    userPreferences.clearUserEmail()
+                }
+                navController.navigate(Routes.LoginScreen.route)
+            },
+            onDeleteAllWorkoutsClicked = {
+                appState.profileViewModel.deleteAllWorkouts()
+            },
+            onDeleteAllWeightsClicked = {
+                appState.profileViewModel.deleteAllWeights()
+            }
         )
     }
 }

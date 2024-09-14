@@ -29,8 +29,8 @@
     <string name="cancel_send_email_button_text">Cancel</string>
     <string name="forgot_password_title_text">Enter your email</string>
 
-    <string name="profile_item">Profile</string>
-    <string name="settings_item">Settings</string>
+    <string name="profileTitleText">Profile</string>
+    <string name="setting_title_text">Settings</string>
     <string name="sign_off_item">Sign off</string>
     <string name="scaffold_title" translatable="false">WodWise</string>
     <string name="calendar_icon_text">Calendar</string>
@@ -246,4 +246,24 @@
     <string name="confirm_button_dialog">Add</string>
     <string name="dismiss_button_dialog">Cancel</string>
     <string name="text_empty_weight">Empty weight</string>
+
+    <string name="theme_setting_text">Theme (Dark/Light)</string>
+    <string name="close_session_text">Log Out</string>
+    <string name="delete_user_text">Delete user</string>
+    <string name="delete_workouts_database_text">Delete all workouts</string>
+    <string name="delete_weights_database_text">Delete all weights</string>
+    <string name="close_session_warning_text">If you click the text above, you will log out, but your saved workouts and weights will remain intact.</string>
+    <string name="delete_user_warning_text">If you click the text above, your user account and all associated data will be permanently deleted.</string>
+    <string name="delete_workouts_warning_text">If you click the text above, all saved workouts will be deleted permanently.</string>
+    <string name="delete_weights_warning_text">If you click the text above, all saved weights will be deleted permanently.</string>
+    <string name="delete_user_dialog_warning_text">Are you sure you want to delete your account? This action cannot be undone.</string>
+    <string name="delete_workouts_dialog_warning_text">Are you sure you want to delete all workouts? This action cannot be undone.</string>
+    <string name="delete_weights_dialog_warning_text">Are you sure you want to delete all weights? This action cannot be undone.</string>
+    <string name="close_session_dialog_warning_text">Are you sure you want to log out? You\'ll need to log in again to access your data.</string>
+    <string name="warning_dialog_title">Confirm action</string>
+    <string name="warning_dialog_confirm_button">Confirm</string>
+    <string name="warning_dialog_cancel_button">Cancel</string>
+    <string name="delete_user_toast_wrapper_test">You have deleted your account</string>
+    <string name="delete_workouts_toast_wrapper_test">You have deleted all your workouts</string>
+    <string name="delete_weights_toast_wrapper_test">You have deleted all your weights</string>
 </resources>

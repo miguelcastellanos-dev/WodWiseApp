@@ -24,8 +24,8 @@
     <string name="cancel_send_email_button_text">Cancelar</string>
     <string name="forgot_password_title_text">Introduce tu email</string>
 
-    <string name="profile_item">Perfil</string>
-    <string name="settings_item">Ajustes</string>
+    <string name="profileTitleText">Perfil</string>
+    <string name="setting_title_text">Ajustes</string>
     <string name="sign_off_item">Cerrar sesión</string>
     <string name="calendar_icon_text">Calendario</string>
     <string name="add_workout_icon_text">Añadir</string>
@@ -128,4 +128,24 @@
     <string name="confirm_button_dialog">Añadir</string>
     <string name="dismiss_button_dialog">Cancelar</string>
     <string name="text_empty_weight">Peso vacio</string>
+
+    <string name="theme_setting_text">Tema (Oscuro/Claro)</string>
+    <string name="close_session_text">Cerrar sesión</string>
+    <string name="delete_user_text">Eliminar cuenta</string>
+    <string name="delete_workouts_database_text">Eliminar todos los entrenamientos</string>
+    <string name="delete_weights_database_text">Eliminar todos los pesos</string>
+    <string name="close_session_warning_text">Si pulsas el texto de arriba cerrarás la sesión, pero no perderás los entrenamientos y pesos que tienes guardados.</string>
+    <string name="delete_user_warning_text">Si pulsas el texto de arriba eliminarás tu usuario y toda la base de datos para siempre.</string>
+    <string name="delete_workouts_warning_text">Si pulsas el texto de arriba eliminarás todos los entrenamientos guardados y los perderás para siempre.</string>
+    <string name="delete_weights_warning_text">Si pulsas el texto de arriba eliminarás todos los pesos guardados y los perderás para siempre.</string>
+    <string name="delete_user_dialog_warning_text">¿Estás seguro/a de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.</string>
+    <string name="delete_workouts_dialog_warning_text">¿Estás seguro/a de que deseas eliminar todos los entrenamientos? Esta acción no se puede deshacer.</string>
+    <string name="delete_weights_dialog_warning_text">¿Estás seguro/a de que deseas eliminar todos los pesos? Esta acción no se puede deshacer.</string>
+    <string name="close_session_dialog_warning_text">¿Estás seguro/a de que deseas cerrar la sesión? Necesitarás iniciar sesión de nuevo para acceder a tus datos.</string>
+    <string name="warning_dialog_title">Confirmar acción</string>
+    <string name="warning_dialog_confirm_button">Confirmar</string>
+    <string name="warning_dialog_cancel_button">Cancelar</string>
+    <string name="delete_user_toast_wrapper_test">Has borrado tu cuenta</string>
+    <string name="delete_workouts_toast_wrapper_test">Has borrado todos tus entrenamientos</string>
+    <string name="delete_weights_toast_wrapper_test">Has borrado todos tus pesos</string>
 </resources>
