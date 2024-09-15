@@ -104,6 +104,7 @@ dependencies {
     implementation(libs.arrow.core)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.messaging)
     implementation(libs.google.dagger.hilt.android)
     implementation(libs.openai.client)
     implementation(libs.swipe)
