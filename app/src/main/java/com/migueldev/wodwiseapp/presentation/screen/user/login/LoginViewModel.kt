@@ -13,9 +13,9 @@ import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.LoginRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableLoginButtonUseCase
 import com.migueldev.wodwiseapp.model.Routes
-import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
 import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
+import com.migueldev.wodwiseapp.presentation.screen.user.data.UserTextResourceProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
@@ -27,10 +27,10 @@ import kotlinx.coroutines.withContext
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
+    private val userTextResourceProvider: UserTextResourceProvider,
     private val enableLoginButtonUseCase: EnableLoginButtonUseCase,
     private val loginRepository: LoginRepository,
     private val logger: Logger,
-    private val resourceProvider: ResourceProvider,
     private val userPreferences: UserPreferences,
     private val toastWrapper: ToastWrapper,
     @IO private val ioDispatcher: CoroutineDispatcher,
@@ -45,58 +45,7 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun initializeTextResources() {
-        _loginState.update { currentState ->
-            currentState.copy(
-                loginButtonText = resourceProvider.getString(
-                    R.string.login_button_text
-                ),
-                signupButtonText = resourceProvider.getString(
-                    R.string.signUp_button_text
-                ),
-                forgotPasswordText = resourceProvider.getString(
-                    R.string.forgot_password_text
-                ),
-                signupQuestionText = resourceProvider.getString(
-                    R.string.signUp_question
-                ),
-                clickableSignupText = resourceProvider.getString(
-                    R.string.clickable_signUp_text
-                ),
-                descriptionLogoApp = resourceProvider.getString(
-                    R.string.description_logo_app
-                ),
-                hintEmail = resourceProvider.getString(
-                    R.string.hint_email
-                ),
-                hintPassword = resourceProvider.getString(
-                    R.string.hint_password
-                ),
-                descriptionVisibilityIcon = resourceProvider.getString(
-                    R.string.description_visibility_icon
-                ),
-                descriptionCloseAppIcon = resourceProvider.getString(
-                    R.string.description_close_app_icon
-                ),
-                resetPassword = resourceProvider.getString(
-                    R.string.reset_password
-                ),
-                incorrectPasswordOrEmail = resourceProvider.getString(
-                    R.string.incorrect_password_or_email
-                ),
-                incorrectRequest = resourceProvider.getString(
-                    R.string.incorrect_request
-                ),
-                confirmSendEmailButtonText = resourceProvider.getString(
-                    R.string.confirm_send_email_button_text
-                ),
-                cancelSendEmailButtonText = resourceProvider.getString(
-                    R.string.cancel_send_email_button_text
-                ),
-                forgotPasswordTitleText = resourceProvider.getString(
-                    R.string.forgot_password_title_text
-                )
-            )
-        }
+        _loginState.value = userTextResourceProvider.userInitializeTextResources()
     }
 
     fun onLoginChanged(email: String, password: String) {

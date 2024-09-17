@@ -39,7 +39,7 @@ fun CoachGenerateResponseButton(
         ) {
             if (coachState.isLoading) {
                 RotatingImageLoading(
-                    imageResource = R.drawable.app_icon,
+                    imageResource = R.drawable.ic_launcher_round,
                     modifier = Modifier,
                     size = Dimension.d32
                 )

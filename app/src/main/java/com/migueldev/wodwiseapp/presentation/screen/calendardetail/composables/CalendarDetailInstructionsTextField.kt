@@ -10,7 +10,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.sp
 
 @Composable
@@ -28,8 +27,7 @@ fun CalendarDetailInstructionsTextField(
             onValueChange(newInstructions)
         },
         textStyle = TextStyle(
-            fontSize = 16.sp,
-            fontStyle = FontStyle.Italic
+            fontSize = 16.sp
         ),
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.background,

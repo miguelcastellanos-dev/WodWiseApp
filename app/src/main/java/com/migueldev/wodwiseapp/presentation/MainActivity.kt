@@ -23,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -167,7 +168,11 @@ class MainActivity : ComponentActivity() {
         window.navigationBarColor = backgroundColor.toArgb()
 
         val insetsController = WindowInsetsControllerCompat(window, window.decorView)
-        insetsController.isAppearanceLightStatusBars = false
-        insetsController.isAppearanceLightNavigationBars = true
+
+        val isLightBackground = backgroundColor.luminance() > LIGHT_BACKGROUND_THRESHOLD
+        insetsController.isAppearanceLightStatusBars = isLightBackground
+        insetsController.isAppearanceLightNavigationBars = isLightBackground
     }
 }
+
+private const val LIGHT_BACKGROUND_THRESHOLD = 0.5f

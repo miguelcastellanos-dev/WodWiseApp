@@ -7,12 +7,14 @@ import arrow.core.Either
 import com.google.firebase.auth.FirebaseUser
 import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.core.coVerifyOnce
+import com.migueldev.wodwiseapp.core.relaxedMockk
 import com.migueldev.wodwiseapp.data.session.UserPreferences
 import com.migueldev.wodwiseapp.domain.logger.Logger
 import com.migueldev.wodwiseapp.domain.repository.login.LoginRepository
 import com.migueldev.wodwiseapp.domain.usecase.EnableLoginButtonUseCase
 import com.migueldev.wodwiseapp.presentation.framework.ResourceProvider
 import com.migueldev.wodwiseapp.presentation.framework.ToastWrapper
+import com.migueldev.wodwiseapp.presentation.screen.user.data.UserTextResourceProvider
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -42,7 +44,8 @@ class LoginViewModelTest {
     private val context: Context = mockk(relaxed = true)
     private val userPreferences: UserPreferences = mockk(relaxed = true)
     private val navController: NavHostController = mockk(relaxed = true)
-    private val resourceProvider: ResourceProvider = mockk(relaxed = true)
+    private val resourceProvider = relaxedMockk<ResourceProvider>()
+    private val userTextResourceProvider = UserTextResourceProvider(resourceProvider)
 
     private lateinit var viewModel: LoginViewModel
 
@@ -55,7 +58,7 @@ class LoginViewModelTest {
             enableLoginButtonUseCase = enableLoginButtonUseCase,
             loginRepository = loginRepository,
             logger = logger,
-            resourceProvider = resourceProvider,
+            userTextResourceProvider = userTextResourceProvider,
             toastWrapper = toastWrapper,
             ioDispatcher = testDispatcher,
             mainDispatcher = testDispatcher
