@@ -36,7 +36,7 @@ fun WeightScreenContent(
             modifier = Modifier.fillMaxSize()
         ) {
             RotatingImageLoading(
-                imageResource = R.drawable.app_icon,
+                imageResource = R.drawable.ic_launcher_round,
                 modifier = Modifier.align(Alignment.Center),
                 size = Dimension.d128
             )

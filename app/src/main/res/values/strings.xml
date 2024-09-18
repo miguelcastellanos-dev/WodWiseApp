@@ -28,6 +28,7 @@
     <string name="confirm_send_email_button_text">Send</string>
     <string name="cancel_send_email_button_text">Cancel</string>
     <string name="forgot_password_title_text">Enter your email</string>
+    <string name="app_slogan_text" translatable="false">Build workouts. Break limits</string>
 
     <string name="profileTitleText">Profile</string>
     <string name="setting_title_text">Settings</string>

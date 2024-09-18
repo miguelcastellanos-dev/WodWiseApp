@@ -24,4 +24,6 @@ data class LoginState(
     val confirmSendEmailButtonText: String = "",
     val cancelSendEmailButtonText: String = "",
     val forgotPasswordTitleText: String = "",
+    val appName: String = "",
+    val appSloganText: String = "",
 )
