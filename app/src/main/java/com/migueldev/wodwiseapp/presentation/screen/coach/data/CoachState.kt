@@ -45,6 +45,8 @@ data class CoachState(
     val gymnasticsHeaderText: String = "",
     val strengthCoachExerciseData: List<CoachExerciseData> = emptyList(),
     val strengthHeaderText: String = "",
+    val exerciseChipSelected: String = "",
+    val exerciseChipNotSelected: String = "",
 )
 
 private const val INITIAL_SELECTED_TIME = 20

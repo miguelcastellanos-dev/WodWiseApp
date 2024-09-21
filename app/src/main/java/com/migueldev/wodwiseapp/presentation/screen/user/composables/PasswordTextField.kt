@@ -23,44 +23,18 @@ import androidx.compose.ui.text.input.VisualTransformation
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 
 @Composable
-fun Email(
-    loginState: LoginState,
-    email: String,
-    onTextChanged: (String) -> Unit,
-) {
-    TextField(
-        value = email,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = loginState.hintEmail) },
-        maxLines = 1,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-            focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-            unfocusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-            unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            unfocusedPlaceholderColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            focusedPlaceholderColor = MaterialTheme.colorScheme.onPrimaryContainer
-        )
-    )
-}
-
-@Composable
 fun PasswordTextField(
-    loginState: LoginState,
     password: String,
     onTextChanged: (String) -> Unit,
+    placeHolder: String,
+    contentDescription: String,
 ) {
     var passwordVisibility by remember { mutableStateOf(false) }
     TextField(
         value = password,
         onValueChange = { onTextChanged(it) },
         modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(loginState.hintPassword) },
+        placeholder = { Text(placeHolder) },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
             focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -83,7 +57,7 @@ fun PasswordTextField(
             IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                 Icon(
                     imageVector = imagen,
-                    contentDescription = loginState.descriptionVisibilityIcon,
+                    contentDescription = contentDescription,
                     tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
@@ -102,7 +76,12 @@ fun Password(
     password: String,
     onTextChanged: (String) -> Unit,
 ) {
-    PasswordTextField(loginState, password, onTextChanged)
+    PasswordTextField(
+        password = password,
+        onTextChanged = onTextChanged,
+        placeHolder = loginState.hintPassword,
+        contentDescription = "show password icon"
+    )
 }
 
 @Composable
@@ -111,5 +90,10 @@ fun ConfirmPassword(
     password: String,
     onTextChanged: (String) -> Unit,
 ) {
-    PasswordTextField(loginState, password, onTextChanged)
+    PasswordTextField(
+        password = password,
+        onTextChanged = onTextChanged,
+        placeHolder = loginState.hintRepeatPassword,
+        contentDescription = "show repeat password icon"
+    )
 }

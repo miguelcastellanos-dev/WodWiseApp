@@ -5,6 +5,7 @@
     <string name="signUp_button_text">Sign up</string>
     <string name="forgot_password_text">Forgot password?</string>
     <string name="hint_password">Password</string>
+    <string name="hint_repeat_password">Repeat password</string>
     <string name="hint_email">Email</string>
     <string name="hint_confirm_password">Confirm password</string>
     <string name="hint_username">Username</string>
@@ -29,6 +30,11 @@
     <string name="cancel_send_email_button_text">Cancel</string>
     <string name="forgot_password_title_text">Enter your email</string>
     <string name="app_slogan_text" translatable="false">Build workouts. Break limits</string>
+    <string name="email_information_title">Why we ask for your email?</string>
+    <string name="email_information_text">We request your email to link it to the data you save, so
+        you can access your information from any device. Additionally, it helps you recover your
+        account in case you forget your password</string>
+    <string name="ok_reply_text" translatable="false">OK</string>
 
     <string name="profileTitleText">Profile</string>
     <string name="setting_title_text">Settings</string>
@@ -92,6 +98,8 @@
     <string name="subtract_minutes" translatable="false">-</string>
     <string name="next_format_arrow" translatable="false">&gt;</string>
     <string name="previous_format_arrow" translatable="false">&lt;</string>
+    <string name="exercise_chip_selected" translatable="false">Selected</string>
+    <string name="exercise_chip_not_selected" translatable="false">Not selected</string>
 
     <string name="barbell_header_text">Barbell movements</string>
     <string name="barbell_squat_clean_exercise" translatable="false">Squat clean</string>

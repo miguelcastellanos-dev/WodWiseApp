@@ -82,6 +82,12 @@ class CoachTextResourceProvider @Inject constructor(
             previousFormatArrow = resourceProvider.getString(R.string.previous_format_arrow),
             notesInitialText = resourceProvider.getString(
                 R.string.notes_initial_text
+            ),
+            exerciseChipSelected = resourceProvider.getString(
+                R.string.exercise_chip_selected
+            ),
+            exerciseChipNotSelected = resourceProvider.getString(
+                R.string.exercise_chip_not_selected
             )
         )
     }

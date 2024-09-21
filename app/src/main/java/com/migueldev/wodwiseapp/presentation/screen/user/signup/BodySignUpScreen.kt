@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.ConfirmPassword
-import com.migueldev.wodwiseapp.presentation.screen.user.composables.Email
+import com.migueldev.wodwiseapp.presentation.screen.user.composables.EmailTextField
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.ImageLogo
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.Password
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.SignUpButton
@@ -81,7 +81,7 @@ fun InputFieldsSection(
     params: SignUpFieldsParams,
     signUpViewModel: SignUpViewModel,
 ) {
-    Email(loginState, params.email) {
+    EmailTextField(loginState, params.email) {
         params.setEmail(it)
         signUpViewModel.onSignUpChanged(
             email = it,

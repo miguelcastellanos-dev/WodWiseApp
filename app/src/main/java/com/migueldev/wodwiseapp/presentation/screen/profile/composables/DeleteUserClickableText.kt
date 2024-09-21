@@ -43,9 +43,11 @@ fun DeleteUserClickableText(
                 text = profileState.deleteUserText,
                 style = MaterialTheme.typography.titleLarge,
                 color = Color.Red,
-                modifier = Modifier.clickable {
-                    showDialog = true
-                }
+                modifier = Modifier
+                    .clickable {
+                        showDialog = true
+                    }
+                    .padding(vertical = Dimension.d8)
             )
             Text(
                 text = profileState.deleteUserWarningText,
