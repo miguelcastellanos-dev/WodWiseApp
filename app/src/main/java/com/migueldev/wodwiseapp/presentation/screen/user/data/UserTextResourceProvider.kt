@@ -33,6 +33,9 @@ class UserTextResourceProvider @Inject constructor(
             hintPassword = resourceProvider.getString(
                 R.string.hint_password
             ),
+            hintRepeatPassword = resourceProvider.getString(
+                R.string.hint_repeat_password
+            ),
             descriptionVisibilityIcon = resourceProvider.getString(
                 R.string.description_visibility_icon
             ),
@@ -62,6 +65,15 @@ class UserTextResourceProvider @Inject constructor(
             ),
             appSloganText = resourceProvider.getString(
                 R.string.app_slogan_text
+            ),
+            emailInformationTitle = resourceProvider.getString(
+                R.string.email_information_title
+            ),
+            emailInformationText = resourceProvider.getString(
+                R.string.email_information_text
+            ),
+            okReplyText = resourceProvider.getString(
+                R.string.ok_reply_text
             )
         )
     }

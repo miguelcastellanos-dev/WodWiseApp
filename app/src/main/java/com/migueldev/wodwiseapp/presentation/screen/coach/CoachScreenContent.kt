@@ -49,10 +49,7 @@ fun CoachScreenContent(
             contentPadding = PaddingValues(bottom = Dimension.d48)
         ) {
             item {
-                CoachFormatAndTimeCard(
-                    coachState = coachState,
-                    coachActionState = coachActionState
-                )
+                CoachFormatAndTimeCard(coachState, coachActionState)
             }
             item {
                 Spacer(modifier = Modifier.height(Dimension.d16))
@@ -67,6 +64,9 @@ fun CoachScreenContent(
                 )
                 Spacer(modifier = Modifier.height(Dimension.d16))
             }
+            item {
+                Spacer(modifier = Modifier.height(Dimension.d192))
+            }
         }
         if (coachViewModel.showDialog()) {
             CoachResponseDialog(
@@ -75,6 +75,7 @@ fun CoachScreenContent(
                 onSaveResponseDialog = coachActionState.onSaveResponseDialogClicked
             )
         }
+
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Bottom,

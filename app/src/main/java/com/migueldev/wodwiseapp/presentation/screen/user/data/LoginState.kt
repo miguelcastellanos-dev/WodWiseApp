@@ -16,6 +16,7 @@ data class LoginState(
     val descriptionLogoApp: String = "",
     val hintEmail: String = "",
     val hintPassword: String = "",
+    val hintRepeatPassword: String = "",
     val descriptionVisibilityIcon: String = "",
     val descriptionCloseAppIcon: String = "",
     val resetPassword: String = "",
@@ -26,4 +27,7 @@ data class LoginState(
     val forgotPasswordTitleText: String = "",
     val appName: String = "",
     val appSloganText: String = "",
+    val emailInformationTitle: String = "",
+    val emailInformationText: String = "",
+    val okReplyText: String = "",
 )

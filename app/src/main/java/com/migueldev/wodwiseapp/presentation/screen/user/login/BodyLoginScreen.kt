@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.migueldev.wodwiseapp.presentation.navigation.AppState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
-import com.migueldev.wodwiseapp.presentation.screen.user.composables.Email
+import com.migueldev.wodwiseapp.presentation.screen.user.composables.EmailTextField
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.ForgotPasswordClickableText
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.ImageLogo
 import com.migueldev.wodwiseapp.presentation.screen.user.composables.LoginButton
@@ -38,7 +38,7 @@ fun BodyLoginScreen(
                 .fillMaxWidth()
         )
         Spacer(modifier = Modifier.size(Dimension.d16))
-        Email(
+        EmailTextField(
             loginState = appState.loginState,
             email = email
         ) {

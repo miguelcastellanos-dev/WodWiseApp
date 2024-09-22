@@ -63,7 +63,7 @@ fun CoachExerciseCard(
                 horizontalArrangement = Arrangement.spacedBy(Dimension.d8)
             ) {
                 items(coachExerciseData) { exerciseState ->
-                    CoachExerciseChip(exerciseState, onExerciseSelected)
+                    CoachExerciseChip(coachState, exerciseState, onExerciseSelected)
                 }
             }
         }

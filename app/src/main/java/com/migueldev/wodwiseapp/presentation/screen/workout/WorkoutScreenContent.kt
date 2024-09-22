@@ -84,7 +84,7 @@ fun WorkoutScreenContent(
                 datePickerState = datePickerState,
                 workoutViewModel = workoutViewModel
             )
-            Spacer(modifier = Modifier.height(Dimension.d16))
+            Spacer(modifier = Modifier.height(Dimension.d192))
         }
         WorkoutSaveButton(
             modifier = Modifier.align(Alignment.BottomCenter),

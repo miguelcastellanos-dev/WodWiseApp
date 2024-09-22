@@ -9,6 +9,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.presentation.screen.coach.data.CoachState
 import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
@@ -24,11 +26,15 @@ fun CoachGenerateResponseButton(
         modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.background)
+            .semantics {
+                contentDescription = "This is the main layout containing the response button"
+            }
     ) {
         Button(
             onClick = { onGenerateResponseClicked() },
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .semantics { contentDescription = "Generate Response Button" },
             enabled = !coachState.isLoading,
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
