@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 
 @Composable
@@ -17,6 +18,7 @@ fun ForgotPasswordClickableText(
         text = loginState.forgotPasswordText,
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.primary,
+        fontWeight = FontWeight.Bold,
         modifier = modifier.clickable {
             loginState.showForgotPasswordDialog.value = true
         }

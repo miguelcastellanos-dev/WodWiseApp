@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.font.FontWeight
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 
 @Composable
@@ -35,7 +36,8 @@ fun ForgotPasswordDialog(
             Button(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary
+                    contentColor = MaterialTheme.colorScheme.onPrimary,
+                    disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 onClick = {
                     onSendPasswordResetEmailClicked(email)
@@ -43,7 +45,10 @@ fun ForgotPasswordDialog(
                 },
                 enabled = email.isNotBlank()
             ) {
-                Text(loginState.confirmSendEmailButtonText)
+                Text(
+                    text = loginState.confirmSendEmailButtonText,
+                    fontWeight = FontWeight.Bold
+                )
             }
         },
         dismissButton = {
@@ -56,7 +61,10 @@ fun ForgotPasswordDialog(
                     loginState.showForgotPasswordDialog.value = false
                 }
             ) {
-                Text(loginState.cancelSendEmailButtonText)
+                Text(
+                    text = loginState.cancelSendEmailButtonText,
+                    fontWeight = FontWeight.Bold
+                )
             }
         },
         title = {
