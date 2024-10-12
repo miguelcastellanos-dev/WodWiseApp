@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 import com.migueldev.wodwiseapp.presentation.screen.user.data.LoginState
 import com.migueldev.wodwiseapp.presentation.screen.user.data.UserButtonParams
@@ -42,7 +43,8 @@ fun LoginButton(
     ) {
         Text(
             text = loginState.loginButtonText,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold
         )
     }
 }
@@ -75,7 +77,8 @@ fun SignUpButton(
     ) {
         Text(
             text = loginState.signupButtonText,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold
         )
     }
 }
