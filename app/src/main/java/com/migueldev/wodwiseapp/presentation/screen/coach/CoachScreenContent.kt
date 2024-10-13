@@ -62,7 +62,7 @@ fun CoachScreenContent(
                     onExerciseSelected = coachActionState.onExerciseSelected,
                     exerciseHeaderText = section.headerText
                 )
-                Spacer(modifier = Modifier.height(Dimension.d16))
+                Spacer(modifier = Modifier.height(Dimension.d8))
             }
             item {
                 Spacer(modifier = Modifier.height(Dimension.d192))
