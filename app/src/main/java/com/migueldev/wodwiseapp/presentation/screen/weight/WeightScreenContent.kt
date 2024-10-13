@@ -17,10 +17,12 @@ import com.migueldev.wodwiseapp.presentation.screen.theme.RotatingImageLoading
 import com.migueldev.wodwiseapp.presentation.screen.weight.composables.AddWeightDialog
 import com.migueldev.wodwiseapp.presentation.screen.weight.composables.AddWeightFAB
 import com.migueldev.wodwiseapp.presentation.screen.weight.composables.WeightList
+import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightsState
 import kotlinx.coroutines.launch
 
 @Composable
 fun WeightScreenContent(
+    weightsState: WeightsState,
     weightViewModel: WeightViewModel,
     appActionState: AppActionState,
 ) {
@@ -44,6 +46,7 @@ fun WeightScreenContent(
     } else {
         Box(modifier = Modifier.fillMaxSize()) {
             WeightList(
+                weightsState = weightsState,
                 weights = weightsState.exercisesWeightList,
                 onItemRemove = {
                     coroutineScope.launch {

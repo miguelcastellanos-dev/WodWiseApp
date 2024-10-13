@@ -60,6 +60,16 @@
     <string name="prefix_title_week">Semana: </string>
     <string name="notes_text_title_in_card_view">Notas:</string>
     <string name="calendar_detail_changes_saved_toast">Cambios guardados</string>
+    <string name="calendar_information_title_text">Información al usuario</string>
+    <string name="calendar_information_text">
+    "Tu base de datos de entrenamientos está vacía. Puedes agregar entrenamientos manualmente desde la pantalla 'Añadir' o generarlos automáticamente desde la pantalla 'Entrenador'.
+
+Manejo de la pantalla 'Calendario':
+- Pulsa en una tarjeta con la fecha o el día de la semana para desplegarla y ver los entrenamientos correspondientes, o vuelve a pulsarla para plegarla.
+- Si seleccionas un entrenamiento, accederás a la pantalla de edición.
+- Para eliminar un entrenamiento, toca dos veces el ícono de la papelera.
+
+¡Gracias!"</string>
 
     <string name="format_title">Formato</string>
     <string name="time_title">Tiempo</string>
@@ -125,6 +135,15 @@
     <string name="add_weight_dialog_title">Añade un nuevo ejercicio</string>
     <string name="add_exercise_name_dialog_text_field">Nombre del ejercicio</string>
     <string name="add_rm_weight_dialog_text_field">Peso RM</string>
+    <string name="weight_information_title_text">Información al usuario</string>
+    <string name="weight_information_text">
+"Tu base de datos de pesos está vacía. Para agregar el peso máximo que has levantado en tus ejercicios, pulsa el botón '+' en la parte inferior derecha.
+
+Manejo de la pantalla de pesos:
+- Si quieres ver los porcentajes o las repeticiones máximas para un ejercicio, toca la tarjeta correspondiente.
+- Para eliminar un ejercicio, desliza la tarjeta hacia la izquierda.
+
+¡Gracias!"</string>
 
     <string name="title_percentages_view_detail">Porcentajes 1 RM</string>
     <string name="title_reps_detail_view">Repeticiones máximas estimadas</string>

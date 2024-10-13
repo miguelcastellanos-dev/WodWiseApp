@@ -12,4 +12,6 @@ data class CalendarState(
     val calendarChangesSavedToast: String = "",
     val notesText: Map<String, String> = emptyMap(),
     val instructionsText: Map<String, String> = emptyMap(),
+    val calendarInformationText: String = "",
+    val calendarInformationTitleText: String = "",
 )
