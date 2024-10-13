@@ -29,6 +29,12 @@ class WeightTextResourceProvider @Inject constructor(
             ),
             contentDescriptionFab = resourceProvider.getString(
                 R.string.content_description_fab
+            ),
+            weightInformationTitleText = resourceProvider.getString(
+                R.string.weight_information_title_text
+            ),
+            weightInformationText = resourceProvider.getString(
+                R.string.weight_information_text
             )
         )
     }

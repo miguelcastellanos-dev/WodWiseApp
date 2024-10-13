@@ -59,6 +59,12 @@ class CalendarViewModel @Inject constructor(
                 ),
                 calendarChangesSavedToast = resourceProvider.getString(
                     R.string.calendar_detail_changes_saved_toast
+                ),
+                calendarInformationText = resourceProvider.getString(
+                    R.string.calendar_information_text
+                ),
+                calendarInformationTitleText = resourceProvider.getString(
+                    R.string.calendar_information_title_text
                 )
             )
         }

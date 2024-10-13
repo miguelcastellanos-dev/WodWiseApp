@@ -16,4 +16,6 @@ data class WeightsState(
     val textFieldAddExerciseNameDialogText: String = "",
     val textFieldAddRmWeightDialogText: String = "",
     val contentDescriptionFab: String = "",
+    val weightInformationTitleText: String = "",
+    val weightInformationText: String = "",
 )

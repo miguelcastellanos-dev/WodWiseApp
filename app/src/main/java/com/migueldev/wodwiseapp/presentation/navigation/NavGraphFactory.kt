@@ -30,6 +30,7 @@ import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpScreen
 import com.migueldev.wodwiseapp.presentation.screen.user.signup.SignUpViewModel
 import com.migueldev.wodwiseapp.presentation.screen.weight.WeightScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
+import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightsState
 import com.migueldev.wodwiseapp.presentation.screen.weightdetail.WeightDetailScreen
 import com.migueldev.wodwiseapp.presentation.screen.weightdetail.data.WeightDetailState
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutScreenContent
@@ -124,11 +125,13 @@ fun NavGraphBuilder.coachScreen(
 }
 
 fun NavGraphBuilder.weightScreen(
+    weightsState: WeightsState,
     weightViewModel: WeightViewModel,
     appActionState: AppActionState,
 ) {
     composable(Routes.WeightScreen.route) {
         WeightScreenContent(
+            weightsState = weightsState,
             weightViewModel = weightViewModel,
             appActionState = appActionState
         )

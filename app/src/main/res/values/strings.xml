@@ -81,7 +81,17 @@
     <string name="instruction_text_title_in_card_view">Instructions:</string>
     <string name="prefix_title_week">Week: </string>
     <string name="notes_text_title_in_card_view">Notes:</string>
+    <string name="calendar_information_title_text">Information for the user</string>
     <string name="calendar_detail_changes_saved_toast">Changes saved</string>
+    <string name="calendar_information_text">
+"Your workout database is empty. You can manually add workouts from the 'Add workout' screen or generate them automatically from the 'Coach' screen.
+
+Managing the 'Calendar' screen:
+- Tap a card with the date or day of the week to expand it and view the corresponding workouts, or tap it again to collapse it.
+- If you select a workout, you'll access the editing screen.
+- To delete a workout, tap the trash icon twice.
+
+Thank you!"</string>
 
     <string name="format_title">Format</string>
     <string name="time_title">Time</string>
@@ -245,6 +255,15 @@
     <string name="add_exercise_name_dialog_text_field">Exercise name</string>
     <string name="add_rm_weight_dialog_text_field">RM weight</string>
     <string name="content_description_fab" translatable="false">Add new weight</string>
+    <string name="weight_information_title_text">Information for the user</string>
+    <string name="weight_information_text">
+"Your weight database is empty. To add the maximum weight you've lifted in your exercises, press the '+' button at the bottom right.
+
+Managing the weights screen:
+- If you want to see the percentages or maximum repetitions for an exercise, tap the corresponding card.
+- To delete an exercise, swipe the card to the left.
+
+Thank you!"</string>
 
     <string name="exercise_rm_title" translatable="false">RM:</string>
     <string name="title_percentages_view_detail">Percentages 1 RM</string>
