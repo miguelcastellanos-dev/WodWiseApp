@@ -8,4 +8,5 @@ data class CoachActionState(
     val onSaveResponseDialogClicked: () -> Unit,
     val onSelectedTimeChange: (Int) -> Unit,
     val onExerciseSelected: (String, Boolean) -> Unit,
+    val onResetCoachScreenClicked: () -> Unit,
 )

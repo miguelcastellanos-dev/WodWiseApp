@@ -5,8 +5,6 @@ import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -20,9 +18,9 @@ fun CoachExerciseChip(
     coachExerciseData: CoachExerciseData,
     onExerciseSelected: (String, Boolean) -> Unit,
 ) {
-    val isSelected = remember { mutableStateOf(coachExerciseData.isSelected) }
+    val isSelected = coachExerciseData.isSelected
 
-    val contentDescription = if (isSelected.value) {
+    val contentDescription = if (isSelected) {
         "${coachExerciseData.exerciseName}, ${coachState.exerciseChipSelected}"
     } else {
         "${coachExerciseData.exerciseName}, ${coachState.exerciseChipNotSelected}"
@@ -32,10 +30,9 @@ fun CoachExerciseChip(
         modifier = Modifier.semantics {
             this.contentDescription = contentDescription
         },
-        selected = isSelected.value,
+        selected = isSelected,
         onClick = {
-            isSelected.value = !isSelected.value
-            onExerciseSelected(coachExerciseData.exerciseName, isSelected.value)
+            onExerciseSelected(coachExerciseData.exerciseName, !isSelected)
         },
         label = {
             Text(

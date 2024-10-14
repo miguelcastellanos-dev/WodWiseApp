@@ -146,6 +146,50 @@ class CoachViewModel @Inject constructor(
         }
     }
 
+    fun resetAllExercises() {
+        _coachState.update { it.copy(selectedExerciseLists = emptySet()) }
+
+        val updatedBarbellMovementsStates =
+            _coachState.value.barbellMovementsCoachExerciseData.map {
+                it.copy(isSelected = false)
+            }
+        val updatedBodyWeightMovementsStates = _coachState.value.bodyWeightCoachExerciseData.map {
+            it.copy(isSelected = false)
+        }
+        val updatedCardioStates = _coachState.value.metabolicCoachExerciseData.map {
+            it.copy(isSelected = false)
+        }
+        val updatedDumbbellStates = _coachState.value.dumbbellCoachExerciseData.map {
+            it.copy(isSelected = false)
+        }
+        val updatedFunctionalWeightedStates =
+            _coachState.value.functionalWeightedCoachExerciseData.map {
+                it.copy(isSelected = false)
+            }
+        val updatedGymnasticStates = _coachState.value.gymnasticCoachExerciseData.map {
+            it.copy(isSelected = false)
+        }
+        val updatedKettlebellStates = _coachState.value.kettlebellCoachExerciseData.map {
+            it.copy(isSelected = false)
+        }
+        val updatedStrengthStates = _coachState.value.strengthCoachExerciseData.map {
+            it.copy(isSelected = false)
+        }
+
+        _coachState.update {
+            it.copy(
+                barbellMovementsCoachExerciseData = updatedBarbellMovementsStates,
+                bodyWeightCoachExerciseData = updatedBodyWeightMovementsStates,
+                metabolicCoachExerciseData = updatedCardioStates,
+                dumbbellCoachExerciseData = updatedDumbbellStates,
+                functionalWeightedCoachExerciseData = updatedFunctionalWeightedStates,
+                gymnasticCoachExerciseData = updatedGymnasticStates,
+                kettlebellCoachExerciseData = updatedKettlebellStates,
+                strengthCoachExerciseData = updatedStrengthStates
+            )
+        }
+    }
+
     fun handleDialogState(shouldShow: Boolean) {
         _coachState.update { currentState ->
             val newShowDialogState = mutableStateOf(
@@ -183,6 +227,8 @@ class CoachViewModel @Inject constructor(
                 withContext(mainDispatcher) {
                     toastWrapper.show(_coachState.value.savedWorkoutToastText)
                 }
+                resetAllExercises()
+                foldAllExerciseTabs()
                 result
             } catch (e: FirestoreAddDocumentException) {
                 Either.Left(e)
@@ -195,6 +241,13 @@ class CoachViewModel @Inject constructor(
             val updatedMap = currentState.showExerciseCardState.toMutableMap()
             val isCurrentlyVisible = updatedMap[exerciseHeaderText] ?: false
             updatedMap[exerciseHeaderText] = !isCurrentlyVisible
+            currentState.copy(showExerciseCardState = updatedMap)
+        }
+    }
+
+    fun foldAllExerciseTabs() {
+        _coachState.update { currentState ->
+            val updatedMap = currentState.showExerciseCardState.mapValues { false }
             currentState.copy(showExerciseCardState = updatedMap)
         }
     }

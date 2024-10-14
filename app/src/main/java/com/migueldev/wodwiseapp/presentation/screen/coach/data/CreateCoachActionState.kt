@@ -34,6 +34,10 @@ fun createCoachActionState(
         onSelectedTimeChange = { coachViewModel.updateSelectedTime(it) },
         onExerciseSelected = { exercise, selected ->
             coachViewModel.onExerciseSelected(exerciseName = exercise, selected = selected)
+        },
+        onResetCoachScreenClicked = {
+            coachViewModel.resetAllExercises()
+            coachViewModel.foldAllExerciseTabs()
         }
     )
 }
