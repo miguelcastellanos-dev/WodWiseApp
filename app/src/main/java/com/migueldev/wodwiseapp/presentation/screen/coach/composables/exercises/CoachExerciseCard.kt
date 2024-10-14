@@ -27,7 +27,7 @@ fun CoachExerciseCard(
     onExerciseSelected: (String, Boolean) -> Unit,
     exerciseHeaderText: String,
 ) {
-    val showDayCardState = coachState.showExerciseCardState[exerciseHeaderText] == true
+    val showExerciseCardState = coachState.showExerciseCardState[exerciseHeaderText] == true
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,7 +36,7 @@ fun CoachExerciseCard(
             },
         colors = CardDefaults.cardColors(
             containerColor =
-            if (showDayCardState) {
+            if (showExerciseCardState) {
                 MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
             } else {
                 MaterialTheme.colorScheme.background
@@ -44,7 +44,7 @@ fun CoachExerciseCard(
         ),
         border = BorderStroke(
             Dimension.d1,
-            if (showDayCardState) {
+            if (showExerciseCardState) {
                 MaterialTheme.colorScheme.primary
             } else {
                 MaterialTheme.colorScheme.secondaryContainer
@@ -53,7 +53,7 @@ fun CoachExerciseCard(
     ) {
         CoachExerciseHeader(
             text = exerciseHeaderText,
-            showDayCardState = showDayCardState
+            showDayCardState = showExerciseCardState
         )
         if (coachState.showExerciseCardState[exerciseHeaderText] == true) {
             LazyVerticalGrid(

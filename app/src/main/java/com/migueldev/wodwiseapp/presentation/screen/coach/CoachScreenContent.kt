@@ -16,8 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.migueldev.wodwiseapp.presentation.screen.coach.composables.CoachButtonsRow
 import com.migueldev.wodwiseapp.presentation.screen.coach.composables.CoachFormatAndTimeCard
-import com.migueldev.wodwiseapp.presentation.screen.coach.composables.CoachGenerateResponseButton
 import com.migueldev.wodwiseapp.presentation.screen.coach.composables.CoachResponseDialog
 import com.migueldev.wodwiseapp.presentation.screen.coach.composables.exercises.CoachExerciseCard
 import com.migueldev.wodwiseapp.presentation.screen.coach.composables.exercises.SelectedExercisesCards
@@ -81,10 +81,10 @@ fun CoachScreenContent(
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CoachGenerateResponseButton(
+            CoachButtonsRow(
                 coachState = coachState,
-                onGenerateResponseClicked = coachActionState.onGenerateResponseClicked,
-                modifier = Modifier
+                onResetCoachScreenClicked = coachActionState.onResetCoachScreenClicked,
+                onGenerateResponseClicked = coachActionState.onGenerateResponseClicked
             )
             SelectedExercisesCards(
                 coachState = coachState
