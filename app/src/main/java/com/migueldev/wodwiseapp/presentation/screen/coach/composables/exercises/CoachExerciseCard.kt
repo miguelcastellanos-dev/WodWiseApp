@@ -51,7 +51,10 @@ fun CoachExerciseCard(
             }
         )
     ) {
-        CoachExerciseHeader(exerciseHeaderText)
+        CoachExerciseHeader(
+            text = exerciseHeaderText,
+            showDayCardState = showDayCardState
+        )
         if (coachState.showExerciseCardState[exerciseHeaderText] == true) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(COLUMNS_NUMBER),
