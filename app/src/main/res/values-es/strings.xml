@@ -154,6 +154,16 @@ Manejo de la pantalla de pesos:
     <string name="dismiss_button_dialog">Cancelar</string>
     <string name="text_empty_weight">Peso vacio</string>
 
+    <string name="date_input_textField_label">Fecha</string>
+    <string name="weight_history_dialog_title">Añade una nueva entrada a tu historial</string>
+    <string name="weight_input_textField_label">Peso</string>
+    <string name="weight_input_textField_placeholder">Peso</string>
+    <string name="repetitions_input_textField_label">Repeticiones realizadas</string>
+    <string name="repetitions_input_textField_placeholder">Repeticiones realizadas</string>
+    <string name="history_list_title">Historial</string>
+    <string name="empty_history_list">Lista de pesos vacía</string>
+    <string name="abbreviations_for_units_of_weight">kg</string>
+
     <string name="theme_setting_text">Tema (Oscuro/Claro)</string>
     <string name="close_session_text">Cerrar sesión</string>
     <string name="delete_user_text">Eliminar cuenta</string>

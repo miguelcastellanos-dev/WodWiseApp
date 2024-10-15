@@ -3,6 +3,8 @@ package com.migueldev.wodwiseapp.presentation.screen.weightdetail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.migueldev.wodwiseapp.di.IO
+import com.migueldev.wodwiseapp.domain.exception.AddWeightHistoryException
+import com.migueldev.wodwiseapp.domain.exception.RemoveWeightHistoryException
 import com.migueldev.wodwiseapp.domain.repository.weight.WeightRepository
 import com.migueldev.wodwiseapp.presentation.screen.weightdetail.data.WeightDetailState
 import com.migueldev.wodwiseapp.presentation.screen.weightdetail.data.WeightDetailTextResourceProvider
@@ -38,6 +40,39 @@ class WeightDetailViewModel @Inject constructor(
     fun updateRmInCoroutine(weightId: String, newRm: Double) {
         viewModelScope.launch(ioDispatcher) {
             updateWeightRm(weightId, newRm)
+        }
+    }
+
+    fun addWeightHistory(
+        weightId: String,
+        weight: Double,
+        repetitions: Int,
+        date: String,
+    ) {
+        viewModelScope.launch {
+            try {
+                weightRepository.addWeightHistoryToFirestore(
+                    weightId,
+                    weight,
+                    repetitions,
+                    date
+                )
+            } catch (e: AddWeightHistoryException) {
+                throw AddWeightHistoryException(weightId, e)
+            }
+        }
+    }
+
+    fun removeWeightHistory(weightId: String, idHistory: String) {
+        viewModelScope.launch {
+            try {
+                weightRepository.removeWeightHistory(
+                    weightId,
+                    idHistory
+                )
+            } catch (e: RemoveWeightHistoryException) {
+                throw RemoveWeightHistoryException(weightId, idHistory, e)
+            }
         }
     }
 }

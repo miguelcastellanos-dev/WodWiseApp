@@ -80,6 +80,20 @@ fun createAppActionState(
             },
             onDeleteAllWeightsClicked = {
                 appState.profileViewModel.deleteAllWeights()
+            },
+            addWeightHistoryClicked = { weightId, weight, repetitions, date ->
+                weightDetailViewModel.addWeightHistory(
+                    weightId = weightId,
+                    weight = weight,
+                    repetitions = repetitions,
+                    date = date
+                )
+            },
+            removeWeightHistoryClicked = { weightId, idHistory ->
+                weightDetailViewModel.removeWeightHistory(
+                    weightId = weightId,
+                    idHistory = idHistory
+                )
             }
         )
     }

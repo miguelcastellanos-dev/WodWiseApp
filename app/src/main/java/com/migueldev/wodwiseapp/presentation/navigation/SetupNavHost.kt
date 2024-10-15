@@ -34,8 +34,7 @@ fun SetupNavHost(
                 coachActionState = coachActionState
             )
             weightDetailScreen(
-                weightViewModel = weightViewModel,
-                weightDetailState = weightDetailState,
+                appState = appState,
                 appActionState = appActionState
             )
             calendarDetailScreen(

@@ -17,4 +17,13 @@ interface WeightsDatasource {
     suspend fun updateWeightRm(weightId: String, newRm: Double)
 
     suspend fun deleteWeightsCollection()
+
+    suspend fun addWeightHistoryToFirestore(
+        weightId: String,
+        weight: Double,
+        repetitions: Int,
+        date: String,
+    )
+
+    suspend fun removeWeightHistory(weightId: String, idHistory: String)
 }

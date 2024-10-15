@@ -35,6 +35,45 @@ class WeightDetailTextResourceProvider @Inject constructor(
             ),
             emptyWeightText = resourceProvider.getString(
                 R.string.text_empty_weight
+            ),
+            dateInputTextFieldLabel = resourceProvider.getString(
+                R.string.date_input_textField_label
+            ),
+            dateInputTextFieldPlaceholder = resourceProvider.getString(
+                R.string.date_input_textField_placeholder
+            ),
+            weightHistoryDialogTitle = resourceProvider.getString(
+                R.string.weight_history_dialog_title
+            ),
+            weightInputTextFieldLabel = resourceProvider.getString(
+                R.string.weight_input_textField_label
+            ),
+            weightInputTextFieldPlaceholder = resourceProvider.getString(
+                R.string.weight_input_textField_placeholder
+            ),
+            repetitionsInputTextFieldLabel = resourceProvider.getString(
+                R.string.repetitions_input_textField_label
+            ),
+            repetitionsInputTextFieldPlaceholder = resourceProvider.getString(
+                R.string.repetitions_input_textField_placeholder
+            ),
+            repsText = resourceProvider.getString(
+                R.string.reps_text
+            ),
+            historyListTitle = resourceProvider.getString(
+                R.string.history_list_title
+            ),
+            emptyHistoryList = resourceProvider.getString(
+                R.string.empty_history_list
+            ),
+            abbreviationsForUnitsOfWeight = resourceProvider.getString(
+                R.string.abbreviations_for_units_of_weight
+            ),
+            openingParenthesis = resourceProvider.getString(
+                R.string.opening_parenthesis
+            ),
+            closingParenthesis = resourceProvider.getString(
+                R.string.closing_parenthesis
             )
         )
     }

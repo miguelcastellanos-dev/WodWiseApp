@@ -28,4 +28,22 @@ class WeightRepository @Inject constructor(
     suspend fun deleteWeightsCollection() {
         return weightDatasource.deleteWeightsCollection()
     }
+
+    suspend fun addWeightHistoryToFirestore(
+        weightId: String,
+        weight: Double,
+        repetitions: Int,
+        date: String,
+    ) {
+        return weightDatasource.addWeightHistoryToFirestore(
+            weightId,
+            weight,
+            repetitions,
+            date
+        )
+    }
+
+    suspend fun removeWeightHistory(weightId: String, idHistory: String) {
+        return weightDatasource.removeWeightHistory(weightId, idHistory)
+    }
 }

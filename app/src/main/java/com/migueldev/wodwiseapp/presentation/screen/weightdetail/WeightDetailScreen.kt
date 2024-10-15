@@ -1,50 +1,63 @@
 package com.migueldev.wodwiseapp.presentation.screen.weightdetail
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.migueldev.wodwiseapp.R
 import com.migueldev.wodwiseapp.presentation.navigation.AppActionState
-import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
-import com.migueldev.wodwiseapp.presentation.screen.weightdetail.composables.detailScreenCards.PercentagesCard
-import com.migueldev.wodwiseapp.presentation.screen.weightdetail.composables.detailScreenCards.RepetitionCard
-import com.migueldev.wodwiseapp.presentation.screen.weightdetail.composables.detailScreenCards.ScreenTitleCard
-import com.migueldev.wodwiseapp.presentation.screen.weightdetail.data.WeightDetailState
+import com.migueldev.wodwiseapp.presentation.navigation.AppState
+import com.migueldev.wodwiseapp.presentation.screen.theme.Dimension
+import com.migueldev.wodwiseapp.presentation.screen.theme.RotatingImageLoading
+import com.migueldev.wodwiseapp.presentation.screen.weightdetail.composables.AddWeightHistoryDialog
+import com.migueldev.wodwiseapp.presentation.screen.weightdetail.composables.WeightDetailScreenContent
 
 @Composable
 fun WeightDetailScreen(
-    weightViewModel: WeightViewModel,
-    weightDetailState: WeightDetailState,
+    appState: AppState,
     weightId: String,
     appActionState: AppActionState,
+    addWeightHistoryClicked: (String, Double, Int, String) -> Unit,
 ) {
-    val weightsState by weightViewModel.state.collectAsState()
-    val exerciseWeight = weightsState.exercisesWeightList.find { it.weightId == weightId }
-    if (exerciseWeight != null) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .background(MaterialTheme.colorScheme.background)
+    val exerciseWeight = appState.weightState.exercisesWeightList.find { it.weightId == weightId }
+
+    if (appState.weightState.isLoading) {
+        Box(
+            modifier = Modifier.fillMaxSize()
         ) {
-            ScreenTitleCard(
-                weightDetailState = weightDetailState,
-                weightId = exerciseWeight.weightId,
-                exerciseName = exerciseWeight.weightName,
-                exerciseRm = exerciseWeight.weightRepetitionMaximum,
-                onRmChange = appActionState.onRmChangeClicked
+            RotatingImageLoading(
+                imageResource = R.drawable.ic_launcher_round,
+                modifier = Modifier.align(Alignment.Center),
+                size = Dimension.d128
             )
-            PercentagesCard(weightDetailState, exerciseWeight.weightRepetitionMaximum)
-            RepetitionCard(weightDetailState, exerciseWeight.weightRepetitionMaximum)
         }
     } else {
-        Text(text = weightDetailState.emptyWeightText)
+        Box(modifier = Modifier.fillMaxSize()) {
+            if (exerciseWeight != null) {
+                WeightDetailScreenContent(
+                    appState = appState,
+                    exerciseWeight = exerciseWeight,
+                    appActionState = appActionState,
+                    modifier = Modifier.align(Alignment.BottomEnd)
+                )
+            } else {
+                Text(text = appState.weightDetailState.emptyWeightText)
+            }
+        }
+
+        if (exerciseWeight != null && appState.weightDetailState.showAddWeightDetailDialog.value) {
+            AddWeightHistoryDialog(
+                appState = appState,
+                onDismiss = {
+                    appState.weightDetailState.showAddWeightDetailDialog.value = false
+                    appState.weightDetailState.weightHistory.value = ""
+                    appState.weightDetailState.repetitionsHistory.value = ""
+                },
+                weightId = exerciseWeight.weightId,
+                addWeightHistoryClicked = addWeightHistoryClicked
+            )
+        }
     }
 }

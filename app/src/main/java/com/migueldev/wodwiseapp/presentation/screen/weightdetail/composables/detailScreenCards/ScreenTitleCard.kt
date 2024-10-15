@@ -72,7 +72,7 @@ fun ScreenTitleCard(
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )
-            ButtonUpdateWeight(
+            UpdateWeightButton(
                 onButtonClick = { showDialog = true },
                 weightDetailState = weightDetailState,
                 exerciseRm = exerciseRm

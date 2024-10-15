@@ -32,7 +32,6 @@ import com.migueldev.wodwiseapp.presentation.screen.weight.WeightScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.weight.WeightViewModel
 import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightsState
 import com.migueldev.wodwiseapp.presentation.screen.weightdetail.WeightDetailScreen
-import com.migueldev.wodwiseapp.presentation.screen.weightdetail.data.WeightDetailState
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutScreenContent
 import com.migueldev.wodwiseapp.presentation.screen.workout.WorkoutViewModel
 import com.migueldev.wodwiseapp.presentation.screen.workout.data.WorkoutState
@@ -139,8 +138,7 @@ fun NavGraphBuilder.weightScreen(
 }
 
 fun NavGraphBuilder.weightDetailScreen(
-    weightViewModel: WeightViewModel,
-    weightDetailState: WeightDetailState,
+    appState: AppState,
     appActionState: AppActionState,
 ) {
     composable(
@@ -153,10 +151,10 @@ fun NavGraphBuilder.weightDetailScreen(
             "weightId"
         ) ?: "default_weight_id"
         WeightDetailScreen(
-            weightViewModel = weightViewModel,
-            weightDetailState = weightDetailState,
+            appState = appState,
             weightId = weightId,
-            appActionState = appActionState
+            appActionState = appActionState,
+            addWeightHistoryClicked = appActionState.addWeightHistoryClicked
         )
     }
 }

@@ -49,4 +49,34 @@ class WeightDetailViewModelTest {
 
             coVerifyOnce { weightRepository.updateWeightRm(weightId, newRm) }
         }
+
+    @Test
+    fun `GIVEN weight data WHEN addWeightHistory is called THEN addWeightHistoryToFirestore is invoked`() =
+        runTest {
+            val weightId = "20240101"
+            val weight = 80.0
+            val repetitions = 10
+            val date = "2024-10-20"
+
+            viewModel.addWeightHistory(weightId, weight, repetitions, date)
+            advanceUntilIdle()
+
+            coVerifyOnce {
+                weightRepository.addWeightHistoryToFirestore(weightId, weight, repetitions, date)
+            }
+        }
+
+    @Test
+    fun `GIVEN weightId and idHistory WHEN removeWeightHistory is called THEN removeWeightHistory is invoked`() =
+        runTest {
+            val weightId = "20240101"
+            val idHistory = "id123"
+
+            viewModel.removeWeightHistory(weightId, idHistory)
+            advanceUntilIdle()
+
+            coVerifyOnce {
+                weightRepository.removeWeightHistory(weightId, idHistory)
+            }
+        }
 }
