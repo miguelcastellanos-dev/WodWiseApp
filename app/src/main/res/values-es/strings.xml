@@ -24,6 +24,7 @@
     <string name="confirm_send_email_button_text">Enviar</string>
     <string name="cancel_send_email_button_text">Cancelar</string>
     <string name="forgot_password_title_text">Introduce tu email</string>
+    <string name="app_slogan_text">Crea entrenamientos\nRompe límites</string>
     <string name="email_information_title">¿Por qué pedimos tu correo electrónico?</string>
     <string name="email_information_text">Solicitamos tu correo electrónico para vincularlo a los
         datos que guardas, de modo que puedas acceder a tu información desde cualquier dispositivo.

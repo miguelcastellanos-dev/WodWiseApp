@@ -29,7 +29,7 @@
     <string name="confirm_send_email_button_text">Send</string>
     <string name="cancel_send_email_button_text">Cancel</string>
     <string name="forgot_password_title_text">Enter your email</string>
-    <string name="app_slogan_text" translatable="false">Build workouts. Break limits</string>
+    <string name="app_slogan_text">Build workouts. Break limits</string>
     <string name="email_information_title">Why we ask for your email?</string>
     <string name="email_information_text">We request your email to link it to the data you save, so
         you can access your information from any device. Additionally, it helps you recover your
