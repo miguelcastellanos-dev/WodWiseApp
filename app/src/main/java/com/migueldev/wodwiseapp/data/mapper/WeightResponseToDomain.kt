@@ -7,6 +7,7 @@ fun WeightResponse.toDomain(): WeightData {
     return WeightData(
         weightId = this.weightId,
         weightName = this.nameExercise,
-        weightRepetitionMaximum = this.repetitionMaximum
+        weightRepetitionMaximum = this.repetitionMaximum,
+        weightHistoryList = this.weightHistoryList
     )
 }

@@ -20,4 +20,6 @@ data class AppActionState(
     val onDeleteUserClicked: () -> Unit,
     val onDeleteAllWorkoutsClicked: () -> Unit,
     val onDeleteAllWeightsClicked: () -> Unit,
+    val addWeightHistoryClicked: (String, Double, Int, String) -> Unit,
+    val removeWeightHistoryClicked: (String, String) -> Unit,
 )

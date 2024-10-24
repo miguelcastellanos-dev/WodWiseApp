@@ -1,13 +1,21 @@
 package com.migueldev.wodwiseapp.data.remote.datasource.weight
 
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.snapshots
 import com.migueldev.wodwiseapp.data.dto.WeightDto
+import com.migueldev.wodwiseapp.data.mapper.DATE_HISTORY_DATABASE_FIELD
+import com.migueldev.wodwiseapp.data.mapper.ID_HISTORY_DATABASE_FIELD
+import com.migueldev.wodwiseapp.data.mapper.REPETITIONS_HISTORY_LIST_DATABASE_FIELD
+import com.migueldev.wodwiseapp.data.mapper.WEIGHT_HISTORY_DATABASE_FIELD
+import com.migueldev.wodwiseapp.data.mapper.WEIGHT_HISTORY_LIST_DATABASE_FIELD
 import com.migueldev.wodwiseapp.data.mapper.WEIGHT_REPETITION_MAXIMUM_DATABASE_FIELD
 import com.migueldev.wodwiseapp.data.mapper.toDomain
 import com.migueldev.wodwiseapp.data.mapper.toMap
 import com.migueldev.wodwiseapp.data.remote.response.WeightResponse
 import com.migueldev.wodwiseapp.data.session.UserPreferences
+import com.migueldev.wodwiseapp.domain.usecase.GenerateWorkoutIdUseCase
 import com.migueldev.wodwiseapp.presentation.screen.weight.data.WeightData
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
@@ -19,6 +27,7 @@ import kotlinx.coroutines.tasks.await
 class RemoteWeightDatasource @Inject constructor(
     private val firebaseFirestore: FirebaseFirestore,
     private val userPreferences: UserPreferences,
+    private val generateWorkoutIdUseCase: GenerateWorkoutIdUseCase,
 ) : WeightsDatasource {
 
     private suspend fun getUserCollection(): String {
@@ -62,9 +71,12 @@ class RemoteWeightDatasource @Inject constructor(
             .collection(userCollection)
             .snapshots()
             .map { querySnapshot ->
-                querySnapshot.toObjects(WeightResponse::class.java)
-            }.collect {
-                emit(it)
+                querySnapshot.documents.map { documentSnapshot ->
+                    val weightResponse = documentSnapshot.toObject(WeightResponse::class.java)
+                    weightResponse
+                }
+            }.collect { weightResponses ->
+                emit(weightResponses.filterNotNull())
             }
     }
 
@@ -83,6 +95,58 @@ class RemoteWeightDatasource @Inject constructor(
 
         for (document in documents) {
             document.reference.delete().await()
+        }
+    }
+
+    override suspend fun addWeightHistoryToFirestore(
+        weightId: String,
+        weight: Double,
+        repetitions: Int,
+        date: String,
+    ) {
+        val userCollection = getUserCollection()
+        val idHistory = generateWorkoutIdUseCase()
+        val newHistory = mapOf(
+            ID_HISTORY_DATABASE_FIELD to idHistory,
+            WEIGHT_HISTORY_DATABASE_FIELD to weight,
+            REPETITIONS_HISTORY_LIST_DATABASE_FIELD to repetitions,
+            DATE_HISTORY_DATABASE_FIELD to date
+        )
+
+        firebaseFirestore.collection(userCollection)
+            .document(weightId)
+            .set(
+                mapOf(WEIGHT_HISTORY_LIST_DATABASE_FIELD to FieldValue.arrayUnion(newHistory)),
+                SetOptions.merge()
+            )
+            .await()
+    }
+
+    override suspend fun removeWeightHistory(weightId: String, idHistory: String) {
+        val userCollection = getUserCollection()
+
+        val documentSnapshot = firebaseFirestore
+            .collection(userCollection)
+            .document(weightId)
+            .get()
+            .await()
+
+        if (documentSnapshot.exists()) {
+            val weightHistoryList = documentSnapshot
+                .get(WEIGHT_HISTORY_LIST_DATABASE_FIELD) as? List<*>
+
+            val validHistoryList = weightHistoryList?.filterIsInstance<Map<String, Any>>()
+
+            val updatedHistoryList = validHistoryList?.filterNot { history ->
+                history[ID_HISTORY_DATABASE_FIELD] == idHistory
+            }
+
+            if (updatedHistoryList != null) {
+                firebaseFirestore.collection(userCollection)
+                    .document(weightId)
+                    .update(WEIGHT_HISTORY_LIST_DATABASE_FIELD, updatedHistoryList)
+                    .await()
+            }
         }
     }
 }

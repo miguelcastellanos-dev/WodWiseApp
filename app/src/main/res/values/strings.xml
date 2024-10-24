@@ -275,6 +275,20 @@ Thank you!"</string>
     <string name="dismiss_button_dialog">Cancel</string>
     <string name="text_empty_weight">Empty weight</string>
 
+    <string name="date_input_textField_label">Date</string>
+    <string name="date_input_textField_placeholder" translatable="false">XX/XX/XXXX</string>
+    <string name="weight_history_dialog_title">Add a new entry to your history</string>
+    <string name="weight_input_textField_label">Weight</string>
+    <string name="weight_input_textField_placeholder">Weight</string>
+    <string name="repetitions_input_textField_label">Repetitions performed</string>
+    <string name="repetitions_input_textField_placeholder">Repetitions performed</string>
+    <string name="reps_text" translatable="false">reps</string>
+    <string name="history_list_title">History</string>
+    <string name="empty_history_list">Empty weight list</string>
+    <string name="abbreviations_for_units_of_weight">lbs</string>
+    <string name="opening_parenthesis" translatable="false">(</string>
+    <string name="closing_parenthesis" translatable="false">)</string>
+
     <string name="theme_setting_text">Theme (Dark/Light)</string>
     <string name="close_session_text">Log Out</string>
     <string name="delete_user_text">Delete user</string>

@@ -97,4 +97,38 @@ class WeightRepositoryTest {
 
             coVerifyOnce { weightDatasource.deleteWeightsCollection() }
         }
+
+    @Test
+    fun `GIVEN weight data WHEN addWeightHistoryToFirestore is called THEN datasource addWeightHistoryToFirestore`() =
+        runTest {
+            val weightId = "1"
+            val weight = 80.0
+            val repetitions = 10
+            val date = "2024-10-20"
+            coEvery {
+                weightDatasource.addWeightHistoryToFirestore(weightId, weight, repetitions, date)
+            } just Runs
+
+            weightRepository.addWeightHistoryToFirestore(weightId, weight, repetitions, date)
+
+            coVerifyOnce {
+                weightDatasource.addWeightHistoryToFirestore(weightId, weight, repetitions, date)
+            }
+        }
+
+    @Test
+    fun `GIVEN weightId and idHistory WHEN removeWeightHistory is called THEN datasource removeWeightHistory`() =
+        runTest {
+            val weightId = "1"
+            val idHistory = "history123"
+            coEvery {
+                weightDatasource.removeWeightHistory(weightId, idHistory)
+            } just Runs
+
+            weightRepository.removeWeightHistory(weightId, idHistory)
+
+            coVerifyOnce {
+                weightDatasource.removeWeightHistory(weightId, idHistory)
+            }
+        }
 }
