@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter
 fun groupWorkoutsByWeek(workouts: List<WorkoutCardData>): Map<String, List<WorkoutCardData>> {
     return workouts.groupBy { workout ->
         val dateString = workout.date
-        val localDate = convertStringToLocalDate(dateString, STRING_TO_LOCAL_DATE_PATTERN)
+        val localDate = convertStringToLocalDate(dateString)
 
         localDate?.let {
             val weekStart = it.with(DayOfWeek.MONDAY)
@@ -21,5 +21,4 @@ fun groupWorkoutsByWeek(workouts: List<WorkoutCardData>): Map<String, List<Worko
     }
 }
 
-private const val STRING_TO_LOCAL_DATE_PATTERN = "EEEE dd MMMM yyyy"
 private const val DATE_FORMAT_OUTPUT_PATTERN = "dd-MM-yyyy"
