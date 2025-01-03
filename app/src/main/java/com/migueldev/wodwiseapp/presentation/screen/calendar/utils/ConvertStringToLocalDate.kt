@@ -8,13 +8,16 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun convertStringToLocalDate(dateString: String, pattern: String): LocalDate? {
+fun convertStringToLocalDate(dateString: String): LocalDate? {
     return try {
-        val formatter = DateTimeFormatter.ofPattern(pattern)
-        val currentYear = LocalDate.now().year
-        val dateWithYear = "$dateString $currentYear"
-        LocalDate.parse(dateWithYear, formatter)
+        val formatter = DateTimeFormatter.ofPattern(STRING_TO_LOCAL_DATE_PATTERN)
+
+        val finalDateString = dateString.substringAfter(' ')
+
+        LocalDate.parse(finalDateString, formatter)
     } catch (e: DateTimeParseException) {
-        throw ConvertStringToLocalDateException(e)
+        throw ConvertStringToLocalDateException()
     }
 }
+
+private const val STRING_TO_LOCAL_DATE_PATTERN = "dd MMMM yyyy"

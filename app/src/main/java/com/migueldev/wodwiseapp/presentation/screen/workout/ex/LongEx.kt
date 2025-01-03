@@ -11,4 +11,4 @@ fun Long?.millisToDate(): String {
     return dateFormat.format(dateToFormat)
 }
 
-const val DATE_FORMAT_PATTERN = "EEEE dd MMMM"
+const val DATE_FORMAT_PATTERN = "EEEE dd MMMM yyyy"
